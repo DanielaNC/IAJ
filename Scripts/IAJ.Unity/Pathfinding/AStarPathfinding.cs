@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Grid;
 using Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures;
@@ -102,7 +102,8 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
 
                 foreach (var neighbourNode in GetNeighbourList(currentNode))
                 {
-                    this.ProcessChildNode(currentNode, neighbourNode);
+                    if(neighbourNode.isWalkable)
+                        this.ProcessChildNode(currentNode, neighbourNode);
                 }
             }
         
