@@ -153,13 +153,6 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     this.Open.AddToOpen(child);
                 }
             }
-
-            // TODO
-            //implement the rest of the code here
-
-            // Look at the slides  
-
-
         }
 
 

@@ -51,20 +51,23 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures
         }
 
         public void AddToClosed(NodeRecord nodeRecord)
-        {  
-            // TODO implement
+        {
+            //RemoveFromOpen sets status to unvisited, this leads to certain doubts...
+            //TODO: Check if correct
+            this.Open.RemoveFromOpen(nodeRecord);
+            nodeRecord.status = NodeStatus.Closed;
         }
 
         public NodeRecord SearchInOpen(NodeRecord nodeRecord)
         {
-            //TODO implement
-            return null;
+            //A* Node Array makes use of node indexes to improve efficiency
+            return nodeRecord.status == NodeStatus.Open ? this.NodeRecords[nodeRecord.index] : null;
         }
 
         public NodeRecord SearchInClosed(NodeRecord nodeRecord)
         {
-            //TODO implement
-            return null;
+            //A* Node Array makes use of node indexes to improve efficiency
+            return nodeRecord.status == NodeStatus.Closed ? this.NodeRecords[nodeRecord.index] : null;
         }
 
         public NodeRecord GetBestAndRemove()
@@ -90,8 +93,11 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures
 
         public void RemoveFromClosed(NodeRecord nodeRecord)
         {
-            //TODO implement
-       
+            //TODO: check
+            if (this.NodeRecords[nodeRecord.index].status == NodeStatus.Closed)
+            {
+                this.NodeRecords[nodeRecord.index].status = NodeStatus.Unvisited;
+            }
         }
 
         ICollection<NodeRecord> IOpenSet.All()

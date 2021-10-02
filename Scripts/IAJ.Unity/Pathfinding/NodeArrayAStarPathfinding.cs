@@ -22,7 +22,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
 
             this.NodeRecordArray = new NodeRecordArray(grid.getAll());
             this.Open = this.NodeRecordArray;
-            this.Closed = this.NodeRecordArray;
+            this.Closed = this.NodeRecordArray; 
 
         }
        
@@ -30,15 +30,38 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
         protected override void ProcessChildNode(NodeRecord parentNode, NodeRecord neighbourNode)
         {
             // TODO implement
+            var childNode = NodeRecordArray.GetNodeRecord(neighbourNode); //seems unnecessary since neighbourNode == childNode but whatever...
+           
+            float g = parentNode.gCost + CalculateDistanceCost(parentNode, childNode);
+            float h = MOVE_STRAIGHT_COST * this.Heuristic.H(childNode, this.GoalNode);
+            float f = g + h;
 
-            float f;
-            float g;
-            float h;
-
+            if (childNode != null) // does is really ever happen?
+            {
+                if (childNode.status == NodeStatus.Unvisited)
+                {
+                    childNode.parent = parentNode;
+                    childNode.gCost = g;
+                    childNode.fCost = f;
+                    childNode.CalculateFCost();
+                    NodeRecordArray.AddToOpen(childNode);
+                }
+                else if (childNode.status == NodeStatus.Open && f < childNode.fCost)
+                {
+                    childNode.parent = parentNode;
+                    childNode.gCost = g;
+                    childNode.CalculateFCost();
+                }
+                else if (childNode.status == NodeStatus.Closed && f < childNode.fCost)
+                {
+                    childNode.parent = parentNode;
+                    childNode.gCost = g;
+                    childNode.CalculateFCost();
+                    NodeRecordArray.AddToOpen(childNode); //TODO: check
+                }
+            }
         }
-               
-            
-        }
+    }
 
 
        
