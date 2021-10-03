@@ -80,15 +80,20 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
             while (true)
             {
                 if (Open.CountOpen() > 0)
+                {
                     currentNode = Open.GetBestAndRemove();
+                    this.Open.RemoveFromOpen(currentNode);
+                    this.Closed.AddToClosed(currentNode);
+                }
                 else
                 {
                     solution = null;
                     return false;
                 }
+
                 if (currentNode.Equals(GoalNode))
                 {
-                    currentNode.status = NodeStatus.Closed;
+
                     solution.Add(currentNode);
                     var node = currentNode.parent;
                     while (!node.Equals(StartNode))
@@ -100,14 +105,15 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     return true;
                 }
 
-                foreach (var neighbourNode in GetNeighbourList(currentNode))
+                var neighbourList = GetNeighbourList(currentNode);
+                foreach (var neighbourNode in neighbourList)
                 {
                     if(neighbourNode.isWalkable)
+                    {
                         this.ProcessChildNode(currentNode, neighbourNode);
+                    }
                 }
             }
-        
-
         }
 
         protected int CalculateDistanceCost(NodeRecord a, NodeRecord b)
