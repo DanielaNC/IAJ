@@ -114,5 +114,13 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures
         {
             return this.Open.CountOpen();
         }
+
+        public void ClearFill()
+        {
+            foreach (NodeRecord n in this.NodeRecords)
+            {
+                n.startingEdge = null;
+            }
+        }
     }
 }

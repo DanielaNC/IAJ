@@ -29,8 +29,12 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
             {
                 for (int j = 0; j < grid.getWidth(); j++)
                 {
+                    grid.GetGridObject(i + 1, j).startingEdge = StartingEdge.Top;
+                    grid.GetGridObject(i, j + 1).startingEdge = StartingEdge.Left;
+                    grid.GetGridObject(i - 1, j).startingEdge = StartingEdge.Bottom;
+                    grid.GetGridObject(i, j - 1).startingEdge = StartingEdge.Right;
 
-                    // TODO implement
+                    FloodFill(grid.GetGridObject(i, j));
 
                    // Floodfill the grid for each direction..
 
@@ -41,18 +45,37 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
         }
 
         // You can change the arguments of the following method....
-        public void FloodFill( NodeRecord original, NodeRecord neighboor)
+        public void FloodFill(NodeRecord original)
         {
-           //TODO
+            NodeRecord currentNode = original;
 
-            // Quite similar to the A*Search method except the fact that there is no goal....so where does it stop?
-          
-            // Do stuff...
+            while (true)
+            {
+                var neighbours = GetNeighbourList(currentNode);
+                foreach (var neighbourNode in neighbours)
+                {
+                    if (neighbourNode.isWalkable)
+                    {
+                        /*
+                        TODO
+                        */
+                    }
+                }
 
+                if (this.Open.CountOpen() > 0)
+                {
+                    currentNode = Open.GetBestAndRemove();
+                }
+                else
+                {
+                    break;
+                }
+            }
 
             //At the end it is important to "clean" the Open and Closed Set
             this.Open.Initialize();
             this.Closed.Initialize();
+            this.NodeRecordArray.ClearFill();
         }
 
     
