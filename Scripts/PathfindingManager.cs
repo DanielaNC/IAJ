@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
@@ -35,6 +35,8 @@ public class PathfindingManager : MonoBehaviour
     //public properties useful for testing, you can add other booleans here such as which heuristic to use
     public bool partialPath;
     public bool useGoalBound;
+    public bool useAStarPathfinding = true;
+    public bool useNodeArrayAStarPathfinding;
    
     //Grid configuration
     public static int width;
@@ -66,8 +68,16 @@ public class PathfindingManager : MonoBehaviour
         var gridPath = "Assets/Resources/Grid/" + gridName + ".txt";
         this.LoadGrid(gridPath);
 
-       // Creating and Initializing the Pathfinding class, you can change the open, closed and heuristic sets here
-       this.pathfinding = new AStarPathfinding(new SimpleUnorderedNodeList(), new SimpleUnorderedNodeList(), new ZeroHeuristic());
+        // Creating and Initializing the Pathfinding class, you can change the open, closed and heuristic sets here
+
+        AStarPathfinding pathFindingAlgorithm = new AStarPathfinding(new SimpleUnorderedNodeList(), new SimpleUnorderedNodeList(), new EuclideanDistance());
+
+        if (useNodeArrayAStarPathfinding)
+        {
+            pathFindingAlgorithm = new NodeArrayAStarPathfinding(new SimpleUnorderedNodeList(), new SimpleUnorderedNodeList(), new EuclideanDistance());
+        }
+
+        this.pathfinding = pathFindingAlgorithm;
 
         visualGrid.GridMapVisual(textLines, this.pathfinding.grid);
 
@@ -156,6 +166,8 @@ public class PathfindingManager : MonoBehaviour
         // Make sure you tell the pathfinding algorithm to keep searching
         if (this.pathfinding.InProgress)
         {
+            //visualGrid.UpdateGrid();
+
             var finished = this.pathfinding.Search(out this.solution, partialPath);
             if (finished)
             {
@@ -165,6 +177,7 @@ public class PathfindingManager : MonoBehaviour
 
             this.pathfinding.TotalProcessingTime += Time.deltaTime;
         }
+
     }
 
 
