@@ -8,9 +8,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.Heuristics
     {
         public float H(NodeRecord node, NodeRecord goalNode)
         {
-            // TODO implement
-          
-            return 0;
+            return Mathf.Sqrt(Mathf.Pow(goalNode.x - node.x, 2f) + Mathf.Pow(goalNode.y - node.y, 2f));
         }
     }
 }
