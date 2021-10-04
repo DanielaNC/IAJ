@@ -107,6 +107,9 @@ public class VisualGridManager : MonoBehaviour
         for (int x = 0; x < this.width; x++)
             for (int y = 0; y < this.height; y++)
             {
+                //resets nodes so that they aren't classified as open or closed
+                this.grid.GetGridObject(x, y).Reset();
+
                 if (this.grid.GetGridObject(x, y).isWalkable)
                     this.SetObjectColor(x, y, Color.white);
                 else this.SetObjectColor(x, y, Color.black);
