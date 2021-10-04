@@ -29,14 +29,14 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
         // In Node Array A* the only thing that changes is how you process the child node, the search occurs the exact same way so you can the parent's method
         protected override void ProcessChildNode(NodeRecord parentNode, NodeRecord neighbourNode)
         {
-            // TODO implement
-            var childNode = NodeRecordArray.GetNodeRecord(neighbourNode); //seems unnecessary since neighbourNode == childNode but whatever...
-           
+
+            var childNode = NodeRecordArray.GetNodeRecord(neighbourNode); //this is needed to use the algorithm node instance instead of the grid node 
+
             float g = parentNode.gCost + CalculateDistanceCost(parentNode, childNode);
             float h = MOVE_STRAIGHT_COST * this.Heuristic.H(childNode, this.GoalNode);
             float f = g + h;
 
-            if (childNode != null) // does is really ever happen?
+            if (childNode != null)
             {
                 if (childNode.status == NodeStatus.Unvisited)
                 {
@@ -51,6 +51,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     childNode.parent = parentNode;
                     childNode.gCost = g;
                     childNode.CalculateFCost();
+                    //TODO: maybe missing replace, not sure
                 }
                 else if (childNode.status == NodeStatus.Closed && f < childNode.fCost)
                 {

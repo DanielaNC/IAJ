@@ -14,10 +14,16 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures
 
     public enum StartingEdge
     {
+        None,
+        Source,
         Top,
         Left,
         Bottom,
-        Right
+        Right,
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
     }
 
     public class NodeRecord  : IComparable<NodeRecord>
@@ -38,7 +44,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures
         public NodeStatus status;
 
         // Node Record Starting Edge
-        public StartingEdge? startingEdge;
+        public StartingEdge startingEdge;
         
         public override string ToString()
         {
@@ -62,7 +68,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures
             index = 0;
             isWalkable = true;
             status = NodeStatus.Unvisited;
-            startingEdge = null;
+            startingEdge = StartingEdge.None;
         }
 
           public NodeRecord(int x, int y, int _index)
@@ -77,7 +83,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures
             index = _index;
             isWalkable = true;
             status = NodeStatus.Unvisited;
-            startingEdge = null;
+            startingEdge = StartingEdge.None;
         }
         public void CalculateFCost()
         {

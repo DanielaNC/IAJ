@@ -119,7 +119,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures
         {
             foreach (NodeRecord n in this.NodeRecords)
             {
-                n.startingEdge = null;
+                n.startingEdge = StartingEdge.None;
             }
         }
     }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
@@ -37,7 +37,8 @@ public class PathfindingManager : MonoBehaviour
     public bool useGoalBound;
     public bool useAStarPathfinding = true;
     public bool useNodeArrayAStarPathfinding;
-   
+    public bool useGoalBoundAStarPathfinding;
+
     //Grid configuration
     public static int width;
     public static int height;
@@ -75,6 +76,11 @@ public class PathfindingManager : MonoBehaviour
         if (useNodeArrayAStarPathfinding)
         {
             pathFindingAlgorithm = new NodeArrayAStarPathfinding(new SimpleUnorderedNodeList(), new SimpleUnorderedNodeList(), new EuclideanDistance());
+        }
+
+        if (useGoalBoundAStarPathfinding)
+        {
+            pathFindingAlgorithm = new GoalBoundAStarPathfinding(new SimpleUnorderedNodeList(), new SimpleUnorderedNodeList(), new EuclideanDistance());
         }
 
         this.pathfinding = pathFindingAlgorithm;
