@@ -168,7 +168,7 @@ public class PathfindingManager : MonoBehaviour
             startingNode = null;
         }
 
-        if (useGoalBoundAStarPathfinding && startingNode != null)
+        if (useGoalBoundAStarPathfinding && useGoalBound && startingNode != null)
             this.visualGrid.fillBoundingBox(startingNode);
 
         // Input Handler: deals with most keyboard inputs
@@ -177,9 +177,10 @@ public class PathfindingManager : MonoBehaviour
         // Make sure you tell the pathfinding algorithm to keep searching
         if (this.pathfinding.InProgress)
         {
-            visualGrid.UpdateGrid();
-
             var finished = this.pathfinding.Search(out this.solution, partialPath);
+            visualGrid.UpdateGrid();
+            useGoalBound = false;
+
             if (finished)
             {
                 this.pathfinding.InProgress = false;

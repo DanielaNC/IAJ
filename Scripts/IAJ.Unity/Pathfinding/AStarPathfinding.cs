@@ -117,7 +117,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
 
                 this.TotalProcessedNodes++;
 
-                if (this.TotalProcessedNodes == this.NodesPerSearch)
+                if (returnPartialSolution && this.TotalProcessedNodes == this.NodesPerSearch)
                 {
                     TotalProcessedNodes = 0;
                     return false;

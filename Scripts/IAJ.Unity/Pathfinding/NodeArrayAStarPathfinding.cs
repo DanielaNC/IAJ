@@ -60,6 +60,8 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     childNode.CalculateFCost();
                     NodeRecordArray.AddToOpen(childNode); //TODO: check
                 }
+
+                grid.SetGridObject(childNode.x, childNode.y, childNode);
             }
         }
     }
