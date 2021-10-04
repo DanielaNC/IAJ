@@ -114,6 +114,14 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                         this.ProcessChildNode(currentNode, neighbourNode);
                     }
                 }
+
+                this.TotalProcessedNodes++;
+
+                if (this.TotalProcessedNodes == this.NodesPerSearch)
+                {
+                    TotalProcessedNodes = 0;
+                    return false;
+                }
             }
         }
 
