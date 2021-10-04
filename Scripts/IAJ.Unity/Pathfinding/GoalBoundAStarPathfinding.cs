@@ -14,7 +14,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
     {
         // You can create a bounding box in several differente ways, this is simply suggestion
         // Goal Bounding Box for each Node  direction - Bounding limits: minX, maxX, minY, maxY
-        public Dictionary<Vector2,Dictionary<StartingEdge, Vector4>> goalBounds;
+        public Dictionary<Vector2, Dictionary<StartingEdge, Vector4>> goalBounds;
 
         public GoalBoundAStarPathfinding(IOpenSet open, IClosedSet closed, IHeuristic heuristic) : base(open, closed, heuristic)
         {
@@ -24,7 +24,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
 
         public void MapPreprocess()
         {
-           
+
             for (int i = 0; i < grid.getHeight(); i++)
             {
                 for (int j = 0; j < grid.getWidth(); j++)
@@ -97,15 +97,15 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     // Calculate the bounding box and repeat
                     ComputeBoundingBox(this.NodeRecordArray.GetNodeRecord(grid.GetGridObject(j, i)));
                     this.NodeRecordArray.ClearFill();
-                    Debug.Log("Debugging Node: " + j + " | " + i);
+                    /*Debug.Log("Debugging Node: " + j + " | " + i);
 
                     foreach (StartingEdge e in goalBounds[new Vector2(j, i)].Keys)
                     {
                         Debug.Log("Bouding Box " + e + " : (" + goalBounds[new Vector2(j, i)][e].x + " | " + goalBounds[new Vector2(j, i)][e].y + " | " + goalBounds[new Vector2(j, i)][e].z + " | " + goalBounds[new Vector2(j, i)][e].w + ")");
-                    }
+                    }*/
                 }
             }
-            
+
         }
 
         // You can change the arguments of the following method....
@@ -156,7 +156,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
             {
                 neighbour.startingEdge = node.startingEdge;
             }
-           
+
             float g = node.gCost + CalculateDistanceCost(node, neighbour);
             if (neighbour.status == NodeStatus.Unvisited)
             {
@@ -171,6 +171,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                 neighbour.parent = node;
                 neighbour.gCost = g;
                 neighbour.CalculateFCost();
+                this.Open.Replace(this.Open.SearchInOpen(neighbour), neighbour);
                 //TODO: maybe missing replace, not sure
             }
             else if (neighbour.status == NodeStatus.Closed && g < neighbour.fCost)
@@ -182,7 +183,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                 NodeRecordArray.AddToOpen(neighbour); //TODO: check
             }
         }
-    
+
         public void ComputeBoundingBox(NodeRecord source)
         {
             foreach (NodeRecord r1 in grid.getAll())
@@ -219,20 +220,20 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
         }
 
         // Checks is if node(x,Y) is in the node(startx, starty) bounding box for the direction: direction
-        public bool InsindeGoalBoundBox(int startX, int startY, int x, int y, string direction)
+        public bool InsindeGoalBoundBox(int startX, int startY, int x, int y, StartingEdge direction)
         {
             if (!this.goalBounds.ContainsKey(new Vector2(startX, startY)))
                 return false;
-            /*
+
             if (!this.goalBounds[new Vector2(startX, startY)].ContainsKey(direction))
                 return false;
 
             var box = this.goalBounds[new Vector2(startX, startY)][direction];
-            
-            if(box.x >= -1 && box.y >= -1 && box.z >= -1 && box.w >= -1)
+
+            if (box.x >= -1 && box.y >= -1 && box.z >= -1 && box.w >= -1)
                 if (x >= box.x && x <= box.y && y >= box.z && y <= box.w)
                     return true;
-            */
+
             return false;
         }
     }

@@ -22,7 +22,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
         public bool InProgress { get; set; }
         public IOpenSet Open { get; protected set; }
         public IClosedSet Closed { get; protected set; }
- 
+
         //heuristic function
         public IHeuristic Heuristic { get; protected set; }
 
@@ -72,7 +72,8 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
             this.Open.AddToOpen(initialNode);
             this.Closed.Initialize();
         }
-        public virtual bool Search(out List<NodeRecord> solution, bool returnPartialSolution = false) {
+        public virtual bool Search(out List<NodeRecord> solution, bool returnPartialSolution = false)
+        {
 
             NodeRecord currentNode;
             solution = new List<NodeRecord>();
@@ -108,7 +109,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                 var neighbourList = GetNeighbourList(currentNode);
                 foreach (var neighbourNode in neighbourList)
                 {
-                    if(neighbourNode.isWalkable)
+                    if (neighbourNode.isWalkable)
                     {
                         this.ProcessChildNode(currentNode, neighbourNode);
                     }
@@ -145,26 +146,37 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
             var child = this.GenerateChildNodeRecord(parentNode, neighbourNode);
 
             //if it's not null
-            if (child != null) {
+            if (child != null)
+            {
                 var openChildNode = this.Open.SearchInOpen(child);
                 var closedChildNode = this.Closed.SearchInClosed(child);
 
                 if (openChildNode == null && closedChildNode == null)
-                    this.Open.AddToOpen(child);
-                else if (openChildNode != null && openChildNode.fCost > child.fCost)
-                    this.Open.Replace(openChildNode, child);
-                else if(closedChildNode != null && closedChildNode.fCost > child.fCost)
                 {
-                    this.Closed.RemoveFromClosed(closedChildNode);
+                    child.status = NodeStatus.Open;
                     this.Open.AddToOpen(child);
                 }
+                else if (openChildNode != null && openChildNode.fCost > child.fCost)
+                {
+                    child.status = NodeStatus.Open;
+                    this.Open.Replace(openChildNode, child);
+                }
+                else if (closedChildNode != null && closedChildNode.fCost > child.fCost)
+                {
+                    this.Closed.RemoveFromClosed(closedChildNode);
+                    child.status = NodeStatus.Open;
+                    this.Open.AddToOpen(child);
+                }
+                else child.status = NodeStatus.Closed;
+
+                grid.SetGridObject(child.x, child.y, child);
             }
         }
 
 
         protected virtual NodeRecord GenerateChildNodeRecord(NodeRecord parent, NodeRecord neighbour)
         {
-            var childNodeRecord = new NodeRecord(neighbour.x,neighbour.y)
+            var childNodeRecord = new NodeRecord(neighbour.x, neighbour.y)
             {
                 parent = parent,
                 gCost = parent.gCost + CalculateDistanceCost(parent, neighbour),
@@ -182,12 +194,12 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
         {
             List<NodeRecord> neighbourList = new List<NodeRecord>();
 
-            if(currentNode.x - 1 >= 0)
+            if (currentNode.x - 1 >= 0)
             {
                 // Left
                 neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y));
                 //Left down
-                if(currentNode.y - 1 >= 0)
+                if (currentNode.y - 1 >= 0)
                     neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y - 1));
                 //Left up
                 if (currentNode.y + 1 < grid.getHeight())
@@ -219,6 +231,6 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
         {
             return grid.GetGridObject(x, y);
         }
-   
+
     }
 }

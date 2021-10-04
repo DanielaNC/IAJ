@@ -11,7 +11,7 @@ public class VisualGridManager : MonoBehaviour
     //Pathfinding Manager reference
     private PathfindingManager manager;
 
-    GameObject[,] visualGrid;    
+    GameObject[,] visualGrid;
 
     //Grid configuration
     private int width;
@@ -27,15 +27,15 @@ public class VisualGridManager : MonoBehaviour
     public bool showCoordinates;
     public Color openNodesColor;
     public Color closedNodesColor;
+    public List<boxColor> boundingColors;
 
     [System.Serializable]
     public struct boxColor
     {
-       public string direction;
-       public Color color;
+        public StartingEdge direction;
+        public Color color;
     }
 
-    public List<boxColor> boundingColors;
 
     //Grid Reference
     private Grid<NodeRecord> grid;
@@ -45,8 +45,8 @@ public class VisualGridManager : MonoBehaviour
     {
         // Simple way of getting the manager's reference
         this.manager = GameObject.FindObjectOfType<PathfindingManager>();
-        
-    }  
+
+    }
 
     // Create the grid according to the text file set in the "Assets/Resources/grid.txt"
     public void GridMapVisual(string[,] textLines, Grid<NodeRecord> _grid)
@@ -74,7 +74,7 @@ public class VisualGridManager : MonoBehaviour
                     node.isWalkable = false;
                     this.SetObjectColor(x, y, Color.black);
                 }
-            
+
             }
 
     }
@@ -105,14 +105,14 @@ public class VisualGridManager : MonoBehaviour
     public void ClearGrid()
     {
         for (int x = 0; x < this.width; x++)
-            for (int y = 0; y <this.height; y++)
+            for (int y = 0; y < this.height; y++)
             {
                 if (this.grid.GetGridObject(x, y).isWalkable)
                     this.SetObjectColor(x, y, Color.white);
                 else this.SetObjectColor(x, y, Color.black);
             }
 
-        if(this.manager != null)
+        if (this.manager != null)
             this.manager.pathfinding.InProgress = false;
 
     }
@@ -123,7 +123,7 @@ public class VisualGridManager : MonoBehaviour
         for (int x = 0; x < this.width; x++)
             for (int y = 0; y < this.height; y++)
                 DestroyImmediate(visualGrid[x, y].gameObject);
-                
+
 
     }
 
@@ -193,7 +193,7 @@ public class VisualGridManager : MonoBehaviour
     public void fillBoundingBox(NodeRecord node)
     {
         var goalBoundingPathfinder = (GoalBoundAStarPathfinding)manager.pathfinding;
-      
+
         for (int x = 0; x < this.width; x++)
             for (int y = 0; y < this.height; y++)
             {
@@ -207,6 +207,6 @@ public class VisualGridManager : MonoBehaviour
             }
 
 
-      
+
     }
 }

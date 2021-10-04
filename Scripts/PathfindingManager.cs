@@ -43,7 +43,7 @@ public class PathfindingManager : MonoBehaviour
     public static int width;
     public static int height;
     public static float cellSize;
- 
+
     //Essential Pathfind classes 
     public AStarPathfinding pathfinding { get; set; }
 
@@ -56,6 +56,8 @@ public class PathfindingManager : MonoBehaviour
     public static int startingY = -1;
     public static int goalX = -1;
     public static int goalY = -1;
+
+    public NodeRecord startingNode;
 
     //Path
     List<NodeRecord> solution;
@@ -120,11 +122,11 @@ public class PathfindingManager : MonoBehaviour
 
                 if (startingX == -1)
                 {
-
                     startingX = positionX;
                     startingY = positionY;
 
                     this.visualGrid.SetObjectColor(startingX, startingY, Color.cyan);
+                    this.startingNode = node;
 
                 }
                 else if (goalX == -1)
@@ -154,6 +156,7 @@ public class PathfindingManager : MonoBehaviour
 
         }
 
+
         // We will use the right mouse to clean the selection and the grid
         if (Input.GetMouseButtonDown(1))
         {
@@ -162,17 +165,19 @@ public class PathfindingManager : MonoBehaviour
             goalY = -1;
             goalX = -1;
             this.visualGrid.ClearGrid();
+            startingNode = null;
         }
 
+        if (useGoalBoundAStarPathfinding && startingNode != null)
+            this.visualGrid.fillBoundingBox(startingNode);
 
-            // Input Handler: deals with most keyboard inputs
-            InputHandler();
-
+        // Input Handler: deals with most keyboard inputs
+        InputHandler();
 
         // Make sure you tell the pathfinding algorithm to keep searching
         if (this.pathfinding.InProgress)
         {
-            //visualGrid.UpdateGrid();
+            visualGrid.UpdateGrid();
 
             var finished = this.pathfinding.Search(out this.solution, partialPath);
             if (finished)
@@ -245,7 +250,7 @@ public class PathfindingManager : MonoBehaviour
 
         // CellSize Formula 
         cellSize = 650.0f / (width + 2);
-      
+
         textLines = new string[height, width];
         int i = 0;
         foreach (var l in lines)
