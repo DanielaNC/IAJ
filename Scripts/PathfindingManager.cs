@@ -34,6 +34,7 @@ public class PathfindingManager : MonoBehaviour
     [Header("Pahfinding Settings")]
     //public properties useful for testing, you can add other booleans here such as which heuristic to use
     public bool partialPath;
+    public bool debugMode;
     public bool useGoalBound;
     public bool useAStarPathfinding = true;
     public bool useNodeArrayAStarPathfinding;
@@ -178,7 +179,8 @@ public class PathfindingManager : MonoBehaviour
         if (this.pathfinding.InProgress)
         {
             var finished = this.pathfinding.Search(out this.solution, partialPath);
-            visualGrid.UpdateGrid();
+            if(debugMode)
+                visualGrid.UpdateGrid();
             useGoalBound = false;
 
             if (finished)
