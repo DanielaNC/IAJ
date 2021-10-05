@@ -219,6 +219,13 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
             }
         }
 
+        protected override void ProcessChildNode(NodeRecord parentNode, NodeRecord neighbourNode)
+        {
+            if (!IsValidNode(StartNode, GoalNode, neighbourNode)) return; //ignores nodes outside scope of path
+
+            base.ProcessChildNode(parentNode, neighbourNode);
+        }
+
         // Checks is if node(x,Y) is in the node(startx, starty) bounding box for the direction: direction
         public bool InsindeGoalBoundBox(int startX, int startY, int x, int y, StartingEdge direction)
         {
@@ -233,6 +240,30 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
             if (box.x >= -1 && box.y >= -1 && box.z >= -1 && box.w >= -1)
                 if (x >= box.x && x <= box.y && y >= box.z && y <= box.w)
                     return true;
+
+            return false;
+        }
+
+        //Checks if node is same bounding boxe(s) as goal
+        public bool IsValidNode(NodeRecord start, NodeRecord goal, NodeRecord node)
+        {
+            List<StartingEdge> directions = new List<StartingEdge>();
+            directions.Add(StartingEdge.Top);
+            directions.Add(StartingEdge.Bottom);
+            directions.Add(StartingEdge.Left);
+            directions.Add(StartingEdge.Right);
+            directions.Add(StartingEdge.TopLeft);
+            directions.Add(StartingEdge.TopRight);
+            directions.Add(StartingEdge.BottomLeft);
+            directions.Add(StartingEdge.BottomRight);
+
+            foreach (var direction in directions)
+            {
+                if (InsindeGoalBoundBox(start.x, start.y, goal.x, goal.y, direction) && InsindeGoalBoundBox(start.x, start.y, node.x, node.y, direction))
+                {
+                    return true;
+                }
+            }
 
             return false;
         }
