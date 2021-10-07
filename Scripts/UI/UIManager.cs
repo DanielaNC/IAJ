@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour
             if (manager.pathfinding.grid != null)
             {
                 manager.pathfinding.grid.GetXY(currentPosition, out x, out y);
-                if (x == currentX & currentY == y || currentX == PathfindingManager.startingX && currentY == PathfindingManager.startingY
+                if (x == currentX && currentY == y || currentX == PathfindingManager.startingX && currentY == PathfindingManager.startingY
                     || currentX == PathfindingManager.goalX && currentY == PathfindingManager.goalY)
                     return;
 
