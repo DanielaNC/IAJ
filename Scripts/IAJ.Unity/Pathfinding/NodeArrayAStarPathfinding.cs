@@ -51,7 +51,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     childNode.parent = parentNode;
                     childNode.gCost = g;
                     childNode.CalculateFCost();
-                    //TODO: maybe missing replace, not sure
+                    this.Open.Replace(this.Open.SearchInOpen(childNode), childNode);
                 }
                 else if (childNode.status == NodeStatus.Closed && f < childNode.fCost)
                 {
