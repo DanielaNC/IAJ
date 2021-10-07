@@ -89,7 +89,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                 else
                 {
                     solution = null;
-                    return false;
+                    return true;
                 }
 
                 if (currentNode.Equals(GoalNode))
