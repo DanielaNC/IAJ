@@ -40,9 +40,10 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
             {
                 if (childNode.status == NodeStatus.Unvisited)
                 {
+                    this.VisitedNodes++;
                     childNode.parent = parentNode;
+                    childNode.hCost = h;
                     childNode.gCost = g;
-                    childNode.fCost = f;
                     childNode.CalculateFCost();
                     NodeRecordArray.AddToOpen(childNode);
                 }
@@ -50,13 +51,15 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                 {
                     childNode.parent = parentNode;
                     childNode.gCost = g;
+                    childNode.hCost = h;
                     childNode.CalculateFCost();
-                    this.Open.Replace(this.Open.SearchInOpen(childNode), childNode);
+                    NodeRecordArray.Replace(NodeRecordArray.SearchInOpen(childNode), childNode);
                 }
                 else if (childNode.status == NodeStatus.Closed && f < childNode.fCost)
                 {
                     childNode.parent = parentNode;
                     childNode.gCost = g;
+                    childNode.hCost = h;
                     childNode.CalculateFCost();
                     NodeRecordArray.AddToOpen(childNode); //TODO: check
                 }
