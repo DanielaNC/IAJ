@@ -186,6 +186,7 @@ public class PathfindingManager : MonoBehaviour
             if (finished)
             {
                 this.pathfinding.InProgress = false;
+                this.pathfinding.JustFinished = true;
                 this.visualGrid.DrawPath(this.solution);
             }
 

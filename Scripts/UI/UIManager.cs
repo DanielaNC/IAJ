@@ -2,6 +2,7 @@ using Assets.Scripts.IAJ.Unity.Pathfinding;
 using CodeMonkey.Utils;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -55,6 +56,7 @@ public class UIManager : MonoBehaviour
         useGoal = manager.useGoalBound;
         currentX = -1;
         currentY = -1;
+
     }
 
     // Update is called once per frame
@@ -68,12 +70,13 @@ public class UIManager : MonoBehaviour
             if (manager.pathfinding.grid != null)
             {
                 manager.pathfinding.grid.GetXY(currentPosition, out x, out y);
-                if (x == currentX && currentY == y || currentX == PathfindingManager.startingX && currentY == PathfindingManager.startingY
-                    || currentX == PathfindingManager.goalX && currentY == PathfindingManager.goalY)
+                if (this.manager.useGoalBound && (x == currentX && currentY == y || currentX == PathfindingManager.startingX && currentY == PathfindingManager.startingY
+                    || currentX == PathfindingManager.goalX && currentY == PathfindingManager.goalY))
                     return;
 
                 currentX = x;
                 currentY = y;
+
                 if (x != -1 && y != -1)
                 {
                     var node = manager.pathfinding.grid.GetGridObject(x, y);
@@ -94,10 +97,14 @@ public class UIManager : MonoBehaviour
                                 if (goalBoundingPathfinder.goalBounds.ContainsKey(new Vector2(x, y)))
                                 {
                                     var boundingBox = goalBoundingPathfinder.goalBounds[new Vector2(x, y)];
-                                    array += "Left" + boundingBox[Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures.StartingEdge.Left] + "\n";    //TODO: check
-                                    array += "Right" + boundingBox[Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures.StartingEdge.Right] + "\n";    //TODO: check
-                                    array += "Up" + boundingBox[Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures.StartingEdge.Top] + "\n";    //TODO: check
-                                    array += "Down" + boundingBox[Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures.StartingEdge.Bottom] + "\n";    //TODO: check
+                                    array += "Left" + (boundingBox.ContainsKey(StartingEdge.Left) ? boundingBox[StartingEdge.Left].ToString() : "None") + "\n";    
+                                    array += "Right" + (boundingBox.ContainsKey(StartingEdge.Right) ? boundingBox[StartingEdge.Right].ToString() : "") + "\n";    
+                                    array += "Top" + (boundingBox.ContainsKey(StartingEdge.Top) ? boundingBox[StartingEdge.Top].ToString() : "") + "\n";    
+                                    array += "Bottom" + (boundingBox.ContainsKey(StartingEdge.Bottom) ? boundingBox[StartingEdge.Bottom].ToString() : "") + "\n";    
+                                    array += "TopLeft" + (boundingBox.ContainsKey(StartingEdge.TopLeft) ? boundingBox[StartingEdge.TopLeft].ToString() : "") + "\n";   
+                                    array += "TopRight" + (boundingBox.ContainsKey(StartingEdge.TopRight) ? boundingBox[StartingEdge.TopRight].ToString() : "") + "\n";    
+                                    array += "BottomLeft" + (boundingBox.ContainsKey(StartingEdge.BottomLeft) ? boundingBox[StartingEdge.BottomLeft].ToString() : "") + "\n";   
+                                    array += "BottomRight" + (boundingBox.ContainsKey(StartingEdge.BottomRight) ? boundingBox[StartingEdge.BottomRight].ToString() : "") + "\n";  
                                     debugDArray.text = array;
                                     visualGrid.fillBoundingBox(node);
 
@@ -111,11 +118,13 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (this.manager.pathfinding.InProgress)
+        if (this.manager.pathfinding.InProgress || this.manager.pathfinding.JustFinished)
         {
-                debugMaxNodes.text = "MaxNodes:" + manager.pathfinding.MaxOpenNodes;
-                debugtotalProcessedNodes.text = "TotalPNodes:" + manager.pathfinding.TotalProcessedNodes;
-                debugtotalProcessingTime.text = "TotalPTime:" + manager.pathfinding.TotalProcessingTime;
-            }
+            debugMaxNodes.text = "MaxNodes:" + manager.pathfinding.MaxOpenNodes + "\nFill:" + (float) manager.pathfinding.VisitedNodes / manager.pathfinding.grid.getAll().FindAll(x => x.isWalkable).Count * 100 + " % ";
+            debugtotalProcessedNodes.text = "TotalPNodes:" + manager.pathfinding.TotalProcessedNodes + "\nTotalVNodes:" + manager.pathfinding.VisitedNodes + "\nAlgorithm: " + manager.pathfinding.GetType().Name;
+            debugtotalProcessingTime.text = "TotalPTime:" + manager.pathfinding.TotalProcessingTime + "\nTimePerNode:" + manager.pathfinding.TotalProcessingTime / manager.pathfinding.TotalProcessedNodes;
+
+            this.manager.pathfinding.JustFinished = false;
         }
+    }
 }

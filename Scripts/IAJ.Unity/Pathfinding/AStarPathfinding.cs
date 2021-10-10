@@ -19,7 +19,12 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
         public uint TotalProcessedNodes { get; protected set; }
         public int MaxOpenNodes { get; protected set; }
         public float TotalProcessingTime { get; set; }
+        public float Fill { get; set; }
+        public int VisitedNodes { get; set; }
         public bool InProgress { get; set; }
+
+        public bool JustFinished { get; set; }
+
         public IOpenSet Open { get; protected set; }
         public IClosedSet Closed { get; protected set; }
 
@@ -58,6 +63,8 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
             this.InProgress = true;
             this.TotalProcessedNodes = 0;
             this.TotalProcessingTime = 0.0f;
+            this.Fill = 0f;
+            this.VisitedNodes = 0;
             this.MaxOpenNodes = 0;
 
             var initialNode = new NodeRecord(StartNode.x, StartNode.y)
@@ -77,6 +84,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
 
             NodeRecord currentNode;
             solution = new List<NodeRecord>();
+            int processedNodes = 0;
 
             while (true)
             {
@@ -85,6 +93,10 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     currentNode = Open.GetBestAndRemove();
                     this.Open.RemoveFromOpen(currentNode);
                     this.Closed.AddToClosed(currentNode);
+                    currentNode.status = NodeStatus.Closed;
+                    grid.SetGridObject(currentNode.x, currentNode.y, currentNode);
+                    this.TotalProcessedNodes++;
+                    processedNodes++;
                 }
                 else
                 {
@@ -112,14 +124,12 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     if (neighbourNode.isWalkable)
                     {
                         this.ProcessChildNode(currentNode, neighbourNode);
+                        this.MaxOpenNodes = this.MaxOpenNodes > this.Open.CountOpen() ? this.MaxOpenNodes : this.Open.CountOpen();
                     }
                 }
 
-                this.TotalProcessedNodes++;
-
-                if (returnPartialSolution && this.TotalProcessedNodes == this.NodesPerSearch)
+                if (processedNodes == this.NodesPerSearch)
                 {
-                    TotalProcessedNodes = 0;
                     return false;
                 }
             }
@@ -161,23 +171,24 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
 
                 if (openChildNode == null && closedChildNode == null)
                 {
+                    this.VisitedNodes++;
                     child.status = NodeStatus.Open;
                     this.Open.AddToOpen(child);
+                    grid.SetGridObject(child.x, child.y, child);
                 }
                 else if (openChildNode != null && openChildNode.fCost > child.fCost)
                 {
                     child.status = NodeStatus.Open;
                     this.Open.Replace(openChildNode, child);
+                    grid.SetGridObject(child.x, child.y, child);
                 }
                 else if (closedChildNode != null && closedChildNode.fCost > child.fCost)
                 {
                     this.Closed.RemoveFromClosed(closedChildNode);
                     child.status = NodeStatus.Open;
                     this.Open.AddToOpen(child);
+                    grid.SetGridObject(child.x, child.y, child);
                 }
-                else child.status = NodeStatus.Closed;
-
-                grid.SetGridObject(child.x, child.y, child);
             }
         }
 
