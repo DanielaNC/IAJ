@@ -85,9 +85,16 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures
             status = NodeStatus.Unvisited;
             startingEdge = StartingEdge.None;
         }
-        public void CalculateFCost()
+        public void CalculateFCost(bool tieBreaking = false)
         {
-            fCost = gCost + hCost;
+            if (tieBreaking)
+            {
+                fCost = gCost + 1.07f * hCost;
+            }
+            else
+            {
+                fCost = gCost + hCost;
+            }
         }
 
         

@@ -22,8 +22,8 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
         public float Fill { get; set; }
         public int VisitedNodes { get; set; }
         public bool InProgress { get; set; }
-
         public bool JustFinished { get; set; }
+        public bool TieBreaking { get; set; }
 
         public IOpenSet Open { get; protected set; }
         public IClosedSet Closed { get; protected set; }
@@ -38,7 +38,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
         public NodeRecord GoalNode { get; set; }
         public NodeRecord StartNode { get; set; }
 
-        public AStarPathfinding(IOpenSet open, IClosedSet closed, IHeuristic heuristic)
+        public AStarPathfinding(IOpenSet open, IClosedSet closed, IHeuristic heuristic, bool tieBreaking = false)
         {
             grid = new Grid<NodeRecord>((Grid<NodeRecord> global, int x, int y) => new NodeRecord(x, y));
             this.Open = open;
@@ -46,8 +46,9 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
             this.InProgress = false;
             this.Heuristic = heuristic;
             this.NodesPerSearch = 15; //by default we process all nodes in a single request
-
+            this.TieBreaking = tieBreaking;
         }
+
         public virtual void InitializePathfindingSearch(int startX, int startY, int goalX, int goalY)
         {
             this.StartPositionX = startX;
@@ -73,7 +74,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                 hCost = this.Heuristic.H(this.StartNode, this.GoalNode)
             };
 
-            initialNode.CalculateFCost();
+            initialNode.CalculateFCost(this.TieBreaking);
 
             this.Open.Initialize();
             this.Open.AddToOpen(initialNode);
@@ -202,7 +203,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                 hCost = MOVE_STRAIGHT_COST * this.Heuristic.H(neighbour, this.GoalNode)
             };
 
-            childNodeRecord.CalculateFCost();
+            childNodeRecord.CalculateFCost(this.TieBreaking);
 
             return childNodeRecord;
         }

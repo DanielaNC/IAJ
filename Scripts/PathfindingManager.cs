@@ -39,6 +39,7 @@ public class PathfindingManager : MonoBehaviour
     public bool useAStarPathfinding = true;
     public bool useNodeArrayAStarPathfinding;
     public bool useGoalBoundAStarPathfinding;
+    public bool tieBreaking;
 
     //Grid configuration
     public static int width;
@@ -76,6 +77,10 @@ public class PathfindingManager : MonoBehaviour
 
         AStarPathfinding pathFindingAlgorithm = new AStarPathfinding(new SimpleUnorderedNodeList(), new SimpleUnorderedNodeList(), new EuclideanDistance());
 
+        if (tieBreaking)
+        {
+            pathFindingAlgorithm = new AStarPathfinding(new SimpleUnorderedNodeList(), new SimpleUnorderedNodeList(), new EuclideanDistance(), tieBreaking);
+        }
         if (useNodeArrayAStarPathfinding)
         {
             pathFindingAlgorithm = new NodeArrayAStarPathfinding(new SimpleUnorderedNodeList(), new SimpleUnorderedNodeList(), new EuclideanDistance());

@@ -94,5 +94,10 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.DataStructures
             //by applying this to the whole list, I'm returning the node with the lowest F value.
             return this.NodeRecords.Aggregate((nodeRecord1, nodeRecord2) => nodeRecord1.fCost < nodeRecord2.fCost ? nodeRecord1 : nodeRecord2);
         }
+
+        public NodeRecord PeekBestWithTieBreaking()
+        {
+            return this.NodeRecords.Aggregate((nodeRecord1, nodeRecord2) => nodeRecord1.fCost < nodeRecord2.fCost ? nodeRecord1 : (nodeRecord1.fCost == nodeRecord2.fCost ? (nodeRecord1.hCost < nodeRecord2.hCost ? nodeRecord1 : nodeRecord2) : nodeRecord2));
+        }
     }
 }
