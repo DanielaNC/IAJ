@@ -42,6 +42,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                 {
                     childNode.parent = parentNode;
                     childNode.gCost = g;
+                    childNode.hCost = h;
                     childNode.fCost = f;
                     childNode.CalculateFCost();
                     NodeRecordArray.AddToOpen(childNode);
@@ -50,6 +51,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                 {
                     childNode.parent = parentNode;
                     childNode.gCost = g;
+                    childNode.hCost = h;
                     childNode.CalculateFCost();
                     //TODO: maybe missing replace, not sure
                 }
@@ -57,6 +59,7 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                 {
                     childNode.parent = parentNode;
                     childNode.gCost = g;
+                    childNode.hCost = h;
                     childNode.CalculateFCost();
                     NodeRecordArray.AddToOpen(childNode); //TODO: check
                 }

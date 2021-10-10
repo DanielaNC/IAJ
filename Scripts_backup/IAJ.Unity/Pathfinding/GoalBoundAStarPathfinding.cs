@@ -24,7 +24,6 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
 
         public void MapPreprocess()
         {
-            var timer = Time.realtimeSinceStartup;
             for (int i = 0; i < grid.getHeight(); i++)
             {
                 for (int j = 0; j < grid.getWidth(); j++)
@@ -106,7 +105,6 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
 
                 }
             }
-            Debug.Log("Map processing time: " + (Time.realtimeSinceStartup - timer));
 
         }
 

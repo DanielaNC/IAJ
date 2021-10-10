@@ -108,9 +108,6 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                         node = node.parent;
                     }
                     solution.Add(node);
-                    Debug.Log("Max Open Nodes: " + this.MaxOpenNodes);
-                    Debug.Log("Total Processing Time: " + (Time.realtimeSinceStartup - this.TotalProcessingTime));
-                    Debug.Log("Total Processed Nodes: " + this.TotalProcessedNodes);
                     return true;
                 }
 

@@ -68,6 +68,7 @@ public class PathfindingManager : MonoBehaviour
 
     //Path
     List<NodeRecord> solution;
+    private bool isStartingPoint = false;
 
     private void Start()
     {
@@ -138,6 +139,7 @@ public class PathfindingManager : MonoBehaviour
 
                     this.visualGrid.SetObjectColor(startingX, startingY, Color.cyan);
                     this.startingNode = node;
+                    isStartingPoint = true;
 
                 }
                 else if (goalX == -1)
@@ -148,6 +150,7 @@ public class PathfindingManager : MonoBehaviour
                     this.visualGrid.SetObjectColor(startingX, startingY, Color.cyan);
 
                     //We can now start the search
+                    isStartingPoint = false;
                     InitializeSearch(startingX, startingY, goalX, goalY);
                 }
 
@@ -158,7 +161,7 @@ public class PathfindingManager : MonoBehaviour
                     this.visualGrid.ClearGrid();
                     startingX = positionX;
                     startingY = positionY;
-
+                    isStartingPoint = true;
                     //this.visualGrid.SetObjectColor(startingX, startingY, Color.cyan);
                 }
 
@@ -179,7 +182,7 @@ public class PathfindingManager : MonoBehaviour
             startingNode = null;
         }
 
-        if (algorithm == PathfindingAlgorithm.GoalBounding && useGoalBound && startingNode != null)
+        if (algorithm == PathfindingAlgorithm.GoalBounding && useGoalBound && isStartingPoint && startingNode != null)
             this.visualGrid.fillBoundingBox(startingNode);
 
         // Input Handler: deals with most keyboard inputs
