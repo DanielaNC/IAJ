@@ -97,12 +97,6 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     // Calculate the bounding box and repeat
                     ComputeBoundingBox(this.NodeRecordArray.GetNodeRecord(grid.GetGridObject(j, i)));
                     this.NodeRecordArray.ClearFill();
-                    /*Debug.Log("Debugging Node: " + j + " | " + i);
-
-                    foreach (StartingEdge e in goalBounds[new Vector2(j, i)].Keys)
-                    {
-                        Debug.Log("Bouding Box " + e + " : (" + goalBounds[new Vector2(j, i)][e].x + " | " + goalBounds[new Vector2(j, i)][e].y + " | " + goalBounds[new Vector2(j, i)][e].z + " | " + goalBounds[new Vector2(j, i)][e].w + ")");
-                    }*/
                 }
             }
 

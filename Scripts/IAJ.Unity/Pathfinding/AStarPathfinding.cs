@@ -94,8 +94,6 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     currentNode = Open.GetBestAndRemove();
                     this.Open.RemoveFromOpen(currentNode);
                     this.Closed.AddToClosed(currentNode);
-                    currentNode.status = NodeStatus.Closed;
-                    grid.SetGridObject(currentNode.x, currentNode.y, currentNode);
                     this.TotalProcessedNodes++;
                     processedNodes++;
                 }
@@ -175,21 +173,22 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding
                     this.VisitedNodes++;
                     child.status = NodeStatus.Open;
                     this.Open.AddToOpen(child);
-                    grid.SetGridObject(child.x, child.y, child);
                 }
                 else if (openChildNode != null && openChildNode.fCost > child.fCost)
                 {
                     child.status = NodeStatus.Open;
                     this.Open.Replace(openChildNode, child);
-                    grid.SetGridObject(child.x, child.y, child);
                 }
                 else if (closedChildNode != null && closedChildNode.fCost > child.fCost)
                 {
                     this.Closed.RemoveFromClosed(closedChildNode);
                     child.status = NodeStatus.Open;
                     this.Open.AddToOpen(child);
-                    grid.SetGridObject(child.x, child.y, child);
+
                 }
+                else child.status = NodeStatus.Closed;
+
+                grid.SetGridObject(child.x, child.y, child);
             }
         }
 
