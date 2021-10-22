@@ -139,6 +139,11 @@ namespace Assets.Scripts
                 this.Actions.Add(new GetHealthPotion(this, potion));
             }
 
+            foreach (var potion in GameObject.FindGameObjectsWithTag("ManaPotion"))
+            {
+                this.Actions.Add(new GetManaPotion(this, potion));
+            }
+
             foreach (var enemy in GameObject.FindGameObjectsWithTag("Skeleton"))
             {
                 this.Actions.Add(new SwordAttack(this, enemy));
@@ -238,12 +243,16 @@ namespace Assets.Scripts
                     {
                         //Simple way of checking which object is closest to Sir Uthgard
                         var s = playerText.text.ToString();
-                        if (s.Contains("Potion"))
-                            PickUpPotion();
+                        if (s.Contains("Health"))
+                            PickUpHealthPotion();
+                        else if (s.Contains("Mana"))
+                            PickUpManaPotion();
                         else if (s.Contains("Chest"))
                             PickUpChest();
                         else if (s.Contains("Enemy"))
                             AttackEnemy();
+                        else if (s.Contains("Divine"))
+                            DivineSmite();
                     }
                 if (Input.GetKey(KeyCode.L))
                     this.GameManager.LevelUp();
@@ -397,14 +406,24 @@ namespace Assets.Scripts
             if (this.controlledByPlayer)
             {
                
-                if (col.gameObject.tag.ToString().Contains("Potion"))
+                if (col.gameObject.tag.ToString().Contains("Health"))
                 {
-                    playerText.text = "Pickup Potion";
+                    playerText.text = "Pickup Health Potion";
+                    closestObject = col.gameObject;
+                }
+                else if (col.gameObject.tag.ToString().Contains("Mana"))
+                {
+                    playerText.text = "Pickup Mana Potion";
                     closestObject = col.gameObject;
                 }
                 else if (col.gameObject.tag.ToString().Contains("Chest"))
                 {
                     playerText.text = "Pickup Chest";
+                    closestObject = col.gameObject;
+                }
+                else if (col.gameObject.tag.ToString().Contains("Skeleton"))
+                {
+                    playerText.text = "Divine Smite";
                     closestObject = col.gameObject;
                 }
                 else if (col.gameObject.tag.ToString().Contains("Orc") || col.gameObject.tag.ToString().Contains("Skeleton") || col.gameObject.tag.ToString().Contains("Dragon"))
@@ -423,12 +442,23 @@ namespace Assets.Scripts
 
 
         //Functions designed for when the Player has control of the character
-        void PickUpPotion()
+        void PickUpHealthPotion()
         {
             if (closestObject != null)
                 if (GameManager.InPotionRange(closestObject))
                 {
                     GameManager.GetHealthPotion(closestObject);
+                    closestObject = null;
+                    playerText.text = "";
+                }
+        }
+
+        void PickUpManaPotion()
+        {
+            if (closestObject != null)
+                if (GameManager.InPotionRange(closestObject))
+                {
+                    GameManager.GetManaPotion(closestObject);
                     closestObject = null;
                     playerText.text = "";
                 }
@@ -457,6 +487,17 @@ namespace Assets.Scripts
                 }
         }
 
-
+        void DivineSmite()
+        {
+            if(closestObject != null)
+            {
+                if (GameManager.InRangedRange(closestObject))
+                {
+                    GameManager.DivineSmite(closestObject);
+                    closestObject = null;
+                    playerText.text = "";
+                }
+            }
+        }
     }
 }

@@ -195,6 +195,48 @@ namespace Assets.Scripts.Manager
             }
         }
 
+        public void DivineSmite(GameObject enemy)
+        {
+            int damage = 0;
+
+            NPC enemyData = enemy.GetComponent<NPC>();
+
+            if (characterData.Mana >= 2 && enemy != null && enemy.activeSelf && enemyData.Type == "Skeleton" && InRangedRange(enemy))
+            {
+                this.autonomousCharacter.AddToDiary(" I used Divine Smite on  " + enemy.name + ". Consumed 2 Mana");
+
+                if (this.StochasticWorld)
+                {
+                    damage = enemyData.dmgRoll.Invoke();
+
+                    //attack roll = D20 + attack modifier. Using 7 as attack modifier (+4 str modifier, +3 proficiency bonus)
+                    int attackRoll = RandomHelper.RollD20() + 7;
+
+                    if (attackRoll >= enemyData.AC)
+                    {
+                        //there was an hit, enemy is destroyed, gain xp
+                        this.enemies.Remove(enemy);
+                        this.disposableObjects[enemy.name].Remove(enemy);
+                        enemy.SetActive(false);
+                        Object.Destroy(enemy);
+                    }
+                }
+                else
+                {
+                    damage = enemyData.simpleDamage;
+                    this.enemies.Remove(enemy);
+                    this.disposableObjects[enemy.name].Remove(enemy);
+                    enemy.SetActive(false);
+                    Object.Destroy(enemy);
+                }
+
+                this.characterData.XP += enemyData.XPvalue;
+                this.characterData.Mana -= 2;
+
+                this.WorldChanged = true;
+            }
+        }
+
         public void EnemyAttack(GameObject enemy)
         {
             if (Time.time > this.enemyAttackCooldown)
@@ -316,6 +358,11 @@ namespace Assets.Scripts.Manager
         public bool InMeleeRange(GameObject enemy)
         {
             return this.CheckRange(enemy, 16.0f);
+        }
+
+        public bool InRangedRange(GameObject enemy)
+        {
+            return this.CheckRange(enemy, 32.0f);
         }
      
         public bool InChestRange(GameObject chest)
