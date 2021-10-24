@@ -13,13 +13,15 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override bool CanExecute()
         {
             if (!base.CanExecute()) return false;
-            return this.Character.GameManager.characterData.HP < this.Character.GameManager.characterData.MaxHP;
+            return this.Character.GameManager.characterData.HP > 0 && this.Character.GameManager.characterData.HP < this.Character.GameManager.characterData.MaxHP;
         }
 
         public override bool CanExecute(WorldModel worldModel)
         {
             if (!base.CanExecute(worldModel)) return false;
-            return true;
+            var hp = (int)worldModel.GetProperty(Properties.HP);
+            var maxHP = (int)worldModel.GetProperty(Properties.MAXHP);
+            return hp > 0 && hp < maxHP;
         }
 
         public override void Execute()
@@ -41,7 +43,9 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         {
             base.ApplyActionEffects(worldModel);
 
-            worldModel.SetProperty(Properties.HP, Properties.MAXHP);
+            var maxHP = worldModel.GetProperty(Properties.MAXHP);
+            Debug.Log(maxHP);
+            worldModel.SetProperty(Properties.HP, maxHP);
             worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, 0);
 
             //disables the target object so that it can't be reused again

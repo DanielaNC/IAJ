@@ -8,7 +8,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
 {
     public class DepthLimitedGOAPDecisionMaking
     {
-        public const int MAX_DEPTH = 3;
+        public int MAX_DEPTH = 3;
         public int ActionCombinationsProcessedPerFrame { get; set; }
         public float TotalProcessingTime { get; set; }
         public int TotalActionCombinationsProcessed { get; set; }
@@ -55,6 +55,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
 
             float currentDiscontentment = float.MaxValue;
 
+            if (this.Models[CurrentDepth].GetExecutableActions().Length < MAX_DEPTH)
+            {
+                MAX_DEPTH = this.Models[CurrentDepth].GetExecutableActions().Length;
+            }
+
             while(this.CurrentDepth >= 0)
             {
                 // check if we're at max depth
@@ -63,10 +68,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
                     // calculate discontentment at the deepest level
                     currentDiscontentment = this.Models[this.CurrentDepth].CalculateDiscontentment(this.Goals);
 
-
+                    Debug.Log("Dis1: " + currentDiscontentment);
                     if (currentDiscontentment < this.BestDiscontentmentValue)
                     {
                         this.BestDiscontentmentValue = currentDiscontentment;
+                        Debug.Log("Dis: " + BestDiscontentmentValue);
                         for(int i = 0; i < this.ActionPerLevel.Length; i++)
                         {
                             this.BestActionSequence[i] = this.ActionPerLevel[i];
@@ -85,12 +91,24 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
                     nextAction.ApplyActionEffects(this.Models[CurrentDepth + 1]);
                     this.ActionPerLevel[CurrentDepth] = nextAction;
                     this.CurrentDepth += 1;
+                    processedActions++;
                 }
                 else
                 {
                     this.CurrentDepth -= 1;
                 }
 
+            }
+            Debug.Log(processedActions);
+
+            if (this.BestAction == null)
+            {
+        
+                var ac = this.Models[CurrentDepth].GetExecutableActions();
+                foreach (var i in ac)
+                {
+                    Debug.Log(i.Name);
+                }
             }
 
             this.TotalProcessingTime += Time.realtimeSinceStartup - startTime;

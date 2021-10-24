@@ -23,13 +23,14 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
             if (!base.CanExecute())
                 return false;
-            return true;
+            return this.Character.GameManager.characterData.HP > 0;
         }
 
         public override bool CanExecute(WorldModel worldModel)
         {
             if (!base.CanExecute(worldModel)) return false;
-            return true;
+            var hp = (int)worldModel.GetProperty(Properties.HP);
+            return hp > 0;
         }
 
         public override void Execute()

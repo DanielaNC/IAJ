@@ -100,7 +100,15 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
             worldModel.SetProperty(Properties.ShieldHP, remainingShield);
             var surviveValue = worldModel.GetGoalValue(AutonomousCharacter.SURVIVE_GOAL);
-            worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, surviveValue + remainingDamage);
+            hp = (int)worldModel.GetProperty(Properties.HP);
+            if (hp <= 0)
+            {
+                worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, float.MaxValue - surviveValue);
+            }
+            else
+            {
+                worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, surviveValue + remainingDamage);
+            }
 
 
             //calculate Hit

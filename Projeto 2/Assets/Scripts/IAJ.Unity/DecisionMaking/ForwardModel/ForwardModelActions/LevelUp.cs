@@ -26,8 +26,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         {
             int xp = (int)worldModel.GetProperty(Properties.XP);
             int level = (int)worldModel.GetProperty(Properties.LEVEL);
-
-            return xp >= level * 10;
+            var hp = (int)worldModel.GetProperty(Properties.HP);
+            return hp > 0 && xp >= level * 10;
         }
 
         public override void Execute()

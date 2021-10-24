@@ -46,14 +46,15 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override bool CanExecute()
         {
-            return this.Target != null;
+            return this.Character.GameManager.characterData.HP > 0 && this.Target != null;
         }
 
         public override bool CanExecute(WorldModel worldModel)
         {
             if (this.Target == null) return false;
             var targetEnabled = (bool)worldModel.GetProperty(this.Target.name);
-            return targetEnabled;
+            var hp = (int)worldModel.GetProperty(Properties.HP);
+            return hp > 0 && targetEnabled;
         }
 
         public override void Execute()
