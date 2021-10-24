@@ -145,6 +145,9 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel
 
         public virtual float GetScore()
         {
+            // TO DO
+            // check outcome of game
+            // divide by number of actions ?
             return 0.0f;
         }
 

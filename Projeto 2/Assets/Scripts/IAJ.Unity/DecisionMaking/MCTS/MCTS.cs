@@ -62,22 +62,23 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
         public Action Run()
         {
-            MCTSNode selectedNode;
+            MCTSNode selectedNode = this.InitialNode;
             Reward reward;
 
             var startTime = Time.realtimeSinceStartup;
             this.CurrentIterationsInFrame = 0;
 
-            //while within computational budget
+            while(CurrentIterationsInFrame < MaxIterationsProcessedPerFrame)
+            {
 
-                //Selection + Expansion
+                selectedNode = Selection(selectedNode);
+                reward = Playout(selectedNode.State);
+                Backpropagate(selectedNode, reward);
+            }
 
-                //Playout
-
-                //Backpropagation
 
             // return best initial child
-            return null;
+            return BestChild(this.InitialNode).Action;
         }
 
         // Selection and Expantion
@@ -87,30 +88,53 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             MCTSNode currentNode = initialNode;
             MCTSNode bestChild;
 
-            //   while(!currentNode.State.IsTerminal())
+            while (!currentNode.State.IsTerminal())
+            {
+                nextAction = currentNode.State.GetNextAction();
+                
+                // if not fully expanded
+                if (nextAction != null)
+                    return Expand(initialNode, nextAction);
 
-                // nextAction = currentNode.State.GetNextAction();
+                currentNode = BestChild(currentNode);
+            }
 
-                //Expansion
 
-            return null;
+            return currentNode;
         }
 
         protected virtual Reward Playout(WorldModel initialPlayoutState)
         {
-            Action[] executableActions;
-            return null;
+            Action[] executableActions = initialPlayoutState.GetExecutableActions();
+            while (!initialPlayoutState.IsTerminal())
+            {
+                Action action = executableActions[RandomGenerator.Next(0, executableActions.Length)];
+                action.ApplyActionEffects(initialPlayoutState);
+                executableActions = initialPlayoutState.GetExecutableActions();
+            }
+            
+            return new Reward(initialPlayoutState, 0);
         }
 
         protected virtual void Backpropagate(MCTSNode node, Reward reward)
         {
-           
+           while(node != null)
+           {
+                node.N += 1;
+                node.Q += reward.Value ;
+                node = node.Parent;
+           }
         }
 
         protected MCTSNode Expand(MCTSNode parent, Action action)
         {
             WorldModel newState = parent.State.GenerateChildWorldModel();
-            return null;
+            action.ApplyActionEffects(newState);
+            newState.CalculateNextPlayer();
+            MCTSNode child = new MCTSNode(newState);
+            child.Action = action;
+            parent.ChildNodes.Add(child);
+            return child;
         }
 
         protected virtual MCTSNode BestUCTChild(MCTSNode node)
