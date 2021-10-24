@@ -11,7 +11,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         {
         }
 
-        public float GetGoalChange(Goal goal)
+        public override float GetGoalChange(Goal goal)
         {
             var change = base.GetGoalChange(goal);
             if (goal.Name == AutonomousCharacter.GET_RICH_GOAL) change -= 5.0f;

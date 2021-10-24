@@ -46,7 +46,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             worldModel.SetGoalValue(AutonomousCharacter.GAIN_LEVEL_GOAL, 0);
         }
 
-        public float GetGoalChange(Goal goal)
+        public override float GetGoalChange(Goal goal)
         {
             float change = 0.0f;
 

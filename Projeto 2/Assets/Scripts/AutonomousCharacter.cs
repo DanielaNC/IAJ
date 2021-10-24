@@ -176,7 +176,6 @@ namespace Assets.Scripts
             if (Time.time > this.nextUpdateTime || GameManager.WorldChanged)
             {
 
-
                 GameManager.WorldChanged = false;
                 this.nextUpdateTime = Time.time + DECISION_MAKING_INTERVAL;
 
@@ -222,7 +221,7 @@ namespace Assets.Scripts
                 if(GOAPActive)
                     this.GOAPDecisionMaking.InitializeDecisionMakingProcess();
                 else if (GOBActive)
-                        this.GOBDecisionMaking.InProgress = true;
+                    this.GOBDecisionMaking.InProgress = true;
 
                 
             }
@@ -273,9 +272,7 @@ namespace Assets.Scripts
                 {
                   
                     this.CurrentAction.Execute();
-                }
-             
-                        
+                }  
             }
           
         }
@@ -291,7 +288,6 @@ namespace Assets.Scripts
 
         private void UpdateGOB()
         {
-            
             bool newDecision = false;
             if (this.GOBDecisionMaking.InProgress)
             {
@@ -299,6 +295,7 @@ namespace Assets.Scripts
                 var action = this.GOBDecisionMaking.ChooseAction();
                 if (action != null && action != this.CurrentAction)
                 {
+                    AddToDiary(Time.time + "action");
                     this.CurrentAction = action;
                     newDecision = true;
                     if (newDecision)
@@ -310,7 +307,6 @@ namespace Assets.Scripts
                 }
 
             }
-
         }
 
         private void UpdateDLGOAP()

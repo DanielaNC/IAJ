@@ -55,42 +55,47 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
 
             float currentDiscontentment = float.MaxValue;
 
-           while(this.CurrentDepth >= 0)
-           {
+            while(this.CurrentDepth >= 0)
+            {
                 // check if we're at max depth
                 if (this.CurrentDepth >= MAX_DEPTH)
                 {
                     // calculate discontentment at the deepest level
                     currentDiscontentment = this.Models[this.CurrentDepth].CalculateDiscontentment(this.Goals);
-                }
 
-                if (currentDiscontentment < this.BestDiscontentmentValue) {
 
-                    this.BestDiscontentmentValue = currentDiscontentment;
-                    this.BestAction = this.ActionPerLevel[0];
+                    if (currentDiscontentment < this.BestDiscontentmentValue)
+                    {
+                        this.BestDiscontentmentValue = currentDiscontentment;
+                        for(int i = 0; i < this.ActionPerLevel.Length; i++)
+                        {
+                            this.BestActionSequence[i] = this.ActionPerLevel[i];
+                        }
+                        this.BestAction = this.BestActionSequence[0];
+                    }
+
                     this.CurrentDepth -= 1;
-                    
                     continue;
                 }
-
                 var nextAction = this.Models[this.CurrentDepth].GetNextAction();
 
                 if (nextAction != null)
                 {
                     this.Models[CurrentDepth + 1] = this.Models[CurrentDepth].GenerateChildWorldModel();
-                    this.ActionPerLevel[CurrentDepth] = nextAction;
                     nextAction.ApplyActionEffects(this.Models[CurrentDepth + 1]);
+                    this.ActionPerLevel[CurrentDepth] = nextAction;
                     this.CurrentDepth += 1;
                 }
-
                 else
+                {
                     this.CurrentDepth -= 1;
+                }
 
-           }
+            }
 
-           this.TotalProcessingTime += Time.realtimeSinceStartup - startTime;
-           this.InProgress = false;
-           return this.BestAction;
+            this.TotalProcessingTime += Time.realtimeSinceStartup - startTime;
+            this.InProgress = false;
+            return this.BestAction;
         }
     }
 }

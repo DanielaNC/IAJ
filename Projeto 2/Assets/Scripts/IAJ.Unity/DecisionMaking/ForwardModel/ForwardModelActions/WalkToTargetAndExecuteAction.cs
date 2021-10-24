@@ -35,7 +35,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             return result;
         }
 
-        public float GetGoalChange(Goal goal)
+        public override float GetGoalChange(Goal goal)
         {
             if (goal.Name == AutonomousCharacter.BE_QUICK_GOAL)
             {

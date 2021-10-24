@@ -18,8 +18,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override bool CanExecute(WorldModel worldModel)
         {
-            //TODO implement
-            return false;
+            if (!base.CanExecute(worldModel)) return false;
+            return true;
         }
 
         public override void Execute()
@@ -28,11 +28,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             this.Character.GameManager.GetHealthPotion(this.Target);
         }
 
-        public float GetGoalChange(Goal goal)
+        public override float GetGoalChange(Goal goal)
         {
             var change = base.GetGoalChange(goal);
 
-           //TODO implement
+            if (goal.Name == AutonomousCharacter.SURVIVE_GOAL) change -= this.Character.GameManager.characterData.MaxHP - this.Character.GameManager.characterData.HP;
 
             return change;
         }
@@ -40,8 +40,9 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override void ApplyActionEffects(WorldModel worldModel)
         {
             base.ApplyActionEffects(worldModel);
-         
-             // TODO implement
+
+            worldModel.SetProperty(Properties.HP, Properties.MAXHP);
+            worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, 0);
 
             //disables the target object so that it can't be reused again
             worldModel.SetProperty(this.Target.name, false);

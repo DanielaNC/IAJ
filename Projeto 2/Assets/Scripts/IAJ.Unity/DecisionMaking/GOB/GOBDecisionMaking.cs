@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActions;
 using Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel;
+using UnityEngine;
 
 namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
 {
@@ -47,8 +48,33 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
             InProgress = true;
             Action bestAction = null;
             var bestValue = float.PositiveInfinity;
+            var topGoal = goals[0];
 
-            //TODO implement
+            foreach (var goal in goals)
+            {
+                if (goal.InsistenceValue > topGoal.InsistenceValue)
+                {
+                    topGoal = goal;
+                }
+            }
+
+            Debug.Log(topGoal.Name);
+            bestAction = actions.Find(x => x.CanExecute());
+            var bestUtility = -bestAction.GetGoalChange(topGoal);
+            foreach (var action in actions)
+            {
+                if (!action.CanExecute())
+                {
+                    continue;
+                }
+
+                var utility = -action.GetGoalChange(topGoal);
+                if (utility > bestUtility)
+                {
+                    bestUtility = utility;
+                    bestAction = action;
+                }
+            }
 
             InProgress = false;
             return bestAction;

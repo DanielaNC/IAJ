@@ -25,7 +25,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel
         }
 
         // Used for GOB Decison Making
-        public float GetGoalChange(Goal goal)
+        public virtual float GetGoalChange(Goal goal)
         {
             if (this.GoalEffects.ContainsKey(goal))
             {

@@ -28,7 +28,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             this.Character.GameManager.GetManaPotion(this.Target);
         }
 
-        public float GetGoalChange(Goal goal)
+        public override float GetGoalChange(Goal goal)
         {
             var change = base.GetGoalChange(goal);
 
@@ -41,7 +41,10 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         {
             base.ApplyActionEffects(worldModel);
 
-            // TODO implement
+            int mana = (int)worldModel.GetProperty(Properties.MANA);
+            worldModel.SetProperty(Properties.MANA, 10);
+
+            //worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, 0);  ----> Implement mana goal
 
             //disables the target object so that it can't be reused again
             worldModel.SetProperty(this.Target.name, false);
