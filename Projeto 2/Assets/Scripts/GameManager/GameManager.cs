@@ -156,6 +156,11 @@ namespace Assets.Scripts.Manager
             {
                 this.autonomousCharacter.AddToDiary(" I Sword Attacked " + enemy.name);
 
+                if (enemyData.Type.Contains("Orc"))
+                { 
+                    this.orcShout = false;
+                }
+
                 if (this.StochasticWorld)
                 {
                     damage = enemyData.dmgRoll.Invoke();
@@ -246,6 +251,12 @@ namespace Assets.Scripts.Manager
 
                 NPC enemyData = enemy.GetComponent<NPC>();
 
+                if (enemyData.Type.Contains("Orc"))
+                {
+                    Debug.Log("killed an orc");
+                    this.orcShout = false;
+                }
+
                 if (enemy != null && enemy.activeSelf && InMeleeRange(enemy))
                 {
 
@@ -276,6 +287,7 @@ namespace Assets.Scripts.Manager
                         enemy.SetActive(false);
                         Object.Destroy(enemy);
                     }
+
 
                     this.characterData.XP += enemyData.XPvalue;
 
@@ -330,6 +342,16 @@ namespace Assets.Scripts.Manager
                 Object.Destroy(potion);
                 this.characterData.HP = this.characterData.MaxHP;
                 this.WorldChanged = true;
+            }
+        }
+
+        public void CastShieldOfFaith()
+        {
+            if (this.characterData.Mana >= 5)
+            {
+                this.autonomousCharacter.AddToDiary("I cast Shield of Faith");
+                this.characterData.ShieldHP = 5;
+                this.characterData.Mana -= 5;
             }
         }
 

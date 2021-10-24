@@ -32,12 +32,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override float GetGoalChange(Goal goal)
         {
             var change = base.GetGoalChange(goal);
-
-            if (goal.Name == AutonomousCharacter.SURVIVE_GOAL)
-            {
-                change += this.expectedHPChange;
-            }
-            else if (goal.Name == AutonomousCharacter.GAIN_LEVEL_GOAL)
+            
+            if (goal.Name == AutonomousCharacter.GAIN_LEVEL_GOAL)
             {
                 change += -this.expectedXPChange;
             }

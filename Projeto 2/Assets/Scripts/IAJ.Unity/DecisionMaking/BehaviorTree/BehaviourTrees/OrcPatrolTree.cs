@@ -20,11 +20,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.BehaviorTree.BehaviourTrees
 
             this.children = new List<Task>()
             {
+                new LightAttack(character, character.weaponRange),
                 new Pursue(character, target, character.awakeDistance),
                 new HearOrcScream(character, target, character.weaponRange),
                 new IsPlayerNear(character, target, character.awakeDistance),
-                new Patrol(character, character.weaponRange),
-                new LightAttack(character)
+                new Patrol(character, character.weaponRange)
             };
 
         }

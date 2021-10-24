@@ -146,6 +146,7 @@ namespace Assets.Scripts
 
             foreach (var enemy in GameObject.FindGameObjectsWithTag("Skeleton"))
             {
+                this.Actions.Add(new DivineSmite(this, enemy));
                 this.Actions.Add(new SwordAttack(this, enemy));
             }
 
@@ -158,6 +159,9 @@ namespace Assets.Scripts
             {
                 this.Actions.Add(new SwordAttack(this, enemy));
             }
+
+            if (GameObject.FindObjectOfType<GameManager>().characterData.Mana >= 5)
+                this.Actions.Add(new ShieldOfFaith(this));
 
             // Initialization of Decision Making Algorithms
             var worldModel = new CurrentStateWorldModel(GameManager, this.Actions, this.Goals);
@@ -252,6 +256,8 @@ namespace Assets.Scripts
                             AttackEnemy();
                         else if (s.Contains("Divine"))
                             DivineSmite();
+                        else if (s.Contains("Shield"))
+                            CastShieldOfFaith();
                     }
                 if (Input.GetKey(KeyCode.L))
                     this.GameManager.LevelUp();
@@ -462,6 +468,11 @@ namespace Assets.Scripts
                     closestObject = null;
                     playerText.text = "";
                 }
+        }
+
+        void CastShieldOfFaith()
+        {
+            GameManager.CastShieldOfFaith();
         }
 
         void PickUpChest()
