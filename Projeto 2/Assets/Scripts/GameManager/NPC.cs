@@ -112,7 +112,7 @@ namespace Assets.Scripts.Manager
 
                 //Debug.Log("patrol: " + this.patrolPoint +  " for character: " + this.Name) ;
 
-                if (this.Type == "Orc")
+                if (usingBehaviourTree && this.Type == "Orc")
                 {
                     behaviourTree = new OrcPatrolTree(this, player);
                     //Debug.Log(this.Name);

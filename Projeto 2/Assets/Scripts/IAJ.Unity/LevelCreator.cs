@@ -141,13 +141,13 @@ public class LevelCreator : MonoBehaviour
                 else if(textLines[i, j] == "p")
                 {
                     //P for Patrol Point
-                    /*var patrolTarget = new GameObject();
+                    var patrolTarget = new GameObject();
                     patrolTarget.transform.localPosition = new Vector3(x * cellSize, 0.0f, y * cellSize);
                     patrolTarget.transform.localScale *= cellSize;
                     patrolTarget.tag = "Patrol";
                     patrolTarget.transform.parent = patrolSpawn.transform;
                     patrolTarget.name = "patrolTarget" + index;
-                    index++;*/
+                    index++;
                 }
             }
 
@@ -187,12 +187,12 @@ public class LevelCreator : MonoBehaviour
             toDelete.Add(chestSpawn.GetChild(i).gameObject);
         }
 
-        /*var patrolNumber = patrolSpawn.childCount;
+        var patrolNumber = patrolSpawn.childCount;
 
         for (int i = 0; i < patrolNumber; i++)
         {
             toDelete.Add(patrolSpawn.GetChild(i).gameObject);
-        }*/
+        }
 
         foreach (var d in toDelete)
         {

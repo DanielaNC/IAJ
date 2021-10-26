@@ -43,8 +43,25 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override void Execute()
         {
-            base.Execute();
+            Vector3 delta = this.Target.transform.position - this.Character.transform.position;
+
+            if (!(delta.sqrMagnitude < 15 && delta.sqrMagnitude > 7))
+                this.Character.StartPathfinding(this.Target.transform.position);
+
             this.Character.GameManager.DivineSmite(this.Target);
+        }
+
+        public override bool CanExecute()
+        {
+            if (!base.CanExecute()) return false;
+            return (this.Character.GameManager.characterData.Mana >= 2 && this.Target != null);
+        }
+
+        public virtual bool CanExecute(WorldModel worldModel)
+        {
+            if (!base.CanExecute()) return false;
+            var mana = (int)worldModel.GetProperty(Properties.MANA);
+            return mana >= 2;
         }
 
         public override void ApplyActionEffects(WorldModel worldModel)

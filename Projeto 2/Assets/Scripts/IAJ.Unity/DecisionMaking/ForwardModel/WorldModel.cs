@@ -139,16 +139,25 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel
 
         public virtual bool IsTerminal()
         {
-            return true;
+            int HP = (int)this.GetProperty("HP");
+            float time = (float)this.GetProperty("Time");
+            int money = (int)this.GetProperty("Money");
+
+            return HP <= 0 || time >= 200 || (this.GetNextPlayer() == 0 && money == 25);
         }
         
 
         public virtual float GetScore()
         {
-            // TO DO
-            // check outcome of game
-            // divide by number of actions ?
-            return 0.0f;
+            int money = (int)this.GetProperty("Money");
+            int HP = (int)this.GetProperty("HP");
+
+            if (HP <= 0) return 0.0f;
+            else if (money == 25)
+            {
+                return 1.0f;
+            }
+            else return 0.0f;
         }
 
         public virtual int GetNextPlayer()

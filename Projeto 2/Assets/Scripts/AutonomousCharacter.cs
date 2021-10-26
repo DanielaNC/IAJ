@@ -6,6 +6,7 @@ using Assets.Scripts.Manager;
 using Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel;
 using Assets.Scripts.IAJ.Unity.DecisionMaking.GOB;
 using Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActions;
+using Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS;
 
 namespace Assets.Scripts
 {
@@ -43,6 +44,7 @@ namespace Assets.Scripts
         [Header("Decision Algorithm Options")]
         public bool GOBActive;
         public bool GOAPActive;
+        public bool MCTSActive;
 
         [Header("Character Info")]
         public bool Resting = false;
@@ -57,6 +59,7 @@ namespace Assets.Scripts
         public Action CurrentAction { get; private set; }
         public GOBDecisionMaking GOBDecisionMaking { get; set; }
         public DepthLimitedGOAPDecisionMaking GOAPDecisionMaking { get; set; }
+        public MCTS MCTSDecisionMaking { get; set; }
 
         //private fields for internal use only
         private NavMeshAgent agent;
@@ -146,8 +149,8 @@ namespace Assets.Scripts
 
             foreach (var enemy in GameObject.FindGameObjectsWithTag("Skeleton"))
             {
-                this.Actions.Add(new DivineSmite(this, enemy));
                 this.Actions.Add(new SwordAttack(this, enemy));
+                this.Actions.Add(new DivineSmite(this, enemy));
             }
 
             foreach (var enemy in GameObject.FindGameObjectsWithTag("Orc"))
@@ -160,13 +163,14 @@ namespace Assets.Scripts
                 this.Actions.Add(new SwordAttack(this, enemy));
             }
 
-            if (GameObject.FindObjectOfType<GameManager>().characterData.Mana >= 5)
+            if (GameManager.characterData.Mana >= 5)
                 this.Actions.Add(new ShieldOfFaith(this));
 
             // Initialization of Decision Making Algorithms
             var worldModel = new CurrentStateWorldModel(GameManager, this.Actions, this.Goals);
             this.GOBDecisionMaking = new GOBDecisionMaking(this.Actions, this.Goals);
             this.GOAPDecisionMaking = new DepthLimitedGOAPDecisionMaking(worldModel,this.Actions,this.Goals);
+            this.MCTSDecisionMaking = new MCTS(worldModel);
             this.Resting = false;
 
             DiaryText.text += "My Diary \n I awoke. What a wonderful day to kill Monsters! \n";
@@ -226,6 +230,10 @@ namespace Assets.Scripts
                     this.GOAPDecisionMaking.InitializeDecisionMakingProcess();
                 else if (GOBActive)
                     this.GOBDecisionMaking.InProgress = true;
+                else if (MCTSActive)
+                {
+                    this.MCTSDecisionMaking.InitializeMCTSearch();
+                }
 
                 
             }
@@ -272,6 +280,11 @@ namespace Assets.Scripts
                 this.UpdateGOB();
             }
 
+            else if (this.MCTSActive)
+            {
+                this.UpdateMCTS();
+            }
+
             if (this.CurrentAction != null)
             {
                 if (this.CurrentAction.CanExecute())
@@ -299,9 +312,33 @@ namespace Assets.Scripts
             {
                 //choose an action using the GOB Decision Making process
                 var action = this.GOBDecisionMaking.ChooseAction();
-                if (action != null && action != this.CurrentAction)
+                if (action != null && !action.Equals(this.CurrentAction))
                 {
                     AddToDiary(Time.time + "action");
+                    this.CurrentAction = action;
+                    newDecision = true;
+                    if (newDecision)
+                    {
+                        AddToDiary(Time.time + " I decided to " + action.Name);
+                        this.BestActionText.text = "Best Action: " + action.Name + "\n";
+                    }
+
+                }
+
+            }
+        }
+
+        private void UpdateMCTS()
+        {
+            bool newDecision = false;
+
+            if (this.MCTSDecisionMaking.InProgress)
+            {
+                //choose an action using the GOB Decision Making process
+                var action = this.MCTSDecisionMaking.Run();
+                Debug.Log(action);
+                if (action != null && !action.Equals(this.CurrentAction))
+                {
                     this.CurrentAction = action;
                     newDecision = true;
                     if (newDecision)
@@ -322,7 +359,7 @@ namespace Assets.Scripts
             {
                 //choose an action using the GOB Decision Making process
                 var action = this.GOAPDecisionMaking.ChooseAction();
-                if (action != null && action != this.CurrentAction)
+                if (action != null && !action.Equals(this.CurrentAction))
                 {
                     this.CurrentAction = action;
                     newDecision = true;

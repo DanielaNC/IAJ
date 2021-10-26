@@ -70,5 +70,15 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel
             return 0.0f;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj.GetType() != this.GetType())
+                return false;
+
+            Action other = (Action)obj;
+
+            return this.Name.Equals(other.Name);
+        }
+
     }
 }

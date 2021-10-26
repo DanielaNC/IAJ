@@ -70,12 +70,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
             while(CurrentIterationsInFrame < MaxIterationsProcessedPerFrame)
             {
-
                 selectedNode = Selection(selectedNode);
                 reward = Playout(selectedNode.State);
                 Backpropagate(selectedNode, reward);
+                this.CurrentIterationsInFrame++;
             }
-
 
             // return best initial child
             return BestChild(this.InitialNode).Action;
@@ -146,7 +145,21 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         //the exploration factor
         protected MCTSNode BestChild(MCTSNode node)
         {
-            return null;
+            MCTSNode bestChild = node.ChildNodes[0];
+
+            foreach(MCTSNode child in node.ChildNodes)
+            {
+                if (child.N != 0)
+                {
+                    float score = child.Q / child.N;
+                    float previousScore = bestChild.Q / bestChild.N;
+
+                    if (score > previousScore)
+                        bestChild = child;
+                }
+            }
+
+            return bestChild;
         }
 
         
