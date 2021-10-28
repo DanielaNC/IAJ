@@ -38,7 +38,6 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             this.MaxIterationsProcessedPerFrame = 10;
             this.RandomGenerator = new System.Random();
             this.UseUCT = useUCT;
-            this.NrPlayouts = nrPlayouts;
         }
 
 
