@@ -18,7 +18,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override bool CanExecute(WorldModel worldModel)
         {
-            //if (!base.CanExecute(worldModel)) return false;
+            if (!base.CanExecute(worldModel)) return false;
 
             int mana = (int)worldModel.GetProperty(Properties.MANA);
 

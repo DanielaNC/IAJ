@@ -189,7 +189,7 @@ namespace Assets.Scripts
 
                 //first step, perceptions
                 //update the agent's goals based on the state of the world
-                this.SurviveGoal.InsistenceValue = GameManager.characterData.MaxHP - GameManager.characterData.HP;
+                this.SurviveGoal.InsistenceValue = GameManager.characterData.MaxHP - GameManager.characterData.HP - GameManager.characterData.ShieldHP;
 
                 this.BeQuickGoal.InsistenceValue += DECISION_MAKING_INTERVAL * this.BeQuickGoal.ChangeRate;
                 if(this.BeQuickGoal.InsistenceValue > 10.0f)

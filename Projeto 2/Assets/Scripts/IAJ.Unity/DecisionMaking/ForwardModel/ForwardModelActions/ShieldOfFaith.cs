@@ -13,27 +13,28 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override bool CanExecute()
         {
             if (!base.CanExecute()) return false;
-            return this.Character.GameManager.characterData.Mana >= 5;
+            return this.Character.GameManager.characterData.Mana >= 5 && this.Character.GameManager.characterData.ShieldHP < 5;
         }
 
         public override bool CanExecute(WorldModel worldModel)
         {
             if (!base.CanExecute(worldModel)) return false;
             var mana = (int)worldModel.GetProperty(Properties.MANA);
-            return mana >= 5;
+            var shield = (int)worldModel.GetProperty(Properties.ShieldHP);
+            return mana >= 5 && shield < 5;
         }
 
         public override void Execute()
         {
-            base.Execute();
+            //base.Execute();
             this.Character.GameManager.CastShieldOfFaith();
         }
 
         public override float GetGoalChange(Goal goal)
         {
-            var change = base.GetGoalChange(goal);
+            var change = 0.0f;
 
-            if (goal.Name == AutonomousCharacter.SURVIVE_GOAL) change -= this.Character.GameManager.characterData.HP - this.Character.GameManager.characterData.ShieldHP;
+            if (goal.Name == AutonomousCharacter.SURVIVE_GOAL) change -= this.Character.GameManager.characterData.ShieldHP;
 
             return change;
         }

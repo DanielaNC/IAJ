@@ -151,13 +151,13 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel
         {
             int money = (int)this.GetProperty("Money");
             int HP = (int)this.GetProperty("HP");
+            float time = (float)this.GetProperty("Time");
 
             if (HP <= 0) return 0.0f;
-            else if (money == 25)
-            {
-                return 1.0f;
-            }
-            else return 0.0f;
+            if (time >= 200) return 0.0f;
+            if (money == 25) return 1.0f;
+            
+            return 0.0f;
         }
 
         public virtual int GetNextPlayer()

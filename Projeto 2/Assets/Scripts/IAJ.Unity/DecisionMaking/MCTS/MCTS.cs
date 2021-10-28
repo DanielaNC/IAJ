@@ -77,7 +77,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             }
 
             // return best initial child
-            return BestChild(this.InitialNode).Action;
+            return BestInitialChild(this.InitialNode).Action;
         }
 
         // Selection and Expantion
@@ -165,7 +165,30 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             return bestChild;
         }
 
-        
+        protected MCTSNode BestInitialChild(MCTSNode node)
+        {
+            MCTSNode bestChild = null;
+            float score = 0.0f;
+            float previousScore = float.MinValue;
+
+            foreach (MCTSNode child in node.ChildNodes)
+            {
+                if (child.N != 0 && child.Action.CanExecute())
+                {
+                    score = child.Q / child.N;
+
+                    if (score > previousScore)
+                    {
+                        bestChild = child;
+                        previousScore = score;
+                    }
+                }
+            }
+
+            return bestChild;
+        }
+
+
         protected Action BestFinalAction(MCTSNode node)
         {
             var bestChild = this.BestChild(node);
