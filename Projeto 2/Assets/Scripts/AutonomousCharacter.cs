@@ -45,6 +45,8 @@ namespace Assets.Scripts
         public bool GOBActive;
         public bool GOAPActive;
         public bool MCTSActive;
+        public bool UseUCT = false;
+        public int NrPlayouts = 1;
 
         [Header("Character Info")]
         public bool Resting = false;
@@ -170,7 +172,7 @@ namespace Assets.Scripts
             var worldModel = new CurrentStateWorldModel(GameManager, this.Actions, this.Goals);
             this.GOBDecisionMaking = new GOBDecisionMaking(this.Actions, this.Goals);
             this.GOAPDecisionMaking = new DepthLimitedGOAPDecisionMaking(worldModel,this.Actions,this.Goals);
-            this.MCTSDecisionMaking = new MCTS(worldModel);
+            this.MCTSDecisionMaking = new MCTS(worldModel, this.UseUCT, this.NrPlayouts);
             this.Resting = false;
 
             DiaryText.text += "My Diary \n I awoke. What a wonderful day to kill Monsters! \n";
