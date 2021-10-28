@@ -72,7 +72,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override bool CanExecute()
         {
             if (!base.CanExecute()) return false;
-            return this.Character.GameManager.characterData.HP > this.Target.GetComponent<NPC>().simpleDamage;
+            return this.Target.active && this.Character.GameManager.characterData.HP > this.Target.GetComponent<NPC>().simpleDamage;
         }
 
         public virtual bool CanExecute(WorldModel worldModel)

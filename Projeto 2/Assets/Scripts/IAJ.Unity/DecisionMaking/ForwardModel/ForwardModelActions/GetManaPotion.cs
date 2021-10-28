@@ -18,11 +18,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override bool CanExecute(WorldModel worldModel)
         {
-            if (!base.CanExecute(worldModel)) return false;
+            //if (!base.CanExecute(worldModel)) return false;
 
-            var mana = (int)worldModel.GetProperty(Properties.MANA);
+            int mana = (int)worldModel.GetProperty(Properties.MANA);
 
-            return mana > 0 && mana < 10;
+            return (mana < 10);
         }
 
         public override void Execute()

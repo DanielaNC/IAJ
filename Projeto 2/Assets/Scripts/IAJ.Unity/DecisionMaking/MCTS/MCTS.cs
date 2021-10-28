@@ -90,7 +90,10 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             while (!currentNode.State.IsTerminal())
             {
                 nextAction = currentNode.State.GetNextAction();
-                
+
+                while (nextAction!= null && !nextAction.CanExecute(currentNode.State))
+                    nextAction = currentNode.State.GetNextAction();
+
                 // if not fully expanded
                 if (nextAction != null)
                     return Expand(initialNode, nextAction);

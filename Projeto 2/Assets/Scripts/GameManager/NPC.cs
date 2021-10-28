@@ -149,7 +149,7 @@ namespace Assets.Scripts.Manager
 
                 else
                 {
-                    Debug.Log("Pursuing Player");
+                    //Debug.Log("Pursuing Player");
                     PursuePlayer();
                     Invoke("CheckPlayerPosition", 0.5f);
                 }
