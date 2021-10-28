@@ -132,6 +132,10 @@ namespace Assets.Scripts
             this.Actions = new List<Action>();
 
             this.Actions.Add(new LevelUp(this));
+            this.Actions.Add(new ShieldOfFaith(this));
+            this.Actions.Add(new Teleport(this, GameManager.initialPosition));
+            this.Actions.Add(new Rest(this));
+
 
 
             foreach (var chest in GameObject.FindGameObjectsWithTag("Chest"))
@@ -165,9 +169,6 @@ namespace Assets.Scripts
                 this.Actions.Add(new SwordAttack(this, enemy));
             }
 
-            if (GameManager.characterData.Mana >= 5)
-                this.Actions.Add(new ShieldOfFaith(this));
-
             // Initialization of Decision Making Algorithms
             var worldModel = new CurrentStateWorldModel(GameManager, this.Actions, this.Goals);
             this.GOBDecisionMaking = new GOBDecisionMaking(this.Actions, this.Goals);
@@ -181,6 +182,8 @@ namespace Assets.Scripts
         void Update()
         {
             if (GameManager.gameEnded) return;
+
+            if (this.Resting && Time.time < this.StopRestTime) return;
 
             //Every x amount of times we've got to update things
             if (Time.time > this.nextUpdateTime || GameManager.WorldChanged)
