@@ -85,9 +85,17 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
             // return best initial child
             if (!UseUCT)
-                return BestInitialChild(this.InitialNode).Action;
+            {
+                if (BestInitialChild(this.InitialNode) != null)
+                    return BestInitialChild(this.InitialNode).Action;
+                return null;
+            }
             else
-                return BestInitialUCTChild(this.InitialNode).Action;
+            {
+                if (BestInitialUCTChild(this.InitialNode) != null)
+                    return BestInitialUCTChild(this.InitialNode).Action;
+                return null;
+            }
         }
 
         // Selection and Expantion
@@ -128,7 +136,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                 executableActions = initialPlayoutState.GetExecutableActions();
             }
             
-            return new Reward(initialPlayoutState, 0);
+            return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0);
         }
 
         protected virtual void Backpropagate(MCTSNode node, Reward reward)
@@ -145,6 +153,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         {
             WorldModel newState = parent.State.GenerateChildWorldModel();
             action.ApplyActionEffects(newState);
+            Debug.Log("Action: " + action.Name + " -> time: " + newState.GetProperty(Properties.TIME));
             newState.CalculateNextPlayer();
             MCTSNode child = new MCTSNode(newState);
             child.Action = action;
@@ -177,25 +186,25 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         }
 
         protected virtual MCTSNode BestInitialUCTChild(MCTSNode node)
-        {
-            MCTSNode bestChild = node.ChildNodes[0];
+        { 
+            MCTSNode bestChild = null;
 
             float score = 0.0f;
             float previousScore = float.MinValue;
 
             foreach (MCTSNode child in node.ChildNodes)
             {
-                if (child.Parent != null && child.N != 0 && child.Action.CanExecute())
+                if (child.Parent != null && child.N != 0 && child.Action.CanExecute() && child.Action != null)
                 {
                     score = (child.Q / child.N) * C * (float)Math.Sqrt(Math.Log(node.Parent.N) / child.N);
 
-                    if (score > previousScore)
-                    {
-                        bestChild = child;
-                        previousScore = score;
+                        if (score > previousScore)
+                        {
+                            bestChild = child;
+                            previousScore = score;
+                        }
                     }
                 }
-            }
 
             return bestChild;
         }
@@ -233,7 +242,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
             foreach (MCTSNode child in node.ChildNodes)
             {
-                if (child.N != 0 && child.Action.CanExecute())
+                if (child.N != 0 && child.Action.CanExecute() && child.Action != null)
                 {
                     score = child.Q / child.N;
 

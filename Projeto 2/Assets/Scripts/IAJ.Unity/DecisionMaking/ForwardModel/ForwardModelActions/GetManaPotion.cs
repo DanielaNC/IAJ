@@ -35,9 +35,6 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         {
             var change = base.GetGoalChange(goal);
 
-            if (goal.Name == AutonomousCharacter.SURVIVE_GOAL) 
-                change -= 10 - this.Character.GameManager.characterData.Mana;
-
             return change;
         }
 
@@ -47,8 +44,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
             int mana = (int)worldModel.GetProperty(Properties.MANA);
             worldModel.SetProperty(Properties.MANA, 10);
-
-            worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, 0);  //----> Implement mana goal
+            var goalChange = worldModel.GetGoalValue(AutonomousCharacter.BE_QUICK_GOAL);
+            worldModel.SetGoalValue(AutonomousCharacter.BE_QUICK_GOAL, goalChange + this.GetDuration());  //----> Implement mana goal
 
             //disables the target object so that it can't be reused again
             worldModel.SetProperty(this.Target.name, false);

@@ -42,9 +42,20 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
             int hp = (int)worldModel.GetProperty(Properties.HP);
             float goalValue = (float)worldModel.GetGoalValue(AutonomousCharacter.SURVIVE_GOAL);
+            int maxHp = (int)worldModel.GetProperty(Properties.MAXHP);
 
-            worldModel.SetProperty(Properties.HP, hp + 2);
-            worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, goalValue - 2);
+            if (maxHp - hp == 1)
+            {
+                worldModel.SetProperty(Properties.HP, maxHp);
+                worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, goalValue - 1);
+            }
+            else
+            {
+                worldModel.SetProperty(Properties.HP, hp + 2);
+                worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, goalValue - 2);
+            }
+            goalValue = (float)worldModel.GetGoalValue(AutonomousCharacter.BE_QUICK_GOAL);
+            worldModel.SetGoalValue(AutonomousCharacter.BE_QUICK_GOAL, goalValue + 5);
         }
 
         public override float GetGoalChange(Goal goal)

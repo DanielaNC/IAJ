@@ -4,21 +4,24 @@ using UnityEngine;
 
 namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActions
 {
-    public class ShieldOfFaith : WalkToTargetAndExecuteAction
+    public class ShieldOfFaith : Action
     {
-        public ShieldOfFaith(AutonomousCharacter character) : base("CastShieldOfFaith", character, null)
+        public AutonomousCharacter Character { get; private set; }
+
+        public ShieldOfFaith(AutonomousCharacter character) : base("CastShieldOfFaith")
         {
+            this.Character = character;
         }
 
         public override bool CanExecute()
         {
-            if (!base.CanExecute()) return false;
+            //if (!base.CanExecute()) return false;
             return this.Character.GameManager.characterData.Mana >= 5 && this.Character.GameManager.characterData.ShieldHP < 5;
         }
 
         public override bool CanExecute(WorldModel worldModel)
         {
-            if (!base.CanExecute(worldModel)) return false;
+            //if (!base.CanExecute(worldModel)) return false;
             var mana = (int)worldModel.GetProperty(Properties.MANA);
             var shield = (int)worldModel.GetProperty(Properties.ShieldHP);
             return mana >= 5 && shield < 5;
@@ -48,7 +51,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             int mana = (int)worldModel.GetProperty(Properties.MANA);
             mana -= 5;
             worldModel.SetProperty(Properties.MANA, mana);
-            worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, 0);
+            var goalValue = worldModel.GetGoalValue(AutonomousCharacter.SURVIVE_GOAL);
+            worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, goalValue - 5);
 
             //disables the target object so that it can't be reused again
             //worldModel.SetProperty(this.Target.name, false);

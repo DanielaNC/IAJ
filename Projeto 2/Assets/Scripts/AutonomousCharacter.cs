@@ -18,7 +18,7 @@ namespace Assets.Scripts
         public const string BE_QUICK_GOAL = "BeQuick";
         public const string GET_RICH_GOAL = "GetRich";
 
-        public const float DECISION_MAKING_INTERVAL = 20.0f;
+        public const float DECISION_MAKING_INTERVAL = 100.0f;
         public const float RESTING_INTERVAL = 5.0f;
         public const int REST_HP_RECOVERY = 2;
 
@@ -197,10 +197,10 @@ namespace Assets.Scripts
                 this.SurviveGoal.InsistenceValue = GameManager.characterData.MaxHP - GameManager.characterData.HP - GameManager.characterData.ShieldHP;
 
                 this.BeQuickGoal.InsistenceValue += DECISION_MAKING_INTERVAL * this.BeQuickGoal.ChangeRate;
-                if(this.BeQuickGoal.InsistenceValue > 10.0f)
+                /*if(this.BeQuickGoal.InsistenceValue > 10.0f)
                 {
                     this.BeQuickGoal.InsistenceValue = 10.0f;
-                }
+                }*/
 
                 this.GainLevelGoal.InsistenceValue += this.GainLevelGoal.ChangeRate; //increase in goal over time
                 if(GameManager.characterData.Level > this.previousLevel)
@@ -350,6 +350,15 @@ namespace Assets.Scripts
                     {
                         AddToDiary(Time.time + " I decided to " + action.Name);
                         this.BestActionText.text = "Best Action: " + action.Name + "\n";
+                        string actionText = "";
+                        foreach (var a in this.MCTSDecisionMaking.BestActionSequence)
+                        {
+                            if (a != null)
+                            {
+                                actionText += "\n" + a.Name;
+                            }
+                        }
+                        this.BestActionSequence.text = "Best Sequence Action: " + actionText;
                     }
 
                 }
@@ -425,7 +434,7 @@ namespace Assets.Scripts
                 foreach (var c in result.corners)
                 {
                     //Rough estimate, it does not account for shortcuts so we have to multiply it
-                    distance += Vector3.Distance(currentPosition, c) * 0.65f;
+                    distance += Vector3.Distance(currentPosition, c) * 1.2f;
                     currentPosition = c;
                 }
                 return distance;

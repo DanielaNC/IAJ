@@ -350,7 +350,10 @@ namespace Assets.Scripts.Manager
             this.autonomousCharacter.StopRestTime = Time.time + 5f;
             this.autonomousCharacter.Resting = true;
             this.autonomousCharacter.AddToDiary("I chose to rest.");
-            this.characterData.HP += 2;
+            if(this.characterData.MaxHP - this.characterData.HP == 1)
+                this.characterData.HP += 1;
+            else
+                this.characterData.HP += 2;
             this.WorldChanged = true;
         }
 
@@ -361,6 +364,7 @@ namespace Assets.Scripts.Manager
                 this.autonomousCharacter.AddToDiary("I cast Teleport");
                 this.autonomousCharacter.gameObject.transform.position = initialPosition;
                 this.characterData.Mana -= 5;
+                this.WorldChanged = true;
             }
         }
 
@@ -371,6 +375,7 @@ namespace Assets.Scripts.Manager
                 this.autonomousCharacter.AddToDiary("I cast Shield of Faith");
                 this.characterData.ShieldHP = 5;
                 this.characterData.Mana -= 5;
+                this.WorldChanged = true;
             }
         }
 

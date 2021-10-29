@@ -18,6 +18,12 @@ namespace Assets.Scripts.Manager
             this.NextPlayer = 0;
         }
 
+        public FutureStateWorldModel(WorldModel worldModel) : base(worldModel)
+        {
+            this.GameManager = GameObject.FindObjectOfType<GameManager>();
+            this.NextPlayer = 0;
+        }
+
         public FutureStateWorldModel(FutureStateWorldModel parent) : base(parent)
         {
             this.GameManager = parent.GameManager;
@@ -41,8 +47,10 @@ namespace Assets.Scripts.Manager
         {
             int money = (int)this.GetProperty(Properties.MONEY);
             int HP = (int)this.GetProperty(Properties.HP);
+            float time = (float)this.GetProperty(Properties.TIME);
 
             if (HP <= 0) return 0.0f;
+            else if (time >= 200) return 0.0f;
             else if (money == 25)
             {
                 return 1.0f;
