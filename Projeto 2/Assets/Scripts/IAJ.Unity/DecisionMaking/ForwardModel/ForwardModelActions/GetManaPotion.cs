@@ -34,7 +34,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override float GetGoalChange(Goal goal)
         {
             var change = base.GetGoalChange(goal);
-
+            if (goal.Name == AutonomousCharacter.BE_QUICK_GOAL) change = -0.2f;
             return change;
         }
 
@@ -45,7 +45,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             int mana = (int)worldModel.GetProperty(Properties.MANA);
             worldModel.SetProperty(Properties.MANA, 10);
             var goalChange = worldModel.GetGoalValue(AutonomousCharacter.BE_QUICK_GOAL);
-            worldModel.SetGoalValue(AutonomousCharacter.BE_QUICK_GOAL, goalChange + this.GetDuration());  //----> Implement mana goal
+            worldModel.SetGoalValue(AutonomousCharacter.BE_QUICK_GOAL, goalChange - 0.2f);  //----> Implement mana goal
 
             //disables the target object so that it can't be reused again
             worldModel.SetProperty(this.Target.name, false);

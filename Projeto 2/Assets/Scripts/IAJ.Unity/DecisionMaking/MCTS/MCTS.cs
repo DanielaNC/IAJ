@@ -119,7 +119,9 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                 if (!UseUCT)
                     currentNode = this.BestChild(currentNode);
                 else
+                {
                     currentNode = this.BestUCTChild(currentNode);
+                }
             }
 
 
@@ -163,16 +165,27 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
         protected virtual MCTSNode BestUCTChild(MCTSNode node)
         {
-            MCTSNode bestChild = node.ChildNodes[0];
+            MCTSNode bestChild = null;
 
             float score = 0.0f;
             float previousScore = float.MinValue;
 
             foreach (MCTSNode child in node.ChildNodes)
             {
-                if (child.Parent != null && child.N != 0 && child.Parent.N != 0)
+                if (child.Parent != null && child.N != 0)
                 {
-                    score = (child.Q / child.N) * C * (float)Math.Sqrt(Math.Log(node.Parent.N)/child.N);
+                    score = (child.Q / child.N) * C * (float)Math.Sqrt(Math.Log(node.Parent.N != 0 ? node.Parent.N : 1)/child.N);
+
+                    if (score > previousScore)
+                    {
+                        bestChild = child;
+                        previousScore = score;
+                    }
+                }
+
+                if(child.Parent == null && child.N != 0)
+                {
+                    score = (child.Q / child.N) * C;
 
                     if (score > previousScore)
                     {
@@ -194,9 +207,9 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
             foreach (MCTSNode child in node.ChildNodes)
             {
-                if (child.Parent != null && child.N != 0 && child.Action.CanExecute() && child.Action != null)
+                if (child.N != 0 && child.Action.CanExecute() && child.Action != null)
                 {
-                    score = (child.Q / child.N) * C * (float)Math.Sqrt(Math.Log(node.Parent.N) / child.N);
+                    score = (child.Q / child.N) * C;
 
                         if (score > previousScore)
                         {

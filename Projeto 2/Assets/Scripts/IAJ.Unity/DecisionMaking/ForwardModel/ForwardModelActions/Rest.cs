@@ -22,6 +22,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             return hp > 0 && hp < maxHP;
         }
 
+        public override float GetDuration()
+        {
+            return 2.0f;
+        }
+
 
         public override bool CanExecute(WorldModel worldModel)
         {

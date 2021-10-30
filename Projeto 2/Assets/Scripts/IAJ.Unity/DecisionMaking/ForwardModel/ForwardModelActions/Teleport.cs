@@ -36,6 +36,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override void Execute()
         {
             this.Character.GameManager.Teleport();
+            Debug.Log("Initial Position: " + initialPosition);
         }
 
         public override void ApplyActionEffects(WorldModel worldModel)

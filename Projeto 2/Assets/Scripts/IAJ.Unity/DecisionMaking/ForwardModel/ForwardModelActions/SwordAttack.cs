@@ -57,7 +57,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             }
             else if (goal.Name == AutonomousCharacter.GAIN_LEVEL_GOAL)
             {
-                change += -this.expectedXPChange;
+                if(this.Character.GameManager.characterData.XP >= this.Character.GameManager.characterData.Level * 10)
+                change = 0;
             }
             
             return change;

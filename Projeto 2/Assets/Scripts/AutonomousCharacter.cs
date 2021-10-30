@@ -197,10 +197,10 @@ namespace Assets.Scripts
                 this.SurviveGoal.InsistenceValue = GameManager.characterData.MaxHP - GameManager.characterData.HP - GameManager.characterData.ShieldHP;
 
                 this.BeQuickGoal.InsistenceValue += DECISION_MAKING_INTERVAL * this.BeQuickGoal.ChangeRate;
-                /*if(this.BeQuickGoal.InsistenceValue > 10.0f)
+                if(this.BeQuickGoal.InsistenceValue >= GameManager.characterData.MaxHP/2)
                 {
-                    this.BeQuickGoal.InsistenceValue = 10.0f;
-                }*/
+                    this.BeQuickGoal.InsistenceValue = GameManager.characterData.MaxHP / 2;
+                }
 
                 this.GainLevelGoal.InsistenceValue += this.GainLevelGoal.ChangeRate; //increase in goal over time
                 if(GameManager.characterData.Level > this.previousLevel)

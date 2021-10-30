@@ -350,7 +350,8 @@ namespace Assets.Scripts.Manager
             this.autonomousCharacter.StopRestTime = Time.time + 5f;
             this.autonomousCharacter.Resting = true;
             this.autonomousCharacter.AddToDiary("I chose to rest.");
-            if(this.characterData.MaxHP - this.characterData.HP == 1)
+            this.autonomousCharacter.StartPathfinding(this.autonomousCharacter.transform.position);
+            if (this.characterData.MaxHP - this.characterData.HP == 1)
                 this.characterData.HP += 1;
             else
                 this.characterData.HP += 2;

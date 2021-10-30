@@ -56,6 +56,12 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
                 {
                     topGoal = goal;
                 }
+
+                if(goal.Name == AutonomousCharacter.GAIN_LEVEL_GOAL && goal.InsistenceValue > 0.5)
+                {
+                    topGoal = goal;
+                    break;
+                }
             }
 
             Debug.Log(topGoal.Name);
