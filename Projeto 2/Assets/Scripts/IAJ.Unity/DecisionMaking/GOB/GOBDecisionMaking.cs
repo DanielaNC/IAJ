@@ -10,6 +10,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
         public bool InProgress { get; set; }
         private List<Goal> goals { get; set; }
         private List<Action> actions { get; set; }
+        private float bestDiscontentment = float.MaxValue;
+        private int nrActions = 0;
 
         // Utility based GOB
         public GOBDecisionMaking(List<Action> _actions, List<Goal> goals)
@@ -64,7 +66,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
                 }
             }
 
-            Debug.Log(topGoal.Name);
+            //Debug.Log(topGoal.Name);
             bestAction = actions.Find(x => x.CanExecute());
             var bestUtility = -bestAction.GetGoalChange(topGoal);
             foreach (var action in actions)
@@ -82,7 +84,16 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
                 }
             }
 
+            var discontentment = CalculateDiscontentment(bestAction, this.goals);
+            if(discontentment < bestDiscontentment)
+            {
+                bestDiscontentment = discontentment;
+                Debug.Log("Disc: " + bestDiscontentment);
+            }
+
             InProgress = false;
+            nrActions++;
+            Debug.Log("Actions: " + nrActions);
             return bestAction;
         }
     }

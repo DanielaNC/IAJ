@@ -23,6 +23,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
         public Action BestAction { get; private set; }
         public float BestDiscontentmentValue { get; private set; }
         private int CurrentDepth {  get; set; }
+        private int nrActions = 0;
 
         public DepthLimitedGOAPDecisionMaking(CurrentStateWorldModel currentStateWorldModel, List<Action> actions, List<Goal> goals)
         {
@@ -89,6 +90,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
                 {
                     this.Models[CurrentDepth + 1] = this.Models[CurrentDepth].GenerateChildWorldModel();
                     nextAction.ApplyActionEffects(this.Models[CurrentDepth + 1]);
+                    this.Models[CurrentDepth + 1].CalculateNextPlayer();
                     this.ActionPerLevel[CurrentDepth] = nextAction;
                     this.CurrentDepth += 1;
                     processedActions++;
@@ -107,12 +109,15 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
                 var ac = this.Models[CurrentDepth].GetExecutableActions();
                 foreach (var i in ac)
                 {
-                    Debug.Log(i.Name);
+                    //Debug.Log(i.Name);
                 }
             }
 
             this.TotalProcessingTime += Time.realtimeSinceStartup - startTime;
             this.InProgress = false;
+
+            nrActions++;
+            Debug.Log("Actions: " + nrActions);
             return this.BestAction;
         }
     }

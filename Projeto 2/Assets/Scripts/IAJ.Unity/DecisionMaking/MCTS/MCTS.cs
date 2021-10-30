@@ -77,7 +77,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                 selectedNode = Selection(selectedNode);
                 for (int i = 0; i < this.NrPlayouts; i++)
                 {
-                    reward = Playout(selectedNode.State);
+                    var state = new FutureStateWorldModel(selectedNode.State.GenerateChildWorldModel());
+                    reward = Playout(state);
                     Backpropagate(selectedNode, reward);
                 }
                 this.CurrentIterationsInFrame++;
@@ -128,13 +129,14 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             return currentNode;
         }
 
-        protected virtual Reward Playout(WorldModel initialPlayoutState)
+        protected virtual Reward Playout(FutureStateWorldModel initialPlayoutState)
         {
             Action[] executableActions = initialPlayoutState.GetExecutableActions();
             while (!initialPlayoutState.IsTerminal())
             {
                 Action action = executableActions[RandomGenerator.Next(0, executableActions.Length)];
                 action.ApplyActionEffects(initialPlayoutState);
+                initialPlayoutState.CalculateNextPlayer();
                 executableActions = initialPlayoutState.GetExecutableActions();
             }
             
@@ -146,7 +148,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
            while(node != null)
            {
                 node.N += 1;
-                node.Q += reward.Value ;
+                node.Q += reward.Value;
                 node = node.Parent;
            }
         }

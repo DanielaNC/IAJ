@@ -24,7 +24,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override float GetDuration()
         {
-            return 2.0f;
+            return 5.0f;
         }
 
 
@@ -67,7 +67,13 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         {
             float change = 0.0f;
 
-            if (goal.Name == AutonomousCharacter.SURVIVE_GOAL) change -= this.Character.GameManager.characterData.MaxHP - this.Character.GameManager.characterData.HP;
+            if (goal.Name == AutonomousCharacter.SURVIVE_GOAL)
+            {
+                if (this.Character.GameManager.characterData.MaxHP - this.Character.GameManager.characterData.HP < 10)
+                    change -= this.Character.GameManager.characterData.MaxHP - this.Character.GameManager.characterData.HP;
+                else
+                    change -= 2;
+            }
 
             return change;
         }

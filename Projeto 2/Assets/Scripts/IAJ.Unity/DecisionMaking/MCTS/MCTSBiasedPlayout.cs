@@ -27,10 +27,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         protected MCTSNode InitialNode { get; set; }
         protected System.Random RandomGenerator { get; set; }
         protected bool UseUCT = false;
+        protected int NrPlayouts = 1;
 
 
 
-        public MCTSBiasedPlayout(CurrentStateWorldModel currentStateWorldModel, bool useUCT)
+        public MCTSBiasedPlayout(CurrentStateWorldModel currentStateWorldModel, bool useUCT, int nrPlayouts)
         {
             this.InProgress = false;
             this.CurrentStateWorldModel = currentStateWorldModel;
@@ -38,10 +39,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             this.MaxIterationsProcessedPerFrame = 10;
             this.RandomGenerator = new System.Random();
             this.UseUCT = useUCT;
+            this.NrPlayouts = nrPlayouts;
         }
 
 
-        public void InitializeMCTBiasedSearch()
+        public void InitializeMCTSearch()
         {
             this.MaxPlayoutDepthReached = 0;
             this.MaxSelectionDepthReached = 0;
@@ -73,16 +75,28 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             while (CurrentIterationsInFrame < MaxIterationsProcessedPerFrame)
             {
                 selectedNode = Selection(selectedNode);
-                reward = Playout(selectedNode.State);
-                Backpropagate(selectedNode, reward);
+                for (int i = 0; i < this.NrPlayouts; i++)
+                {
+                    var state = new FutureStateWorldModel(selectedNode.State.GenerateChildWorldModel());
+                    reward = Playout(state);
+                    Backpropagate(selectedNode, reward);
+                }
                 this.CurrentIterationsInFrame++;
             }
 
             // return best initial child
             if (!UseUCT)
-                return BestInitialChild(this.InitialNode).Action;
+            {
+                if (BestInitialChild(this.InitialNode) != null)
+                    return BestInitialChild(this.InitialNode).Action;
+                return null;
+            }
             else
-                return BestInitialUCTChild(this.InitialNode).Action;
+            {
+                if (BestInitialUCTChild(this.InitialNode) != null)
+                    return BestInitialUCTChild(this.InitialNode).Action;
+                return null;
+            }
         }
 
         // Selection and Expantion
@@ -106,25 +120,46 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                 if (!UseUCT)
                     currentNode = this.BestChild(currentNode);
                 else
+                {
                     currentNode = this.BestUCTChild(currentNode);
+                }
             }
 
 
             return currentNode;
         }
 
-        protected virtual Reward Playout(WorldModel initialPlayoutState)
+        protected virtual Reward Playout(FutureStateWorldModel initialPlayoutState)
         {
             Action[] executableActions = initialPlayoutState.GetExecutableActions();
             while (!initialPlayoutState.IsTerminal())
             {
-                Action action = executableActions[RandomGenerator.Next(0, executableActions.Length)];
-                // choose biased action
+                Action action = ChooseBiasedAction(initialPlayoutState);
                 action.ApplyActionEffects(initialPlayoutState);
+                initialPlayoutState.CalculateNextPlayer();
                 executableActions = initialPlayoutState.GetExecutableActions();
             }
 
-            return new Reward(initialPlayoutState, 0);
+            return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0);
+        }
+
+        protected virtual Action ChooseBiasedAction(FutureStateWorldModel state)
+        {
+            var executableActions = state.GetExecutableActions();
+            float bestScore = float.MaxValue;
+            List<Action> actionList = new List<Action>();
+
+            foreach(var action in executableActions)
+            {
+                float score = action.GetHValue(state);
+                if (score < bestScore)
+                {
+                    bestScore = score;
+                    actionList.Add(action);
+                }
+            }
+
+            return actionList[RandomGenerator.Next(0, actionList.Count)];
         }
 
         protected virtual void Backpropagate(MCTSNode node, Reward reward)
@@ -141,6 +176,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         {
             WorldModel newState = parent.State.GenerateChildWorldModel();
             action.ApplyActionEffects(newState);
+            Debug.Log("Action: " + action.Name + " -> time: " + newState.GetProperty(Properties.TIME));
             newState.CalculateNextPlayer();
             MCTSNode child = new MCTSNode(newState);
             child.Action = action;
@@ -148,25 +184,29 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             return child;
         }
 
-        protected Action ChooseBiasedAction(WorldModel initialState)
-        {
-            // implement GetHValue on all actions
-            // choose best value ?
-            return null;
-        }
-
         protected virtual MCTSNode BestUCTChild(MCTSNode node)
         {
-            MCTSNode bestChild = node.ChildNodes[0];
+            MCTSNode bestChild = null;
 
             float score = 0.0f;
             float previousScore = float.MinValue;
 
             foreach (MCTSNode child in node.ChildNodes)
             {
-                if (child.Parent != null && child.N != 0 && child.Parent.N != 0)
+                if (child.Parent != null && child.N != 0)
                 {
-                    score = (child.Q / child.N) * C * (float)Math.Sqrt(Math.Log(node.Parent.N) / child.N);
+                    score = (child.Q / child.N) * C * (float)Math.Sqrt(Math.Log(node.Parent.N != 0 ? node.Parent.N : 1) / child.N);
+
+                    if (score > previousScore)
+                    {
+                        bestChild = child;
+                        previousScore = score;
+                    }
+                }
+
+                if (child.Parent == null && child.N != 0)
+                {
+                    score = (child.Q / child.N) * C;
 
                     if (score > previousScore)
                     {
@@ -181,16 +221,16 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
         protected virtual MCTSNode BestInitialUCTChild(MCTSNode node)
         {
-            MCTSNode bestChild = node.ChildNodes[0];
+            MCTSNode bestChild = null;
 
             float score = 0.0f;
             float previousScore = float.MinValue;
 
             foreach (MCTSNode child in node.ChildNodes)
             {
-                if (child.Parent != null && child.N != 0 && child.Action.CanExecute())
+                if (child.N != 0 && child.Action.CanExecute() && child.Action != null)
                 {
-                    score = (child.Q / child.N) * C * (float)Math.Sqrt(Math.Log(node.Parent.N) / child.N);
+                    score = (child.Q / child.N) * C;
 
                     if (score > previousScore)
                     {
@@ -236,7 +276,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
             foreach (MCTSNode child in node.ChildNodes)
             {
-                if (child.N != 0 && child.Action.CanExecute())
+                if (child.N != 0 && child.Action.CanExecute() && child.Action != null)
                 {
                     score = child.Q / child.N;
 
