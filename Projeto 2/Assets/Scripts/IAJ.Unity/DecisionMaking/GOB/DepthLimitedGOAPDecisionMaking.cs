@@ -69,7 +69,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
                     // calculate discontentment at the deepest level
                     currentDiscontentment = this.Models[this.CurrentDepth].CalculateDiscontentment(this.Goals);
 
-                    Debug.Log("Dis1: " + currentDiscontentment);
+                    //Debug.Log("Dis1: " + currentDiscontentment);
                     if (currentDiscontentment < this.BestDiscontentmentValue)
                     {
                         this.BestDiscontentmentValue = currentDiscontentment;
@@ -90,7 +90,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
                 {
                     this.Models[CurrentDepth + 1] = this.Models[CurrentDepth].GenerateChildWorldModel();
                     nextAction.ApplyActionEffects(this.Models[CurrentDepth + 1]);
-                    this.Models[CurrentDepth + 1].CalculateNextPlayer();
+                    if (GameObject.FindObjectOfType<GameManager>().StochasticWorld)
+                        this.Models[CurrentDepth + 1].CalculateNextPlayer();
                     this.ActionPerLevel[CurrentDepth] = nextAction;
                     this.CurrentDepth += 1;
                     processedActions++;
