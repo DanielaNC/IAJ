@@ -29,10 +29,12 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         protected bool UseUCT = false;
         protected int NrPlayouts = 1;
         protected int nrActions = 0;
-        
-        
+        protected bool LimitedPlayout = false;
 
-        public MCTS(CurrentStateWorldModel currentStateWorldModel, bool useUCT, int nrPlayouts)
+
+
+
+        public MCTS(CurrentStateWorldModel currentStateWorldModel, bool useUCT, int nrPlayouts, bool limitedPlayout)
         {
             this.InProgress = false;
             this.CurrentStateWorldModel = currentStateWorldModel;
@@ -41,13 +43,14 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             this.RandomGenerator = new System.Random();
             this.UseUCT = useUCT;
             this.NrPlayouts = nrPlayouts;
+            this.LimitedPlayout = limitedPlayout;
         }
 
 
         public void InitializeMCTSearch()
         {
-            this.MaxPlayoutDepthReached = 0;
-            this.MaxSelectionDepthReached = 0;
+            this.MaxPlayoutDepthReached = 7;
+            this.MaxSelectionDepthReached = 7;
             this.CurrentIterations = 0;
             this.CurrentIterationsInFrame = 0;
             this.TotalProcessingTime = 0.0f;
@@ -105,9 +108,14 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             Action nextAction;
             MCTSNode currentNode = initialNode;
             MCTSNode bestChild;
+            int depth = 0;
 
             while (!currentNode.State.IsTerminal())
             {
+                if (LimitedPlayout && depth > MaxSelectionDepthReached)
+                {
+                    break;
+                }
                 nextAction = currentNode.State.GetNextAction();
 
                 while (nextAction!= null && !nextAction.CanExecute(currentNode.State))
@@ -123,17 +131,29 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                 {
                     currentNode = this.BestUCTChild(currentNode);
                 }
+                depth++;
             }
 
-
+            if (currentNode == null)
+            {
+                Debug.Log("AAAA");
+            }
+            Debug.Log(currentNode.ToString());
             return currentNode;
         }
 
         protected virtual Reward Playout(FutureStateWorldModel initialPlayoutState)
         {
             Action[] executableActions = initialPlayoutState.GetExecutableActions();
+            int depth = 0;
+            
             while (!initialPlayoutState.IsTerminal())
             {
+                if (LimitedPlayout && depth > MaxPlayoutDepthReached)
+                {
+                    break;
+                }
+
                 List<Action> feasibleActions = new List<Action>();
                 //check if any actions leads to win scenario
                 foreach (Action possible_action in executableActions)
@@ -144,7 +164,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                     {
                         possible_action.ApplyActionEffects(initialPlayoutState);
                         initialPlayoutState.CalculateNextPlayer();
-                        return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0);
+                        Debug.Log(initialPlayoutState.ToString());
+                        return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, LimitedPlayout);
                     }
                     else if (!model.IsLoss())
                     {
@@ -161,9 +182,16 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                 action.ApplyActionEffects(initialPlayoutState);
                 initialPlayoutState.CalculateNextPlayer();
                 executableActions = initialPlayoutState.GetExecutableActions();
+                depth++;
             }
-            
-            return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0);
+
+            if (initialPlayoutState == null)
+            {
+                Debug.Log("AAAA");
+            }
+            Debug.Log("State:" + initialPlayoutState.ToString());
+            Debug.Log("State:");
+            return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, LimitedPlayout);
         }
 
         protected virtual void Backpropagate(MCTSNode node, Reward reward)

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel;
+using Assets.Scripts.Manager;
 
 namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 {
@@ -11,10 +12,17 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
         public Reward() { }
 
-        public Reward(WorldModel state, int playerID)
+        public Reward(WorldModel state, int playerID, bool useHeuristic)
         {
             this.PlayerID = playerID;
-            this.Value = state.GetScore();
+            if (useHeuristic)
+            {
+                this.Value = state.GetScore();
+            }
+            else
+            {
+                this.Value = state.StateQuality();
+            }
         }
 
         public Reward(float value, int playerID)

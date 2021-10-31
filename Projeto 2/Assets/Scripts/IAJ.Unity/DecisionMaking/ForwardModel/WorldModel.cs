@@ -441,6 +441,20 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel
             
             return HP <= 0 || time > 200;
         }
-        
+        public float StateQuality()
+        {
+            //state quality is defined by the number of chests taken divided by the time that has passed
+            //Low number of chests caught will result in a lower score
+            //High time values will also result in a lower score
+            int chestNumber = 0;
+            float time = (float)this.GetProperty(Properties.TIME);
+            for (int i = 0; i < 5; i++)
+            {
+                chestNumber += (bool)this.GetProperty(("Chest" + i)) ? 1 : 0;
+            }
+
+            return chestNumber / time;
+
+        }
     }
 }

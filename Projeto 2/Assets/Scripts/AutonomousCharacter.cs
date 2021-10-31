@@ -48,6 +48,7 @@ namespace Assets.Scripts
         public bool MCTSBiasedPlayoutActive;
         public bool UseUCT = false;
         public int NrPlayouts = 1;
+        public bool LimitedPlayout;
 
         [Header("Character Info")]
         public bool Resting = false;
@@ -175,8 +176,8 @@ namespace Assets.Scripts
             var worldModel = new CurrentStateWorldModel(GameManager, this.Actions, this.Goals);
             this.GOBDecisionMaking = new GOBDecisionMaking(this.Actions, this.Goals);
             this.GOAPDecisionMaking = new DepthLimitedGOAPDecisionMaking(worldModel,this.Actions,this.Goals);
-            this.MCTSDecisionMaking = new MCTS(worldModel, this.UseUCT, this.NrPlayouts);
-            this.MCTSBiasedDecisionMaking = new MCTSBiasedPlayout(worldModel, this.UseUCT, this.NrPlayouts);
+            this.MCTSDecisionMaking = new MCTS(worldModel, this.UseUCT, this.NrPlayouts, LimitedPlayout);
+            this.MCTSBiasedDecisionMaking = new MCTSBiasedPlayout(worldModel, this.UseUCT, this.NrPlayouts, LimitedPlayout);
             this.Resting = false;
 
             DiaryText.text += "My Diary \n I awoke. What a wonderful day to kill Monsters! \n";

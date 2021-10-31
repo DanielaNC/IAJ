@@ -104,6 +104,5 @@ namespace Assets.Scripts.Manager
             }
             else return base.GetExecutableActions();
         }
-
     }
 }

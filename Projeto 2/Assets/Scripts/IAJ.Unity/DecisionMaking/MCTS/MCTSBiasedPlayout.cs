@@ -28,10 +28,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         protected System.Random RandomGenerator { get; set; }
         protected bool UseUCT = false;
         protected int NrPlayouts = 1;
+        protected bool LimitedPlayout = false;
 
 
 
-        public MCTSBiasedPlayout(CurrentStateWorldModel currentStateWorldModel, bool useUCT, int nrPlayouts)
+        public MCTSBiasedPlayout(CurrentStateWorldModel currentStateWorldModel, bool useUCT, int nrPlayouts, bool limitedPlayout)
         {
             this.InProgress = false;
             this.CurrentStateWorldModel = currentStateWorldModel;
@@ -40,13 +41,14 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             this.RandomGenerator = new System.Random();
             this.UseUCT = useUCT;
             this.NrPlayouts = nrPlayouts;
+            this.LimitedPlayout = limitedPlayout;
         }
 
 
         public void InitializeMCTSearch()
         {
-            this.MaxPlayoutDepthReached = 0;
-            this.MaxSelectionDepthReached = 0;
+            this.MaxPlayoutDepthReached = 7;
+            this.MaxSelectionDepthReached = 7;
             this.CurrentIterations = 0;
             this.CurrentIterationsInFrame = 0;
             this.TotalProcessingTime = 0.0f;
@@ -109,9 +111,14 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             Action nextAction;
             MCTSNode currentNode = initialNode;
             MCTSNode bestChild;
+            int depth = 0;
 
             while (!currentNode.State.IsTerminal())
             {
+                if (LimitedPlayout && depth > MaxSelectionDepthReached)
+                {
+                    break;
+                }
                 nextAction = currentNode.State.GetNextAction();
 
                 while (nextAction != null && !nextAction.CanExecute(currentNode.State))
@@ -127,6 +134,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                 {
                     currentNode = this.BestUCTChild(currentNode);
                 }
+                depth++;
             }
 
 
@@ -135,14 +143,24 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
         protected virtual Reward Playout(FutureStateWorldModel initialPlayoutState)
         {
+            Action[] executableActions = initialPlayoutState.GetExecutableActions();
+            int depth = 0;
+
             while (!initialPlayoutState.IsTerminal())
             {
-                Action action = this.ChooseBiasedAction(initialPlayoutState);
+                if (LimitedPlayout && depth > MaxPlayoutDepthReached)
+                {
+                    break;
+                }
+
+                Action action = ChooseBiasedAction(initialPlayoutState);
                 action.ApplyActionEffects(initialPlayoutState);
                 initialPlayoutState.CalculateNextPlayer();
+                executableActions = initialPlayoutState.GetExecutableActions();
+                depth++;
             }
 
-            return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0);
+            return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, LimitedPlayout);
         }
 
         protected virtual Action ChooseBiasedAction(FutureStateWorldModel state)
