@@ -15,13 +15,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override bool CanExecute()
         {
-            //if (!base.CanExecute()) return false;
             return this.Character.GameManager.characterData.Mana >= 5 && this.Character.GameManager.characterData.ShieldHP < 5;
         }
 
         public override bool CanExecute(WorldModel worldModel)
         {
-            //if (!base.CanExecute(worldModel)) return false;
             var mana = (int)worldModel.GetProperty(Properties.MANA);
             var shield = (int)worldModel.GetProperty(Properties.ShieldHP);
             return mana >= 5 && shield < 5;
@@ -29,7 +27,6 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override void Execute()
         {
-            //base.Execute();
             this.Character.GameManager.CastShieldOfFaith();
         }
 
@@ -54,8 +51,6 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             var goalValue = worldModel.GetGoalValue(AutonomousCharacter.SURVIVE_GOAL);
             worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, goalValue - (5 - this.Character.GameManager.characterData.ShieldHP));
 
-            //disables the target object so that it can't be reused again
-            //worldModel.SetProperty(this.Target.name, false);
         }
 
         public override float GetHValue(WorldModel worldModel)

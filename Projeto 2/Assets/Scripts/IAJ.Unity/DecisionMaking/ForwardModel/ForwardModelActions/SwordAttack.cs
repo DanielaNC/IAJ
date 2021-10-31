@@ -76,7 +76,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             return this.Target.active && this.Character.GameManager.characterData.HP > this.Target.GetComponent<NPC>().simpleDamage;
         }
 
-        public virtual bool CanExecute(WorldModel worldModel)
+        public override bool CanExecute(WorldModel worldModel)
         {
             if (!base.CanExecute()) return false;
             var hp = (int)worldModel.GetProperty(Properties.HP);
