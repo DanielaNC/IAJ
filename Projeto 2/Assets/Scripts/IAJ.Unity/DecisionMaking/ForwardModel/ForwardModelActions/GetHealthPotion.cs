@@ -44,7 +44,6 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             base.ApplyActionEffects(worldModel);
 
             var maxHP = worldModel.GetProperty(Properties.MAXHP);
-            Debug.Log(maxHP);
             worldModel.SetProperty(Properties.HP, maxHP);
             worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, 0);
 

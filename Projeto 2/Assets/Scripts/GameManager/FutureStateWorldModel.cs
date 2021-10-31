@@ -105,22 +105,5 @@ namespace Assets.Scripts.Manager
             else return base.GetExecutableActions();
         }
 
-        public bool isWin()
-        {
-            int money = (int)this.GetProperty(Properties.MONEY);
-            int HP = (int)this.GetProperty(Properties.HP);
-            float time = (float)this.GetProperty(Properties.TIME);
-
-            return money == 25 && HP > 0 && time <= 200;
-        }
-
-        public bool isLoss()
-        {
-            int HP = (int)this.GetProperty(Properties.HP);
-            float time = (float)this.GetProperty(Properties.TIME);
-
-            return HP <= 0 || time > 200;
-        }
-
     }
 }

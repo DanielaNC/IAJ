@@ -136,20 +136,25 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             {
                 List<Action> feasibleActions = new List<Action>();
                 //check if any actions leads to win scenario
-                foreach (var possible_action in executableActions)
+                foreach (Action possible_action in executableActions)
                 {
                     FutureStateWorldModel model = (FutureStateWorldModel) initialPlayoutState.GenerateChildWorldModel();
                     possible_action.ApplyActionEffects(model);
-                    if (model.isWin())
+                    if (model.IsWin())
                     {
                         possible_action.ApplyActionEffects(initialPlayoutState);
                         initialPlayoutState.CalculateNextPlayer();
                         return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0);
                     }
-                    else if (!model.isLoss())
+                    else if (!model.IsLoss())
                     {
                         feasibleActions.Add(possible_action);
                     }
+                }
+
+                if (feasibleActions.Count == 0)
+                {
+                    break;
                 }
 
                 Action action = feasibleActions[RandomGenerator.Next(0, feasibleActions.Count)];

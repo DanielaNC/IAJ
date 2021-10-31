@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using Assets.Scripts.IAJ.Unity.Utils;
+using Assets.Scripts.Manager;
 
 namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel
 {
@@ -423,5 +424,23 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel
             }
             return ret;
         }
+
+        public bool IsWin()
+        {
+            int money = (int)this.GetProperty(Properties.MONEY);
+            int HP = (int)this.GetProperty(Properties.HP);
+            float time = (float)this.GetProperty(Properties.TIME);
+
+            return money == 25 && HP > 0 && time <= 200;
+        }
+
+        public bool IsLoss()
+        {
+            int HP = (int)this.GetProperty(Properties.HP);
+            float time = (float)this.GetProperty(Properties.TIME);
+            
+            return HP <= 0 || time > 200;
+        }
+        
     }
 }
