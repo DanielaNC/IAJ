@@ -34,7 +34,34 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override float GetGoalChange(Goal goal)
         {
             var change = base.GetGoalChange(goal);
-            if (goal.Name == AutonomousCharacter.BE_QUICK_GOAL) change = -0.2f;
+            if (goal.Name == AutonomousCharacter.BE_QUICK_GOAL) // account for possibility of teleport
+            {
+                change = -0.2f;
+            }
+
+            if (goal.Name == AutonomousCharacter.SURVIVE_GOAL) // account for possibility of shield of faith
+            {
+                if (this.Character.GameManager.characterData.ShieldHP == 0 && this.Character.GameManager.characterData.Mana <= 5)
+                    return -5.0f;
+
+                else if (this.Character.GameManager.characterData.Mana >= 5) { 
+                        return 0.0f;
+                }
+                    
+            }
+
+            if (goal.Name == AutonomousCharacter.GAIN_LEVEL_GOAL) // account for possibility of divine smite
+            {
+                if (this.Character.GameManager.characterData.Mana < 2)
+                    return -2.0f;
+
+                else if (this.Character.GameManager.characterData.Mana >= 2)
+                {
+                    return 0.0f;
+                }
+
+            }
+
             return change;
         }
 
@@ -43,7 +70,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             base.ApplyActionEffects(worldModel);
 
             int mana = (int)worldModel.GetProperty(Properties.MANA);
-            worldModel.SetProperty(Properties.MANA, 10);
+            worldModel.SetProperty(Properties.MANA, mana + 10);
             var goalChange = worldModel.GetGoalValue(AutonomousCharacter.BE_QUICK_GOAL);
             worldModel.SetGoalValue(AutonomousCharacter.BE_QUICK_GOAL, goalChange - 0.2f);  //----> Implement mana goal
 

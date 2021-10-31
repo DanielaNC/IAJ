@@ -363,8 +363,9 @@ namespace Assets.Scripts.Manager
             if (this.characterData.Mana >= 5)
             {
                 this.autonomousCharacter.AddToDiary("I cast Teleport");
+                //this.autonomousCharacter.StartPathfinding(initialPosition);
                 this.autonomousCharacter.gameObject.transform.position = initialPosition;
-                this.autonomousCharacter.StartPathfinding(initialPosition);
+                //Debug.Log("initial pos: " + initialPosition + " -> current pos: " + this.autonomousCharacter.transform.position);
                 this.characterData.Mana -= 5;
                 this.WorldChanged = true;
             }

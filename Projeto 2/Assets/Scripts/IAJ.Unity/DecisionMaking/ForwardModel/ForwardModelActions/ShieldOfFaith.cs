@@ -37,7 +37,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         {
             var change = 0.0f;
 
-            if (goal.Name == AutonomousCharacter.SURVIVE_GOAL) change -= this.Character.GameManager.characterData.ShieldHP;
+            if (goal.Name == AutonomousCharacter.SURVIVE_GOAL) change -= 5 - this.Character.GameManager.characterData.ShieldHP;
 
             return change;
         }
@@ -52,7 +52,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             mana -= 5;
             worldModel.SetProperty(Properties.MANA, mana);
             var goalValue = worldModel.GetGoalValue(AutonomousCharacter.SURVIVE_GOAL);
-            worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, goalValue - 5);
+            worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, goalValue - (5 - this.Character.GameManager.characterData.ShieldHP));
 
             //disables the target object so that it can't be reused again
             //worldModel.SetProperty(this.Target.name, false);

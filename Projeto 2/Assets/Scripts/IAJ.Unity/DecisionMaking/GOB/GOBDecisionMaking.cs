@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActions;
 using Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel;
+using Assets.Scripts.Manager;
 using UnityEngine;
 
 namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
@@ -59,7 +60,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
                     topGoal = goal;
                 }
 
-                if(goal.Name == AutonomousCharacter.GAIN_LEVEL_GOAL && goal.InsistenceValue > 0.5)
+                if(goal.Name == AutonomousCharacter.GAIN_LEVEL_GOAL && goal.InsistenceValue > 0.5 && GameObject.FindObjectOfType<GameManager>().characterData.HP > GameObject.FindObjectOfType<GameManager>().characterData.MaxHP/2)
                 {
                     topGoal = goal;
                     break;

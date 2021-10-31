@@ -52,7 +52,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
             if (goal.Name == AutonomousCharacter.GAIN_LEVEL_GOAL)
             {
-                change = -goal.InsistenceValue;
+                change = float.MinValue;
             }
 
             return change;
