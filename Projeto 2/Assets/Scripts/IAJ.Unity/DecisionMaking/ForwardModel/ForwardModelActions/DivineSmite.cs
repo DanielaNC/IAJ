@@ -35,7 +35,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             
             if (goal.Name == AutonomousCharacter.GAIN_LEVEL_GOAL)
             {
-                change += -this.expectedXPChange;
+                if(this.Character.GameManager.characterData.XP < this.Character.GameManager.characterData.Level * 10)
+                    change -= this.expectedXPChange;
             }
 
             return change;
@@ -54,14 +55,14 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override bool CanExecute()
         {
             if (!base.CanExecute()) return false;
-            return (this.Character.GameManager.characterData.Mana >= 2 && this.Target != null && this.Target.active);
+            return (this.Character.GameManager.characterData.Mana >= 2 && this.Target != null && this.Target.active && !this.Character.GameManager.SleepingNPCs);
         }
 
         public override bool CanExecute(WorldModel worldModel)
         {
             if (!base.CanExecute()) return false;
             var mana = (int)worldModel.GetProperty(Properties.MANA);
-            return mana >= 2;
+            return mana >= 2 && !this.Character.GameManager.SleepingNPCs;
         }
 
         public override void ApplyActionEffects(WorldModel worldModel)

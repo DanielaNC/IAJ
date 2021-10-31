@@ -52,6 +52,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
             Action bestAction = null;
             var bestValue = float.PositiveInfinity;
             var topGoal = goals[0];
+            var start = Time.time;
 
             foreach (var goal in goals)
             {
@@ -95,6 +96,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
             InProgress = false;
             nrActions++;
             Debug.Log("Actions: " + nrActions);
+            Debug.Log("Processing time: " + (Time.time - start));
             return bestAction;
         }
     }

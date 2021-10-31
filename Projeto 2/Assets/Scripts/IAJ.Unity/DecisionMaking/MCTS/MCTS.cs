@@ -28,6 +28,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         protected System.Random RandomGenerator { get; set; }
         protected bool UseUCT = false;
         protected int NrPlayouts = 1;
+        protected int nrActions = 0;
         
         
 
@@ -68,8 +69,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         {
             MCTSNode selectedNode = this.InitialNode;
             Reward reward;
-
-            var startTime = Time.realtimeSinceStartup;
+            this.TotalProcessingTime = Time.time;
             this.CurrentIterationsInFrame = 0;
 
             while(CurrentIterationsInFrame < MaxIterationsProcessedPerFrame)
@@ -176,7 +176,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             {
                 if (child.Parent != null && child.N != 0)
                 {
-                    score = (child.Q / child.N) * C * (float)Math.Sqrt(Math.Log(node.Parent.N != 0 ? node.Parent.N : 1)/child.N);
+                    score = (child.Q / child.N) + C * (float)Math.Sqrt(Math.Log(node.Parent.N != 0 ? node.Parent.N : 1)/child.N);
 
                     if (score > previousScore)
                     {
@@ -187,7 +187,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
                 if(child.Parent == null && child.N != 0)
                 {
-                    score = (child.Q / child.N) * C;
+                    score = (child.Q / child.N) + C;
 
                     if (score > previousScore)
                     {
@@ -196,7 +196,6 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                     }
                 }
             }
-
             return bestChild;
         }
 
@@ -211,7 +210,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             {
                 if (child.N != 0 && child.Action.CanExecute() && child.Action != null)
                 {
-                    score = (child.Q / child.N) * C;
+                    score = (child.Q / child.N) + C;
 
                         if (score > previousScore)
                         {
@@ -220,7 +219,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                         }
                     }
                 }
-
+            this.TotalProcessingTime = Time.time - this.TotalProcessingTime;
+            Debug.Log("time: " + this.TotalProcessingTime);
             return bestChild;
         }
 
@@ -268,7 +268,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                     }
                 }
             }
-
+            //this.TotalProcessingTime = Time.time - this.TotalProcessingTime;
+            Debug.Log("time: " + (Time.time - this.TotalProcessingTime));
             return bestChild;
         }
 

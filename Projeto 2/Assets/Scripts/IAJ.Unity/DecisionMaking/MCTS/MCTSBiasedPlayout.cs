@@ -161,7 +161,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                     return actionList[RandomGenerator.Next(0, actionList.Count)];
                 if (randValue <= 0.4f)
                     return actionList[RandomGenerator.Next(0, actionList.Count / 2)];
-                if (randValue <= 0.9f)
+                if (randValue <= 1.0f)
                     return actionList[RandomGenerator.Next(0, actionList.Count / 3)];
             }
 
@@ -201,7 +201,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             {
                 if (child.Parent != null && child.N != 0)
                 {
-                    score = (child.Q / child.N) * C * (float)Math.Sqrt(Math.Log(node.Parent.N != 0 ? node.Parent.N : 1) / child.N);
+                    score = (child.Q / child.N) + C * (float)Math.Sqrt(Math.Log(node.Parent.N != 0 ? node.Parent.N : 1) / child.N);
 
                     if (score > previousScore)
                     {
@@ -212,7 +212,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
                 if (child.Parent == null && child.N != 0)
                 {
-                    score = (child.Q / child.N) * C;
+                    score = (child.Q / child.N) + C;
 
                     if (score > previousScore)
                     {
@@ -236,7 +236,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             {
                 if (child.N != 0 && child.Action.CanExecute() && child.Action != null)
                 {
-                    score = (child.Q / child.N) * C;
+                    score = (child.Q / child.N) + C;
 
                     if (score > previousScore)
                     {

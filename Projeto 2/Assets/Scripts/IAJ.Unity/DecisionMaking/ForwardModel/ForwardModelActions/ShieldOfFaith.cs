@@ -58,10 +58,10 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             var maxHp = (int)worldModel.GetProperty(Properties.MAXHP);
             var shield = (int)worldModel.GetProperty(Properties.ShieldHP);
 
-            if (hp <= maxHp / 3 && !this.Character.GameManager.SleepingNPCs)
-                return -200 + base.GetHValue(worldModel) - (5 - shield); // choose the closest one
+            if (hp <= maxHp / 2 && !this.Character.GameManager.SleepingNPCs)
+                return -200 + base.GetHValue(worldModel) - (5 - shield);
 
-            return base.GetHValue(worldModel) / (1 / hp);
+            return base.GetHValue(worldModel) / (1 / (hp + shield));
         }
     }
 }
