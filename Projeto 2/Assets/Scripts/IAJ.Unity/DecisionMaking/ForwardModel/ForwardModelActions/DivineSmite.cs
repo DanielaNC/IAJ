@@ -57,7 +57,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             return (this.Character.GameManager.characterData.Mana >= 2 && this.Target != null && this.Target.active);
         }
 
-        public virtual bool CanExecute(WorldModel worldModel)
+        public override bool CanExecute(WorldModel worldModel)
         {
             if (!base.CanExecute()) return false;
             var mana = (int)worldModel.GetProperty(Properties.MANA);
