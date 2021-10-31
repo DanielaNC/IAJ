@@ -228,7 +228,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         //the exploration factor
         protected MCTSNode BestChild(MCTSNode node)
         {
-            MCTSNode bestChild = node.ChildNodes[0];
+            MCTSNode bestChild = null;
             float score = 0.0f;
             float previousScore = float.MinValue;
 

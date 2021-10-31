@@ -80,8 +80,12 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override float GetHValue(WorldModel worldModel)
         {
-            //TODO implement
-            return 0.0f;
+            var mana = (int)worldModel.GetProperty(Properties.MANA);
+
+            if (mana < 2 && !this.Character.GameManager.SleepingNPCs)
+                return -100 + base.GetHValue(worldModel); // choose the closest one
+
+            return base.GetHValue(worldModel);
         }
     }
 }

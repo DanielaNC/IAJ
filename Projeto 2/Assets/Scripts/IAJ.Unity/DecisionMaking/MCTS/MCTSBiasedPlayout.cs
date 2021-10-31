@@ -74,7 +74,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
             while (CurrentIterationsInFrame < MaxIterationsProcessedPerFrame)
             {
-                selectedNode = Selection(selectedNode);
+                var newSelectedNode = Selection(selectedNode);
+                while(newSelectedNode == null)
+                    newSelectedNode = Selection(selectedNode);
+
+                selectedNode = newSelectedNode;
                 for (int i = 0; i < this.NrPlayouts; i++)
                 {
                     var state = new FutureStateWorldModel(selectedNode.State.GenerateChildWorldModel());
@@ -131,13 +135,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
         protected virtual Reward Playout(FutureStateWorldModel initialPlayoutState)
         {
-            Action[] executableActions = initialPlayoutState.GetExecutableActions();
             while (!initialPlayoutState.IsTerminal())
             {
-                Action action = ChooseBiasedAction(initialPlayoutState);
+                Action action = this.ChooseBiasedAction(initialPlayoutState);
                 action.ApplyActionEffects(initialPlayoutState);
                 initialPlayoutState.CalculateNextPlayer();
-                executableActions = initialPlayoutState.GetExecutableActions();
             }
 
             return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0);
@@ -145,18 +147,22 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
         protected virtual Action ChooseBiasedAction(FutureStateWorldModel state)
         {
-            var executableActions = state.GetExecutableActions();
-            float bestScore = float.MaxValue;
             List<Action> actionList = new List<Action>();
+            var executableActions = state.GetExecutableActions();
+            foreach (var action in executableActions)
+                actionList.Add(action);
 
-            foreach(var action in executableActions)
+            actionList.Sort((a1, a2) => a1.GetHValue(state).CompareTo(a2.GetHValue(state)));
+
+            if(actionList.Count >= 3)
             {
-                float score = action.GetHValue(state);
-                if (score < bestScore)
-                {
-                    bestScore = score;
-                    actionList.Add(action);
-                }
+                float randValue = UnityEngine.Random.Range(0, 1);
+                if (randValue <= 0.2f)
+                    return actionList[RandomGenerator.Next(0, actionList.Count)];
+                if (randValue <= 0.4f)
+                    return actionList[RandomGenerator.Next(0, actionList.Count / 2)];
+                if (randValue <= 0.9f)
+                    return actionList[RandomGenerator.Next(0, actionList.Count / 3)];
             }
 
             return actionList[RandomGenerator.Next(0, actionList.Count)];
@@ -247,7 +253,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         //the exploration factor
         protected MCTSNode BestChild(MCTSNode node)
         {
-            MCTSNode bestChild = node.ChildNodes[0];
+            MCTSNode bestChild = null;
             float score = 0.0f;
             float previousScore = float.MinValue;
 

@@ -57,7 +57,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override float GetHValue(WorldModel worldModel)
         {
-            return base.GetHValue(worldModel);
+            if (base.GetHValue(worldModel) <= 10.0f || this.Character.GameManager.SleepingNPCs) return -300.0f + base.GetHValue(worldModel);
+            return base.GetHValue(worldModel) - 5.0f;
         }
     }
 }

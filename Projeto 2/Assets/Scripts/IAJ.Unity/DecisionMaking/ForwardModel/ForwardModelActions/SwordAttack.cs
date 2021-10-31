@@ -73,15 +73,16 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override bool CanExecute()
         {
             if (!base.CanExecute()) return false;
-            return this.Target.active && this.Character.GameManager.characterData.HP > this.Target.GetComponent<NPC>().simpleDamage;
+            return this.Target.active && !this.Character.GameManager.SleepingNPCs && this.Character.GameManager.characterData.HP + this.Character.GameManager.characterData.ShieldHP > this.Target.GetComponent<NPC>().simpleDamage;
         }
 
         public override bool CanExecute(WorldModel worldModel)
         {
             if (!base.CanExecute()) return false;
             var hp = (int)worldModel.GetProperty(Properties.HP);
+            var shield = (int)worldModel.GetProperty(Properties.ShieldHP);
             var dmg = this.Target.GetComponent<NPC>().simpleDamage;
-            return hp > dmg;
+            return hp + shield > dmg && !this.Character.GameManager.SleepingNPCs;
         }
 
         public override void ApplyActionEffects(WorldModel worldModel)
@@ -142,12 +143,13 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override float GetHValue(WorldModel worldModel)
         {
             var hp = (int)worldModel.GetProperty(Properties.HP);
+            var shield = (int)worldModel.GetProperty(Properties.ShieldHP);
             
-            if (hp > this.expectedHPChange)
+            if (hp + shield > this.expectedHPChange && !this.Character.GameManager.SleepingNPCs)
             {
                 return base.GetHValue(worldModel)/1.5f;
             }
-            return 10.0f;
+            return 400.0f;
         }
     }
 }

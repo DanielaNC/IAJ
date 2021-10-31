@@ -18,7 +18,7 @@ namespace Assets.Scripts
         public const string BE_QUICK_GOAL = "BeQuick";
         public const string GET_RICH_GOAL = "GetRich";
 
-        public const float DECISION_MAKING_INTERVAL = 100.0f;
+        public const float DECISION_MAKING_INTERVAL = float.MaxValue;
         public const float RESTING_INTERVAL = 5.0f;
         public const int REST_HP_RECOVERY = 2;
 
@@ -45,6 +45,7 @@ namespace Assets.Scripts
         public bool GOBActive;
         public bool GOAPActive;
         public bool MCTSActive;
+        public bool MCTSBiasedPlayoutActive;
         public bool UseUCT = false;
         public int NrPlayouts = 1;
 
@@ -62,6 +63,7 @@ namespace Assets.Scripts
         public GOBDecisionMaking GOBDecisionMaking { get; set; }
         public DepthLimitedGOAPDecisionMaking GOAPDecisionMaking { get; set; }
         public MCTS MCTSDecisionMaking { get; set; }
+        public MCTSBiasedPlayout MCTSBiasedDecisionMaking { get; set; }
 
         //private fields for internal use only
         private NavMeshAgent agent;
@@ -174,6 +176,7 @@ namespace Assets.Scripts
             this.GOBDecisionMaking = new GOBDecisionMaking(this.Actions, this.Goals);
             this.GOAPDecisionMaking = new DepthLimitedGOAPDecisionMaking(worldModel,this.Actions,this.Goals);
             this.MCTSDecisionMaking = new MCTS(worldModel, this.UseUCT, this.NrPlayouts);
+            this.MCTSBiasedDecisionMaking = new MCTSBiasedPlayout(worldModel, this.UseUCT, this.NrPlayouts);
             this.Resting = false;
 
             DiaryText.text += "My Diary \n I awoke. What a wonderful day to kill Monsters! \n";
@@ -239,8 +242,12 @@ namespace Assets.Scripts
                 {
                     this.MCTSDecisionMaking.InitializeMCTSearch();
                 }
+                else if (MCTSBiasedPlayoutActive)
+                {
+                    this.MCTSBiasedDecisionMaking.InitializeMCTSearch();
+                }
 
-                
+
             }
 
             if (this.controlledByPlayer)
@@ -288,6 +295,10 @@ namespace Assets.Scripts
             else if (this.MCTSActive)
             {
                 this.UpdateMCTS();
+            }
+            else if (this.MCTSBiasedPlayoutActive)
+            {
+                this.UpdateMCTSBiasedPlayout();
             }
 
             if (this.CurrentAction != null)
@@ -352,6 +363,39 @@ namespace Assets.Scripts
                         this.BestActionText.text = "Best Action: " + action.Name + "\n";
                         string actionText = "";
                         foreach (var a in this.MCTSDecisionMaking.BestActionSequence)
+                        {
+                            if (a != null)
+                            {
+                                actionText += "\n" + a.Name;
+                            }
+                        }
+                        this.BestActionSequence.text = "Best Sequence Action: " + actionText;
+                    }
+
+                }
+
+            }
+        }
+
+        private void UpdateMCTSBiasedPlayout()
+        {
+            bool newDecision = false;
+
+            if (this.MCTSBiasedDecisionMaking.InProgress)
+            {
+                //choose an action using the GOB Decision Making process
+                var action = this.MCTSBiasedDecisionMaking.Run();
+                Debug.Log(action);
+                if (action != null && !action.Equals(this.CurrentAction))
+                {
+                    this.CurrentAction = action;
+                    newDecision = true;
+                    if (newDecision)
+                    {
+                        AddToDiary(Time.time + " I decided to " + action.Name);
+                        this.BestActionText.text = "Best Action: " + action.Name + "\n";
+                        string actionText = "";
+                        foreach (var a in this.MCTSBiasedDecisionMaking.BestActionSequence)
                         {
                             if (a != null)
                             {

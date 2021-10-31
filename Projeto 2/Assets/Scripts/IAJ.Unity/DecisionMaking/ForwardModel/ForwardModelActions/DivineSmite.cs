@@ -114,12 +114,13 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override float GetHValue(WorldModel worldModel)
         {
             var hp = (int)worldModel.GetProperty(Properties.HP);
+            var shield = (int)worldModel.GetProperty(Properties.ShieldHP);
 
-            if (hp > this.expectedHPChange)
+            if (hp + shield > this.expectedHPChange && !this.Character.GameManager.SleepingNPCs)
             {
-                return base.GetHValue(worldModel) / 1.5f;
+                return base.GetHValue(worldModel) / 2.5f; // prefer it over swordAttack(skelleton);
             }
-            return 10.0f;
+            return 200.0f;
         }
     }
 }

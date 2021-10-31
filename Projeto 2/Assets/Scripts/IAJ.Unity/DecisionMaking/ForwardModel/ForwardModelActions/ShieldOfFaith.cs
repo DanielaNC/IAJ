@@ -50,13 +50,18 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             worldModel.SetProperty(Properties.MANA, mana);
             var goalValue = worldModel.GetGoalValue(AutonomousCharacter.SURVIVE_GOAL);
             worldModel.SetGoalValue(AutonomousCharacter.SURVIVE_GOAL, goalValue - (5 - this.Character.GameManager.characterData.ShieldHP));
-
         }
 
         public override float GetHValue(WorldModel worldModel)
         {
-            //TODO implement
-            return 0.0f;
+            var hp = (int)worldModel.GetProperty(Properties.HP);
+            var maxHp = (int)worldModel.GetProperty(Properties.MAXHP);
+            var shield = (int)worldModel.GetProperty(Properties.ShieldHP);
+
+            if (hp <= maxHp / 3 && !this.Character.GameManager.SleepingNPCs)
+                return -200 + base.GetHValue(worldModel) - (5 - shield); // choose the closest one
+
+            return base.GetHValue(worldModel) / (1 / hp);
         }
     }
 }
