@@ -134,7 +134,25 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             Action[] executableActions = initialPlayoutState.GetExecutableActions();
             while (!initialPlayoutState.IsTerminal())
             {
-                Action action = executableActions[RandomGenerator.Next(0, executableActions.Length)];
+                List<Action> feasibleActions = new List<Action>();
+                //check if any actions leads to win scenario
+                foreach (var possible_action in executableActions)
+                {
+                    FutureStateWorldModel model = (FutureStateWorldModel) initialPlayoutState.GenerateChildWorldModel();
+                    possible_action.ApplyActionEffects(model);
+                    if (model.isWin())
+                    {
+                        possible_action.ApplyActionEffects(initialPlayoutState);
+                        initialPlayoutState.CalculateNextPlayer();
+                        return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0);
+                    }
+                    else if (!model.isLoss())
+                    {
+                        feasibleActions.Add(possible_action);
+                    }
+                }
+
+                Action action = feasibleActions[RandomGenerator.Next(0, feasibleActions.Count)];
                 action.ApplyActionEffects(initialPlayoutState);
                 initialPlayoutState.CalculateNextPlayer();
                 executableActions = initialPlayoutState.GetExecutableActions();
