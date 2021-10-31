@@ -345,6 +345,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel
                 discontentment += goal.GetDiscontentment(newValue);
             }
 
+            if ((int)this.GetProperty(Manager.Properties.MONEY) > 0) discontentment /= (int)this.GetProperty(Manager.Properties.MONEY);
+            //if ((int)this.GetProperty(Manager.Properties.MONEY) == 25) discontentment = float.MinValue; // prioritize end goal
+            if ((float)this.GetProperty(Manager.Properties.TIME) >= 200.0f) discontentment = float.MaxValue; // disregard impossible wins
+            if ((int)this.GetProperty(Manager.Properties.HP) <= 0) discontentment = float.MaxValue; // disregard impossible wins
+
             return discontentment;
         }
 
