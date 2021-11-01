@@ -113,7 +113,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             MCTSNode bestChild;
             int depth = 0;
 
-            while (!currentNode.State.IsTerminal())
+            while (currentNode != null && !currentNode.State.IsTerminal())
             {
                 if (LimitedPlayout && depth > MaxSelectionDepthReached)
                 {
@@ -137,6 +137,8 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                 depth++;
             }
 
+            if (currentNode == null)
+                return initialNode;
 
             return currentNode;
         }
@@ -172,7 +174,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
             actionList.Sort((a1, a2) => a1.GetHValue(state).CompareTo(a2.GetHValue(state)));
 
-            if(actionList.Count >= 3)
+            if(actionList.Count >= 4)
             {
                 float randValue = UnityEngine.Random.Range(0, 1);
                 if (randValue <= 0.2f)
@@ -180,7 +182,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                 if (randValue <= 0.4f)
                     return actionList[RandomGenerator.Next(0, actionList.Count / 2)];
                 if (randValue <= 1.0f)
-                    return actionList[RandomGenerator.Next(0, actionList.Count / 3)];
+                    return actionList[RandomGenerator.Next(0, 4)];
             }
 
             return actionList[RandomGenerator.Next(0, actionList.Count)];

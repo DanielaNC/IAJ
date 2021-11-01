@@ -41,7 +41,6 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override void ApplyActionEffects(WorldModel worldModel)
         {
             worldModel.SetProperty(Properties.POSITION, initialPosition);
-            //worldModel.SetGoalValue(AutonomousCharacter.BE_QUICK_GOAL, 2); //TO DO: not sure, but yeah, after teleport the player probably doesn't need to be quick
         }
 
         public override float GetGoalChange(Goal goal)
@@ -58,7 +57,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
 
         public override float GetHValue(WorldModel worldModel)
         {
-            return -base.GetHValue(worldModel);
+            return -Vector3.Distance(this.Character.gameObject.transform.position, this.Character.GameManager.initialPosition);
         }
     }
 }

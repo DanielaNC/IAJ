@@ -110,7 +110,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             MCTSNode bestChild;
             int depth = 0;
 
-            while (!currentNode.State.IsTerminal())
+            while (currentNode != null && !currentNode.State.IsTerminal())
             {
                 if (LimitedPlayout && depth > MaxSelectionDepthReached)
                 {
@@ -137,8 +137,9 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             if (currentNode == null)
             {
                 Debug.Log("AAAA");
+                currentNode = initialNode;
             }
-            Debug.Log(currentNode.ToString());
+            //Debug.Log(currentNode.ToString());
             return currentNode;
         }
 
@@ -149,38 +150,23 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             
             while (!initialPlayoutState.IsTerminal())
             {
-                if (LimitedPlayout && depth > MaxPlayoutDepthReached)
-                {
-                    break;
-                }
-
-                List<Action> feasibleActions = new List<Action>();
+                //List<Action> feasibleActions = new List<Action>();
                 //check if any actions leads to win scenario
-                foreach (Action possible_action in executableActions)
-                {
+                var possible_action = executableActions[RandomGenerator.Next(0, executableActions.Length)];
                     FutureStateWorldModel model = (FutureStateWorldModel) initialPlayoutState.GenerateChildWorldModel();
                     possible_action.ApplyActionEffects(model);
                     if (model.IsWin())
                     {
-                        possible_action.ApplyActionEffects(initialPlayoutState);
-                        initialPlayoutState.CalculateNextPlayer();
-                        Debug.Log(initialPlayoutState.ToString());
-                        return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, LimitedPlayout);
+                        return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, false);
                     }
-                    else if (!model.IsLoss())
+                    else if (LimitedPlayout && !model.IsLoss() && depth == MaxPlayoutDepthReached)
                     {
-                        feasibleActions.Add(possible_action);
+                        break;
                     }
-                }
 
-                if (feasibleActions.Count == 0)
-                {
-                    break;
-                }
-
-                Action action = feasibleActions[RandomGenerator.Next(0, feasibleActions.Count)];
-                action.ApplyActionEffects(initialPlayoutState);
+                possible_action.ApplyActionEffects(initialPlayoutState);
                 initialPlayoutState.CalculateNextPlayer();
+                Debug.Log(initialPlayoutState.ToString());
                 executableActions = initialPlayoutState.GetExecutableActions();
                 depth++;
             }
@@ -191,6 +177,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             }
             Debug.Log("State:" + initialPlayoutState.ToString());
             Debug.Log("State:");
+
             return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, LimitedPlayout);
         }
 

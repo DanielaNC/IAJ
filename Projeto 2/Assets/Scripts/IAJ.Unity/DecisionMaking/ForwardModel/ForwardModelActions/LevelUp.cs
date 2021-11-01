@@ -61,7 +61,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override float GetHValue(WorldModel worldModel)
         {
             //you would be dumb not to level up if possible
-            return -100.0f;
+            return -400.0f;
         }
     }
 }

@@ -147,7 +147,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
             
             if (hp + shield > this.expectedHPChange && !this.Character.GameManager.SleepingNPCs)
             {
-                return base.GetHValue(worldModel)/1.5f;
+                return base.GetHValue(worldModel) + 5.0f;
             }
             return 400.0f;
         }
