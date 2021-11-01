@@ -136,10 +136,9 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
 
             if (currentNode == null)
             {
-                Debug.Log("AAAA");
                 currentNode = initialNode;
             }
-            //Debug.Log(currentNode.ToString());
+
             return currentNode;
         }
 
@@ -150,33 +149,31 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             
             while (!initialPlayoutState.IsTerminal())
             {
-                //List<Action> feasibleActions = new List<Action>();
-                //check if any actions leads to win scenario
-                var possible_action = executableActions[RandomGenerator.Next(0, executableActions.Length)];
-                    FutureStateWorldModel model = (FutureStateWorldModel) initialPlayoutState.GenerateChildWorldModel();
-                    possible_action.ApplyActionEffects(model);
-                    if (model.IsWin())
-                    {
-                        return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, false);
-                    }
-                    else if (LimitedPlayout && !model.IsLoss() && depth == MaxPlayoutDepthReached)
-                    {
-                        break;
-                    }
 
-                possible_action.ApplyActionEffects(initialPlayoutState);
+                if (LimitedPlayout && depth >= MaxPlayoutDepthReached)
+                {
+                    break;
+                }
+
+                List<Action> feasibleActions = new List<Action>();
+                //check if any actions leads to win scenario
+
+                foreach(var possible_action in executableActions)
+                {
+                    var state = (FutureStateWorldModel)initialPlayoutState.GenerateChildWorldModel();
+                    possible_action.ApplyActionEffects(state);
+                    state.CalculateNextPlayer();
+                    if (state.IsWin()) return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, false);
+                    feasibleActions.Add(possible_action);
+                }
+
+                var action = feasibleActions[RandomGenerator.Next(0, feasibleActions.Count)];
+                initialPlayoutState = (FutureStateWorldModel) initialPlayoutState.GenerateChildWorldModel();
+                action.ApplyActionEffects(initialPlayoutState);
                 initialPlayoutState.CalculateNextPlayer();
-                Debug.Log(initialPlayoutState.ToString());
                 executableActions = initialPlayoutState.GetExecutableActions();
                 depth++;
             }
-
-            if (initialPlayoutState == null)
-            {
-                Debug.Log("AAAA");
-            }
-            Debug.Log("State:" + initialPlayoutState.ToString());
-            Debug.Log("State:");
 
             return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, LimitedPlayout);
         }
@@ -195,7 +192,6 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         {
             WorldModel newState = parent.State.GenerateChildWorldModel();
             action.ApplyActionEffects(newState);
-            Debug.Log("Action: " + action.Name + " -> time: " + newState.GetProperty(Properties.TIME));
             newState.CalculateNextPlayer();
             MCTSNode child = new MCTSNode(newState);
             child.Action = action;
@@ -258,7 +254,6 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                     }
                 }
             this.TotalProcessingTime = Time.time - this.TotalProcessingTime;
-            Debug.Log("time: " + this.TotalProcessingTime);
             return bestChild;
         }
 
@@ -306,8 +301,7 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                     }
                 }
             }
-            //this.TotalProcessingTime = Time.time - this.TotalProcessingTime;
-            Debug.Log("time: " + (Time.time - this.TotalProcessingTime));
+            this.TotalProcessingTime = Time.time - this.TotalProcessingTime;
             return bestChild;
         }
 

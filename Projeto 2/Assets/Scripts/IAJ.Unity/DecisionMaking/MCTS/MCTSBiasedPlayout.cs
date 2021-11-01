@@ -155,7 +155,17 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
                     break;
                 }
 
-                Action action = ChooseBiasedAction(initialPlayoutState);
+                List<Action> feasableActions = new List<Action>();
+                foreach (var possible_action in executableActions)
+                {
+                    var state = (FutureStateWorldModel)initialPlayoutState.GenerateChildWorldModel();
+                    possible_action.ApplyActionEffects(state);
+                    state.CalculateNextPlayer();
+                    if (state.IsWin()) return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, false);
+                    feasableActions.Add(possible_action);
+                }
+
+                Action action = ChooseBiasedAction(initialPlayoutState, feasableActions);
                 action.ApplyActionEffects(initialPlayoutState);
                 initialPlayoutState.CalculateNextPlayer();
                 executableActions = initialPlayoutState.GetExecutableActions();
@@ -165,27 +175,22 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
             return new Reward(initialPlayoutState, initialPlayoutState.GetNextPlayer() == 0 ? 1 : 0, LimitedPlayout);
         }
 
-        protected virtual Action ChooseBiasedAction(FutureStateWorldModel state)
+        protected virtual Action ChooseBiasedAction(FutureStateWorldModel state, List<Action> feasableActions)
         {
-            List<Action> actionList = new List<Action>();
-            var executableActions = state.GetExecutableActions();
-            foreach (var action in executableActions)
-                actionList.Add(action);
+            feasableActions.Sort((a1, a2) => a1.GetHValue(state).CompareTo(a2.GetHValue(state)));
 
-            actionList.Sort((a1, a2) => a1.GetHValue(state).CompareTo(a2.GetHValue(state)));
-
-            if(actionList.Count >= 4)
+            if(feasableActions.Count >= 4)
             {
                 float randValue = UnityEngine.Random.Range(0, 1);
                 if (randValue <= 0.2f)
-                    return actionList[RandomGenerator.Next(0, actionList.Count)];
+                    return feasableActions[RandomGenerator.Next(0, feasableActions.Count)];
                 if (randValue <= 0.4f)
-                    return actionList[RandomGenerator.Next(0, actionList.Count / 2)];
+                    return feasableActions[RandomGenerator.Next(0, feasableActions.Count / 2)];
                 if (randValue <= 1.0f)
-                    return actionList[RandomGenerator.Next(0, 4)];
+                    return feasableActions[RandomGenerator.Next(0, feasableActions.Count / 4)];
             }
 
-            return actionList[RandomGenerator.Next(0, actionList.Count)];
+            return feasableActions[RandomGenerator.Next(0, feasableActions.Count)];
         }
 
         protected virtual void Backpropagate(MCTSNode node, Reward reward)
@@ -202,7 +207,6 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.MCTS
         {
             WorldModel newState = parent.State.GenerateChildWorldModel();
             action.ApplyActionEffects(newState);
-            Debug.Log("Action: " + action.Name + " -> time: " + newState.GetProperty(Properties.TIME));
             newState.CalculateNextPlayer();
             MCTSNode child = new MCTSNode(newState);
             child.Action = action;

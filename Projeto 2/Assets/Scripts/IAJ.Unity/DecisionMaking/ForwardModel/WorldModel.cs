@@ -448,12 +448,13 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel
             //High time values will also result in a lower score
             int chestNumber = 0;
             float time = (float)this.GetProperty(Properties.TIME);
+            int hp = (int)this.GetProperty(Properties.HP);
             for (int i = 0; i < 5; i++)
             {
                 chestNumber += (bool)this.GetProperty(("Chest" + i)) ? 1 : 0;
             }
 
-            return chestNumber / time;
+            return chestNumber / (time - hp);
 
         }
     }

@@ -353,7 +353,6 @@ namespace Assets.Scripts
             {
                 //choose an action using the GOB Decision Making process
                 var action = this.MCTSDecisionMaking.Run();
-                Debug.Log(action);
                 if (action != null && !action.Equals(this.CurrentAction))
                 {
                     this.CurrentAction = action;
@@ -386,7 +385,6 @@ namespace Assets.Scripts
             {
                 //choose an action using the GOB Decision Making process
                 var action = this.MCTSBiasedDecisionMaking.Run();
-                Debug.Log(action);
                 if (action != null && !action.Equals(this.CurrentAction))
                 {
                     this.CurrentAction = action;

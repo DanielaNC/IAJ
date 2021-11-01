@@ -81,9 +81,12 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.ForwardModel.ForwardModelActio
         public override float GetHValue(WorldModel worldModel)
         {
             var mana = (int)worldModel.GetProperty(Properties.MANA);
+            var hp = (int)worldModel.GetProperty(Properties.HP);
+            var maxHP = (int)worldModel.GetProperty(Properties.MAXHP);
+            var shield = (int)worldModel.GetProperty(Properties.ShieldHP);
 
-            if (mana < 2 && !this.Character.GameManager.SleepingNPCs)
-                return base.GetHValue(worldModel); // choose the closest one
+            if (mana < 5 && hp + shield <= maxHP)
+                return -100 + base.GetHValue(worldModel) - (5 - shield);
 
             return base.GetHValue(worldModel);
         }
