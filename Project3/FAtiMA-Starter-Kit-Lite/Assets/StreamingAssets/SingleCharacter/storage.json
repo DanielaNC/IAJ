@@ -42,7 +42,7 @@
 								}
 						}, 
 						{
-							"EventName": "Event(Action-End, *, Offer, SELF)",
+							"EventName": "Event(*, *, Serve, SELF)",
 							"Conditions":
 								{
 									"Set": []
@@ -102,14 +102,24 @@
 					"Priority": 5
 				}, 
 				{
-					"Action": "Offer(10)",
+					"Action": "Serve(Food)",
 					"Target": "[target]",
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["Has(Money) > 2", "IsAgent([target]) = True", "[target] != SELF"]
+							"Set": ["CanServe(Peter) = True", "IsAgent([target]) = True", "[target] != SELF", "Peter = [target]", "Has(Burger) > 0"]
 						},
 					"Priority": 0
+				}, 
+				{
+					"Action": "Give(BadReview)",
+					"Target": "[t]",
+					"Layer": "-",
+					"Conditions":
+						{
+							"Set": ["[t] != SELF", "Waiter = [t]", "Is(Hungry) > 1"]
+						},
+					"Priority": 1
 				}]
 		},
 	"types": [

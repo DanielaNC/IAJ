@@ -2,94 +2,255 @@
 	"root":
 		{
 			"classId": 0,
-			"ScenarioName": "Example",
+			"ScenarioName": "Scenario1",
 			"Description": "A short conversation between the Player and a Character named Charlie. Charlie discovers that there is a major conspiracy within the company he works in. ",
 			"Dialogues": [
 				{
-					"CurrentState": "Leave",
-					"NextState": "End",
+					"CurrentState": "OrderAgain",
+					"NextState": "NoMoreBurgers",
 					"Meaning": "-",
 					"Style": "-",
-					"Utterance": "Alright, goodbye",
-					"UtteranceId": "TTS-CCF7877090E49659FB15B89D80C365A7"
+					"Utterance": "Just give me another burger. And make it fast",
+					"UtteranceId": "TTS-D4B11FF6A5F974B6ABE835ECB2C65448"
 				}, 
 				{
-					"CurrentState": "Greeting",
-					"NextState": "Order",
+					"CurrentState": "OrderBurger",
+					"NextState": "BurntBurger",
 					"Meaning": "-",
 					"Style": "Polite",
-					"Utterance": "How do you do?",
-					"UtteranceId": "TTS-E191BADF9DAD8B0EDC942E4A6DFC8D64"
+					"Utterance": "I'll have a Burger, then",
+					"UtteranceId": "TTS-C048E85D9E5957A378DB2662BC475FC1"
+				}, 
+				{
+					"CurrentState": "OrderBurger",
+					"NextState": "BurntBurger",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "I guess I'll order a burger, in that case",
+					"UtteranceId": "TTS-E68CCAF6A2A959572DB5B8EB77DAB98D"
+				}, 
+				{
+					"CurrentState": "Complain",
+					"NextState": "AnswerComplaint",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "Are you kidding me?! I'm starving over here!",
+					"UtteranceId": "TTS-A0BBA27B9927E60EA729D3890BADC07D"
+				}, 
+				{
+					"CurrentState": "OrderBurger",
+					"NextState": "BurntBurger",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "Then give me a damn burger",
+					"UtteranceId": "TTS-D6CD0C9E07A3E2C6202D2286724EEFF3"
 				}, 
 				{
 					"CurrentState": "Order",
 					"NextState": "OrderResponse",
 					"Meaning": "-",
 					"Style": "-",
-					"Utterance": "Yes, I would like a Pizza please",
-					"UtteranceId": "TTS-E2A8BDFAB9C5D5B8A5CD9A67F8C08155"
+					"Utterance": "I would like a Hotdog please",
+					"UtteranceId": "TTS-568479E20C219F45CECA1DE50B94E523"
 				}, 
 				{
-					"CurrentState": "Greeting",
-					"NextState": "Order",
+					"CurrentState": "StartWaiter",
+					"NextState": "Complain",
 					"Meaning": "-",
 					"Style": "Polite",
-					"Utterance": "How can I help you?",
-					"UtteranceId": "TTS-C425F01490F94A3080B9922108A78C33"
+					"Utterance": "I'm sorry, sir. You'll have to wait a little bit",
+					"UtteranceId": "TTS-238C336B74E03117345682FA1F70D27C"
+				}, 
+				{
+					"CurrentState": "AnswerComplaint",
+					"NextState": "Wait",
+					"Meaning": "-",
+					"Style": "Polite",
+					"Utterance": "Sir, we there are other custumers. You'll have to await your turn",
+					"UtteranceId": "TTS-C4D692A9170513C5750A260CF6151BAC"
 				}, 
 				{
 					"CurrentState": "Start",
-					"NextState": "Greeting",
+					"NextState": "StartWaiter",
 					"Meaning": "-",
-					"Style": "-",
+					"Style": "Polite",
 					"Utterance": "Good Afternoon",
 					"UtteranceId": "TTS-91145E15F72DF3A48A9E83CAE7E3BED7"
 				}, 
 				{
-					"CurrentState": "Greeting",
-					"NextState": "Leave",
-					"Meaning": "-",
-					"Style": "Rude",
-					"Utterance": "Not you again",
-					"UtteranceId": "TTS-4DDAA9A4B302A0E4E9DEE292CDB9481D"
-				}, 
-				{
-					"CurrentState": "Greeting",
+					"CurrentState": "StartWaiter",
 					"NextState": "Order",
 					"Meaning": "-",
-					"Style": "-",
-					"Utterance": "I would like some food please",
-					"UtteranceId": "TTS-8163C38B4BF2289F0A3E977C5D74A0C9"
-				}, 
-				{
-					"CurrentState": "WhatUp",
-					"NextState": "Order",
-					"Meaning": "-",
-					"Style": "-",
-					"Utterance": "Not much duude",
-					"UtteranceId": "TTS-7BFCD2BB00520EE1D81A920C718F72D9"
+					"Style": "Polite",
+					"Utterance": "Hello, sir! Welcome to our restaurant",
+					"UtteranceId": "TTS-8BE80DF13A83739AFDAB47D542C9EF39"
 				}, 
 				{
 					"CurrentState": "Start",
-					"NextState": "WhatUp",
+					"NextState": "StartWaiter",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "Hello?",
+					"UtteranceId": "TTS-3809718A10A0F59BCF6D4939C10FD28D"
+				}, 
+				{
+					"CurrentState": "Order",
+					"NextState": "OrderResponse",
 					"Meaning": "-",
 					"Style": "Rude",
-					"Utterance": "What up!?",
-					"UtteranceId": "TTS-430D5A134E03B82E5AE059D862056E96"
+					"Utterance": "Gimme a hotdog",
+					"UtteranceId": "TTS-9AC6E0EDE884057893397F25FF671B25"
+				}, 
+				{
+					"CurrentState": "OrderResponse",
+					"NextState": "OrderBurger",
+					"Meaning": "-",
+					"Style": "Polite",
+					"Utterance": "I'm sorry, sir. We only serve Burgers",
+					"UtteranceId": "TTS-795BF8B410C2360564BA93972A9A642D"
+				}, 
+				{
+					"CurrentState": "OrderResponse",
+					"NextState": "OrderBurger",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "Didn't you read the sign? This is a Burger-only restaurant",
+					"UtteranceId": "TTS-F23FB46614504A16300F8F5AF98FB2E7"
+				}, 
+				{
+					"CurrentState": "Wait",
+					"NextState": "GetOrder",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "You're lucky you're the only open restaurant at this time",
+					"UtteranceId": "TTS-48B33826741CD77B145F245888915F71"
+				}, 
+				{
+					"CurrentState": "GetOrder",
+					"NextState": "Order",
+					"Meaning": "-",
+					"Style": "Polite",
+					"Utterance": "Alright, sir, I can take your order now",
+					"UtteranceId": "TTS-C2DEDB7D5579504CD0372DBE11ECCC41"
+				}, 
+				{
+					"CurrentState": "GetOrder",
+					"NextState": "Order",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "Can I take your order?",
+					"UtteranceId": "TTS-4FFD8CDAC94F5931DAFA38B9FF106E38"
+				}, 
+				{
+					"CurrentState": "GetOrder",
+					"NextState": "Order",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "What do you want?",
+					"UtteranceId": "TTS-CD74DBBB5430913FBE6AE47CE016DBF1"
+				}, 
+				{
+					"CurrentState": "Order",
+					"NextState": "OrderResponse",
+					"Meaning": "-",
+					"Style": "Polite",
+					"Utterance": "I would like a hotdog please",
+					"UtteranceId": "TTS-568479E20C219F45CECA1DE50B94E523"
+				}, 
+				{
+					"CurrentState": "Wait",
+					"NextState": "GetOrder",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "I'll leave you a bad review on Yelp once I get my food",
+					"UtteranceId": "TTS-4AFF3D72A10D10E0C4444B32A7D249EC"
+				}, 
+				{
+					"CurrentState": "BurntBurger",
+					"NextState": "DealWithBurntBurger",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "This ain't no burger! You gave me a piece of coal!",
+					"UtteranceId": "TTS-6116E7AA0132DFACBE261F7455261AB0"
+				}, 
+				{
+					"CurrentState": "BurntBurger",
+					"NextState": "DealWithBurntBurger",
+					"Meaning": "-",
+					"Style": "Polite",
+					"Utterance": "Excuse me? The burger is completely burnt",
+					"UtteranceId": "TTS-7127D1F0A6DAE66F7C927B9B195114E3"
+				}, 
+				{
+					"CurrentState": "DealWithBurntBurger",
+					"NextState": "OrderAgain",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "Do I look like the chef to you?",
+					"UtteranceId": "TTS-08875316D1DB7A4B6FD5C0A635F4E4F9"
+				}, 
+				{
+					"CurrentState": "DealWithBurntBurger",
+					"NextState": "OrderAgain",
+					"Meaning": "-",
+					"Style": "Polite",
+					"Utterance": "Oh, I'm so sorry!",
+					"UtteranceId": "TTS-32D67100EE95C92F2DD7C90409E02F8C"
+				}, 
+				{
+					"CurrentState": "NoMoreBurgers",
+					"NextState": "Refund",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "Unfortunatly, we have no more burgers",
+					"UtteranceId": "TTS-6549F5CA3906FC4CC42CCC3E5DFD462C"
+				}, 
+				{
+					"CurrentState": "Refund",
+					"NextState": "NoRefund",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "What?! I am not paying for this! I demand my money back!",
+					"UtteranceId": "TTS-CDC7A0E65B1702C6318DC3661F8AFDD0"
+				}, 
+				{
+					"CurrentState": "NoRefund",
+					"NextState": "Leave",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "Calm down, you Karen! Look, we can't give you your money back but how about a coupon for the next time you come over?",
+					"UtteranceId": "TTS-95DB4E7E359BFAAF73B95D944D387504"
+				}, 
+				{
+					"CurrentState": "NoRefund",
+					"NextState": "Leave",
+					"Meaning": "-",
+					"Style": "Polite",
+					"Utterance": "I understand your anger, but we have a no refund policy.",
+					"UtteranceId": "TTS-A25640BC461CFE55DEEB4762626190D0"
+				}, 
+				{
+					"CurrentState": "Leave",
+					"NextState": "End",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "Unbelievable... I'm leaving",
+					"UtteranceId": "TTS-6E3C82471447C2508D3F5A55F31E60B5"
 				}],
 			"Characters": [
 				{
 					"KnowledgeBase":
 						{
-							"Perspective": "Charlie",
+							"Perspective": "Peter",
 							"Knowledge":
 								{
 									"SELF":
 										{
-											"Has(Floor)": "Charlie, 1",
+											"Has(Floor)": "Peter, 1",
 											"Has(Money)": "5, 1",
-											"DialogueState(Player)": "Start, 1",
-											"CloseFriends(Player)": "False, 1"
+											"DialogueState(Waiter)": "Start, 1",
+											"CloseFriends(Waiter)": "False, 1",
+											"Is(Hungry)": "True, 1"
 										}
 								}
 						},
@@ -129,15 +290,15 @@
 				{
 					"KnowledgeBase":
 						{
-							"Perspective": "Player",
+							"Perspective": "Waiter",
 							"Knowledge":
 								{
 									"SELF":
 										{
-											"Has(Floor)": "Charlie, 1",
-											"Has(Money)": "1, 1",
-											"DialogueState(Charlie)": "Start, 1",
-											"Is(Hungry)": "True, 1"
+											"Has(Floor)": "Peter, 1",
+											"Has(Burger)": "1, 1",
+											"DialogueState(Peter)": "StartWaiter, 1",
+											"CanServe(Peter)": "False, 1"
 										}
 								}
 						},
@@ -196,15 +357,44 @@
 											"PropertyName": "DialogueState([t])",
 											"NewValue": "[ns]",
 											"ObserverAgent": "[s]"
+										}, 
+										{
+											"PropertyName": "CanServe(Peter)",
+											"NewValue": true,
+											"ObserverAgent": "Waiter"
 										}]
 								}, 
 								{
-									"key": "Event(Action-End, *, Offer([value]), [target])",
+									"key": "Event(Action-End, *, Serve(Food), [target])",
 									"value": [
 										{
-											"PropertyName": "Has(Money)",
-											"NewValue": "Math(Has(Money), Plus, [value])",
+											"PropertyName": "Has(Food)",
+											"NewValue": true,
 											"ObserverAgent": "[target]"
+										}, 
+										{
+											"PropertyName": "CanServe(Peter)",
+											"NewValue": false,
+											"ObserverAgent": "Waiter"
+										}, 
+										{
+											"PropertyName": "Has(Burger)",
+											"NewValue": 0,
+											"ObserverAgent": "Waiter"
+										}]
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(OrderBurger, [ns], *, *), [t])",
+									"value": [
+										{
+											"PropertyName": "DialogueState([s])",
+											"NewValue": "[ns]",
+											"ObserverAgent": "[t]"
+										}, 
+										{
+											"PropertyName": "DialogueState([t])",
+											"NewValue": "[ns]",
+											"ObserverAgent": "[s]"
 										}]
 								}]
 						},
@@ -233,6 +423,18 @@
 								}, 
 								{
 									"key": "Event(Action-End, *, Offer([value]), [target])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, *, Serve(Food), [target])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], DuplicateSpeak(*, [ns], *, *), [t])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(OrderBurger, [ns], *, *), [t])",
 									"value": 1
 								}]
 						}
