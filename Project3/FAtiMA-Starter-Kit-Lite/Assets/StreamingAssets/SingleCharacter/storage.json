@@ -42,7 +42,7 @@
 								}
 						}, 
 						{
-							"EventName": "Event(Action-Start, *, Offer, SELF)",
+							"EventName": "Event(Action-End, *, Offer, SELF)",
 							"Conditions":
 								{
 									"Set": []
@@ -102,12 +102,12 @@
 					"Priority": 5
 				}, 
 				{
-					"Action": "Offer(Money)",
-					"Target": "[t]",
+					"Action": "Offer(10)",
+					"Target": "[target]",
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["Has(Money) > 0", "IsAgent([t]) = True", "[t] != SELF", "Mood(SELF) > 0"]
+							"Set": ["Has(Money) > 2", "IsAgent([target]) = True", "[target] != SELF"]
 						},
 					"Priority": 0
 				}]
