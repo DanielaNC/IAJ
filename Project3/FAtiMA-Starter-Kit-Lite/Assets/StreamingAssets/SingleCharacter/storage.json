@@ -10,6 +10,33 @@
 					"AppraisalWeight": 1,
 					"Rules": [
 						{
+							"EventName": "Event(*, *, Serve, SELF)",
+							"Conditions":
+								{
+									"Set": []
+								},
+							"AppraisalVariables":
+								{
+									"AppraisalVariables": [
+										{
+											"Name": "Desirability",
+											"Value": 5,
+											"Target": "SELF"
+										}]
+								}
+						}, 
+						{
+							"EventName": "Event(Action-End, *, Give, *)",
+							"Conditions":
+								{
+									"Set": []
+								},
+							"AppraisalVariables":
+								{
+									"AppraisalVariables": []
+								}
+						}, 
+						{
 							"EventName": "Event(Action-End, *, Speak(*, *, *, Polite), SELF)",
 							"Conditions":
 								{
@@ -40,22 +67,6 @@
 											"Target": "SELF"
 										}]
 								}
-						}, 
-						{
-							"EventName": "Event(*, *, Serve, SELF)",
-							"Conditions":
-								{
-									"Set": []
-								},
-							"AppraisalVariables":
-								{
-									"AppraisalVariables": [
-										{
-											"Name": "Desirability",
-											"Value": 5,
-											"Target": "SELF"
-										}]
-								}
 						}]
 				}
 		},
@@ -79,7 +90,7 @@
 						{
 							"Set": ["DialogueState([t]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], [ns], [mean], [style]) = True"]
 						},
-					"Priority": 1
+					"Priority": 5
 				}, 
 				{
 					"Action": "Speak([cs], [ns], [mean], Rude)",
@@ -119,7 +130,7 @@
 						{
 							"Set": ["[t] != SELF", "Waiter = [t]", "Is(Hungry) > 1"]
 						},
-					"Priority": 1
+					"Priority": 5
 				}]
 		},
 	"types": [
