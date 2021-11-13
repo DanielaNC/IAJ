@@ -6,12 +6,12 @@
 			"Description": "Peter was hungry so he went to a restaurant. Once there he ordered a hotdog. The waiter told him they only served hamburgers. Peter told the waiter that was okay as well. After a while the waiter brought Peter his food. The hamburger was burnt to a crisp. Peter complained to the waiter. The waiter told Peter they had no more hamburgers. Peter immediately left the restaurant without paying",
 			"Dialogues": [
 				{
-					"CurrentState": "OrderAgain",
-					"NextState": "NoMoreBurgers",
+					"CurrentState": "Order",
+					"NextState": "OrderResponse",
 					"Meaning": "-",
-					"Style": "-",
-					"Utterance": "Just give me another burger. And make it fast",
-					"UtteranceId": "TTS-D4B11FF6A5F974B6ABE835ECB2C65448"
+					"Style": "Polite",
+					"Utterance": "I would like a Hotdog please",
+					"UtteranceId": "TTS-568479E20C219F45CECA1DE50B94E523"
 				}, 
 				{
 					"CurrentState": "OrderBurger",
@@ -46,28 +46,20 @@
 					"UtteranceId": "TTS-D6CD0C9E07A3E2C6202D2286724EEFF3"
 				}, 
 				{
-					"CurrentState": "Order",
-					"NextState": "OrderResponse",
-					"Meaning": "-",
-					"Style": "-",
-					"Utterance": "I would like a Hotdog please",
-					"UtteranceId": "TTS-568479E20C219F45CECA1DE50B94E523"
-				}, 
-				{
-					"CurrentState": "StartWaiter",
-					"NextState": "Complain",
+					"CurrentState": "OrderResponse",
+					"NextState": "OrderBurger",
 					"Meaning": "-",
 					"Style": "Polite",
-					"Utterance": "I'm sorry, sir. You'll have to wait a little bit",
-					"UtteranceId": "TTS-238C336B74E03117345682FA1F70D27C"
+					"Utterance": "I'm sorry, sir. We only serve Burgers",
+					"UtteranceId": "TTS-795BF8B410C2360564BA93972A9A642D"
 				}, 
 				{
-					"CurrentState": "AnswerComplaint",
-					"NextState": "Wait",
+					"CurrentState": "Leave2Response",
+					"NextState": "Leave1",
 					"Meaning": "-",
-					"Style": "Polite",
-					"Utterance": "Sir, we there are other custumers. You'll have to await your turn",
-					"UtteranceId": "TTS-C4D692A9170513C5750A260CF6151BAC"
+					"Style": "Rude",
+					"Utterance": "Don't make me call the cops. You can't leave without paying",
+					"UtteranceId": "TTS-BDBCB6BF828582ECE4CD6DE0F132B311"
 				}, 
 				{
 					"CurrentState": "Start",
@@ -79,11 +71,11 @@
 				}, 
 				{
 					"CurrentState": "StartWaiter",
-					"NextState": "Order",
+					"NextState": "Complain",
 					"Meaning": "-",
-					"Style": "Polite",
-					"Utterance": "Hello, sir! Welcome to our restaurant",
-					"UtteranceId": "TTS-8BE80DF13A83739AFDAB47D542C9EF39"
+					"Style": "-",
+					"Utterance": "I'm sorry, sir. You'll have to wait a little bit",
+					"UtteranceId": "TTS-238C336B74E03117345682FA1F70D27C"
 				}, 
 				{
 					"CurrentState": "Start",
@@ -102,12 +94,12 @@
 					"UtteranceId": "TTS-9AC6E0EDE884057893397F25FF671B25"
 				}, 
 				{
-					"CurrentState": "OrderResponse",
-					"NextState": "OrderBurger",
+					"CurrentState": "OrderAgain",
+					"NextState": "NoMoreBurgers",
 					"Meaning": "-",
-					"Style": "Polite",
-					"Utterance": "I'm sorry, sir. We only serve Burgers",
-					"UtteranceId": "TTS-795BF8B410C2360564BA93972A9A642D"
+					"Style": "Rude",
+					"Utterance": "Just give me another burger. And make it fast",
+					"UtteranceId": "TTS-D4B11FF6A5F974B6ABE835ECB2C65448"
 				}, 
 				{
 					"CurrentState": "OrderResponse",
@@ -150,12 +142,12 @@
 					"UtteranceId": "TTS-CD74DBBB5430913FBE6AE47CE016DBF1"
 				}, 
 				{
-					"CurrentState": "Order",
-					"NextState": "OrderResponse",
+					"CurrentState": "StartWaiter",
+					"NextState": "Order",
 					"Meaning": "-",
-					"Style": "Polite",
-					"Utterance": "I would like a hotdog please",
-					"UtteranceId": "TTS-568479E20C219F45CECA1DE50B94E523"
+					"Style": "-",
+					"Utterance": "Hello, sir! Welcome to our restaurant",
+					"UtteranceId": "TTS-8BE80DF13A83739AFDAB47D542C9EF39"
 				}, 
 				{
 					"CurrentState": "Wait",
@@ -214,28 +206,20 @@
 					"UtteranceId": "TTS-CDC7A0E65B1702C6318DC3661F8AFDD0"
 				}, 
 				{
+					"CurrentState": "Leave1",
+					"NextState": "End",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "Yeah? Watch me.",
+					"UtteranceId": "TTS-19A12EA9EC41D90C8277F63870486A59"
+				}, 
+				{
 					"CurrentState": "NoRefund",
 					"NextState": "Leave",
 					"Meaning": "-",
 					"Style": "-",
 					"Utterance": "I understand your anger, but we have a no refund policy.",
 					"UtteranceId": "TTS-A25640BC461CFE55DEEB4762626190D0"
-				}, 
-				{
-					"CurrentState": "Leave",
-					"NextState": "LeaveResponse",
-					"Meaning": "-",
-					"Style": "-",
-					"Utterance": "Unbelievable... I'm leaving",
-					"UtteranceId": "TTS-6E3C82471447C2508D3F5A55F31E60B5"
-				}, 
-				{
-					"CurrentState": "NoRefund",
-					"NextState": "Leave",
-					"Meaning": "-",
-					"Style": "-",
-					"Utterance": "Calm down, you Karen! Look, we can't give you your money back but how about a coupon for the next time you come over?",
-					"UtteranceId": "TTS-95DB4E7E359BFAAF73B95D944D387504"
 				}, 
 				{
 					"CurrentState": "LeaveResponse",
@@ -254,28 +238,20 @@
 					"UtteranceId": "TTS-5E3F054F2CB75F9E9EDEE389FC948313"
 				}, 
 				{
-					"CurrentState": "Leave2Response",
-					"NextState": "Leave1",
-					"Meaning": "-",
-					"Style": "-",
-					"Utterance": "Don't make me call the cops. You can't leave without paying",
-					"UtteranceId": "TTS-BDBCB6BF828582ECE4CD6DE0F132B311"
-				}, 
-				{
 					"CurrentState": "Leave2",
 					"NextState": "Leave2Response",
 					"Meaning": "-",
-					"Style": "-",
+					"Style": "Rude",
 					"Utterance": "And you owe me a burger",
 					"UtteranceId": "TTS-76D5DAE84F18C6A58C9790FEE4A0BAEB"
 				}, 
 				{
-					"CurrentState": "Leave1",
-					"NextState": "End",
+					"CurrentState": "AnswerComplaint",
+					"NextState": "Wait",
 					"Meaning": "-",
-					"Style": "-",
-					"Utterance": "Yeah? Watch me.",
-					"UtteranceId": "TTS-19A12EA9EC41D90C8277F63870486A59"
+					"Style": "Polite",
+					"Utterance": "Sir, there are other custumers. You'll have to await your turn",
+					"UtteranceId": "TTS-E93BA2B7D6832730D7301390A0C87C6F"
 				}, 
 				{
 					"CurrentState": "Leave2",
@@ -284,6 +260,22 @@
 					"Style": "-",
 					"Utterance": "I didn't eat it, I ain't paying",
 					"UtteranceId": "TTS-8FD161B48FDC1683C9143E54B3D37F2B"
+				}, 
+				{
+					"CurrentState": "NoRefund",
+					"NextState": "Leave",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "Calm down, you Karen! Look, we can't give you your money back but how about a coupon for the next time you come over?",
+					"UtteranceId": "TTS-95DB4E7E359BFAAF73B95D944D387504"
+				}, 
+				{
+					"CurrentState": "Leave",
+					"NextState": "LeaveResponse",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "Unbelievable... I'm leaving",
+					"UtteranceId": "TTS-6E3C82471447C2508D3F5A55F31E60B5"
 				}],
 			"Characters": [
 				{
