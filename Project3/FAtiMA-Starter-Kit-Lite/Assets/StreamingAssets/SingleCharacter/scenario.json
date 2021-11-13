@@ -3,7 +3,7 @@
 		{
 			"classId": 0,
 			"ScenarioName": "Scenario1",
-			"Description": "A short conversation between the Player and a Character named Charlie. Charlie discovers that there is a major conspiracy within the company he works in. ",
+			"Description": "Peter was hungry so he went to a restaurant. Once there he ordered a hotdog. The waiter told him they only served hamburgers. Peter told the waiter that was okay as well. After a while the waiter brought Peter his food. The hamburger was burnt to a crisp. Peter complained to the waiter. The waiter told Peter they had no more hamburgers. Peter immediately left the restaurant without paying",
 			"Dialogues": [
 				{
 					"CurrentState": "OrderAgain",
@@ -217,25 +217,73 @@
 					"CurrentState": "NoRefund",
 					"NextState": "Leave",
 					"Meaning": "-",
-					"Style": "Rude",
-					"Utterance": "Calm down, you Karen! Look, we can't give you your money back but how about a coupon for the next time you come over?",
-					"UtteranceId": "TTS-95DB4E7E359BFAAF73B95D944D387504"
-				}, 
-				{
-					"CurrentState": "NoRefund",
-					"NextState": "Leave",
-					"Meaning": "-",
-					"Style": "Polite",
+					"Style": "-",
 					"Utterance": "I understand your anger, but we have a no refund policy.",
 					"UtteranceId": "TTS-A25640BC461CFE55DEEB4762626190D0"
 				}, 
 				{
 					"CurrentState": "Leave",
-					"NextState": "End",
+					"NextState": "LeaveResponse",
 					"Meaning": "-",
 					"Style": "-",
 					"Utterance": "Unbelievable... I'm leaving",
 					"UtteranceId": "TTS-6E3C82471447C2508D3F5A55F31E60B5"
+				}, 
+				{
+					"CurrentState": "NoRefund",
+					"NextState": "Leave",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "Calm down, you Karen! Look, we can't give you your money back but how about a coupon for the next time you come over?",
+					"UtteranceId": "TTS-95DB4E7E359BFAAF73B95D944D387504"
+				}, 
+				{
+					"CurrentState": "LeaveResponse",
+					"NextState": "Leave2",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "Where do you think you're going? You owe us 5 bucks",
+					"UtteranceId": "TTS-611CE79494B90F04722736158691C029"
+				}, 
+				{
+					"CurrentState": "LeaveResponse",
+					"NextState": "Leave1",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "You can't leave without paying",
+					"UtteranceId": "TTS-5E3F054F2CB75F9E9EDEE389FC948313"
+				}, 
+				{
+					"CurrentState": "Leave2Response",
+					"NextState": "Leave1",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "Don't make me call the cops. You can't leave without paying",
+					"UtteranceId": "TTS-BDBCB6BF828582ECE4CD6DE0F132B311"
+				}, 
+				{
+					"CurrentState": "Leave2",
+					"NextState": "Leave2Response",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "And you owe me a burger",
+					"UtteranceId": "TTS-76D5DAE84F18C6A58C9790FEE4A0BAEB"
+				}, 
+				{
+					"CurrentState": "Leave1",
+					"NextState": "End",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "Yeah? Watch me.",
+					"UtteranceId": "TTS-19A12EA9EC41D90C8277F63870486A59"
+				}, 
+				{
+					"CurrentState": "Leave2",
+					"NextState": "Leave2Response",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "I didn't eat it, I ain't paying",
+					"UtteranceId": "TTS-8FD161B48FDC1683C9143E54B3D37F2B"
 				}],
 			"Characters": [
 				{
@@ -250,7 +298,7 @@
 											"Has(Money)": "5, 1",
 											"DialogueState(Waiter)": "Start, 1",
 											"CloseFriends(Waiter)": "False, 1",
-											"Is(Hungry)": "True, 1"
+											"Is(Hungry)": "1, 1"
 										}
 								}
 						},
@@ -357,11 +405,6 @@
 											"PropertyName": "DialogueState([t])",
 											"NewValue": "[ns]",
 											"ObserverAgent": "[s]"
-										}, 
-										{
-											"PropertyName": "CanServe(Peter)",
-											"NewValue": true,
-											"ObserverAgent": "Waiter"
 										}]
 								}, 
 								{
@@ -395,7 +438,45 @@
 											"PropertyName": "DialogueState([t])",
 											"NewValue": "[ns]",
 											"ObserverAgent": "[s]"
+										}, 
+										{
+											"PropertyName": "Has(Floor)",
+											"NewValue": "Peter",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "CanServe(Peter)",
+											"NewValue": true,
+											"ObserverAgent": "Waiter"
 										}]
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(BurntBurger, [ns], *, *), [t])",
+									"value": [
+										{
+											"PropertyName": "DialogueState([s])",
+											"NewValue": "[ns]",
+											"ObserverAgent": "[t]"
+										}, 
+										{
+											"PropertyName": "DialogueState([t])",
+											"NewValue": "[ns]",
+											"ObserverAgent": "[s]"
+										}, 
+										{
+											"PropertyName": "Is(Hungry)",
+											"NewValue": 2,
+											"ObserverAgent": "Peter"
+										}, 
+										{
+											"PropertyName": "Has(Floor)",
+											"NewValue": "[t]",
+											"ObserverAgent": "*"
+										}]
+								}, 
+								{
+									"key": "Event(Action-End, *, Give(BadReview), *)",
+									"value": []
 								}]
 						},
 					"Priorities":
@@ -431,6 +512,30 @@
 								}, 
 								{
 									"key": "Event(Action-End, [s], DuplicateSpeak(*, [ns], *, *), [t])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], DuplicateSpeak(BurntBurger, [ns], *, *), [t])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(Leave, [ns], *, *), [t])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, *, Give(BadReview), *)",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(End, [ns], *, *), [t])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(BurntBurger, [ns], *, *), [t])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(GetOrder, [ns], *, *), [t])",
 									"value": 1
 								}, 
 								{
