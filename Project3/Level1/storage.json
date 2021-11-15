@@ -155,7 +155,7 @@
 						{
 							"Set": ["IsAgent([t]) = True", "Waiter = [t]", "[t] != SELF", "Is(Angry) = True"]
 						},
-					"Priority": 5
+					"Priority": 2
 				}]
 		},
 	"types": [
