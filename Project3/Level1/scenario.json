@@ -551,11 +551,6 @@
 											"ObserverAgent": "[s]"
 										}, 
 										{
-											"PropertyName": "Is(Angry)",
-											"NewValue": false,
-											"ObserverAgent": "Peter"
-										}, 
-										{
 											"PropertyName": "Has(Floor)",
 											"NewValue": "[t]",
 											"ObserverAgent": "*"
