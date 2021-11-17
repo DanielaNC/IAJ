@@ -911,7 +911,8 @@
 									"SELF":
 										{
 											"DialogueState(Devil)": "Start, 1",
-											"DialogueState(Angel)": "Start, 1"
+											"DialogueState(Angel)": "Start, 1",
+											"Answered(Questions)": "0, 1"
 										}
 								}
 						},
@@ -1990,6 +1991,11 @@
 											"PropertyName": "Has(Floor)",
 											"NewValue": "Player",
 											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "Answered(Questions)",
+											"NewValue": "Math(Answered(Questions), Plus, 1)",
+											"ObserverAgent": "Player"
 										}]
 								}, 
 								{
