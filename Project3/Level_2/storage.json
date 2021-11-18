@@ -40,14 +40,44 @@
 			"classId": 0,
 			"ActionTendencies": [
 				{
-					"Action": "Speak([cs], [ns], [meaning], [style])",
+					"Action": "Speak([cs], [ns], ChangeActors([floor], [target]), [style])",
 					"Target": "[x]",
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], [ns], [meaning], [style]) = True"]
+							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], [ns], ChangeActors([floor], [target]), [style]) = True", "[target] = [x]", "[ns] != Results", "[ns] != S23", "[ns] != S24"]
 						},
-					"Priority": 3
+					"Priority": 4
+				}, 
+				{
+					"Action": "Speak([cs], Results, ChangeActors([floor], [target]), [style])",
+					"Target": "[x]",
+					"Layer": "-",
+					"Conditions":
+						{
+							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], Results, ChangeActors([floor], [target]), [style]) = True", "[x] = [target]", "Answered(Questions) = 2"]
+						},
+					"Priority": 5
+				}, 
+				{
+					"Action": "Speak([cs], S23, ChangeActors([floor], [target]), [style])",
+					"Target": "[x]",
+					"Layer": "-",
+					"Conditions":
+						{
+							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], S23, ChangeActors([floor], [target]), [style]) = True", "[x] = [target]", "Answered(Questions) < 2"]
+						},
+					"Priority": 5
+				}, 
+				{
+					"Action": "Speak([cs], S24, ChangeActors([floor], [target]), [style])",
+					"Target": "[x]",
+					"Layer": "-",
+					"Conditions":
+						{
+							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], S24, ChangeActors([floor], [target]), [style]) = True", "[target] = [x]", "Answered(Questions) < 2"]
+						},
+					"Priority": 5
 				}]
 		},
 	"types": [

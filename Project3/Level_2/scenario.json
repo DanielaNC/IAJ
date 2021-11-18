@@ -6,36 +6,28 @@
 			"Description": "You are a sleep specialist and are about to meet a patient who is referred to you. In particular, this patient has had trouble sleeping recently.",
 			"Dialogues": [
 				{
-					"CurrentState": "S4",
-					"NextState": "S5",
-					"Meaning": "ChangeActors(Player, Devil)",
+					"CurrentState": "S3",
+					"NextState": "S4",
+					"Meaning": "ChangeActors(Devil, Devil)",
 					"Style": "-",
-					"Utterance": "You ain't the boss of me!",
-					"UtteranceId": "TTS-F8FDC2AFA78F22573A2C2C08DFBF0F9B"
+					"Utterance": "Behave yourself, Lucifer! We have a job to do.",
+					"UtteranceId": "TTS-23161C64D6F824E9459F0170505BFB30"
 				}, 
 				{
-					"CurrentState": "S8",
-					"NextState": "S9",
-					"Meaning": "ChangeActors(Angel, Player)",
+					"CurrentState": "S5",
+					"NextState": "S8",
+					"Meaning": "ChangeActors(Devil, Devil)",
 					"Style": "-",
-					"Utterance": "Narnia.",
-					"UtteranceId": "TTS-6AF71842B8662F2A4903C6A315A2C552"
+					"Utterance": "Where am I?",
+					"UtteranceId": "TTS-9A58005DBEE238FB2269554921981C19"
 				}, 
 				{
 					"CurrentState": "S1",
 					"NextState": "S2",
-					"Meaning": "PlayerStart",
+					"Meaning": "ChangeActors(Devil, Devil)",
 					"Style": "-",
 					"Utterance": "... What?",
 					"UtteranceId": "TTS-31D618CE03879B1CBE0D45F7AF75502A"
-				}, 
-				{
-					"CurrentState": "S3",
-					"NextState": "S4",
-					"Meaning": "Angel",
-					"Style": "-",
-					"Utterance": "Behave yourself, Lucifer! We have a job to do.",
-					"UtteranceId": "TTS-23161C64D6F824E9459F0170505BFB30"
 				}, 
 				{
 					"CurrentState": "S7",
@@ -48,7 +40,7 @@
 				{
 					"CurrentState": "S4",
 					"NextState": "S5",
-					"Meaning": "ChangeActors(Player, Devil)",
+					"Meaning": "ChangeActors(Player, Angel)",
 					"Style": "-",
 					"Utterance": "Buzzkill.",
 					"UtteranceId": "TTS-2839BBF9FA80BE47EE5D7CDC7C896258"
@@ -62,20 +54,20 @@
 					"UtteranceId": "TTS-659939E321A4DEBE78928472BA93F73B"
 				}, 
 				{
-					"CurrentState": "S5",
-					"NextState": "S8",
-					"Meaning": "Player",
+					"CurrentState": "S21",
+					"NextState": "S22",
+					"Meaning": "ChangeActors(Devil, Devil)",
 					"Style": "-",
-					"Utterance": "Where am I?",
-					"UtteranceId": "TTS-9A58005DBEE238FB2269554921981C19"
+					"Utterance": "Who should ask the first question?",
+					"UtteranceId": "TTS-206B8650505ACB087633775FE1A33EEB"
 				}, 
 				{
-					"CurrentState": "S5",
-					"NextState": "S8",
-					"Meaning": "Player",
+					"CurrentState": "S13",
+					"NextState": "S14",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "What is this place?",
-					"UtteranceId": "TTS-00A00BFEFA644766DF078BB6158202C7"
+					"Utterance": "HELL YEAH",
+					"UtteranceId": "TTS-3D53393EFA2592E93EF624F15CDBF478"
 				}, 
 				{
 					"CurrentState": "S10",
@@ -118,12 +110,12 @@
 					"UtteranceId": "TTS-C2F80302EB56B7FCD15E6368A9289114"
 				}, 
 				{
-					"CurrentState": "S1",
-					"NextState": "S6",
-					"Meaning": "PlayerStart",
+					"CurrentState": "S23",
+					"NextState": "S25",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
-					"Utterance": "Am I in Skyrim? Fuck yes, I always wanted that.",
-					"UtteranceId": "TTS-C63ACC3D74DEDBFBDCABBFE75AB36308"
+					"Utterance": "What is the answer to this equation x^2 * (d^2/y)/(dx^2) + x * (d/y)/(dx) + (x^2) * y = 0? C’mon, it’s trivial.",
+					"UtteranceId": "TTS-E069F8BB2F78C35E9DEB8A69C0B46AF6"
 				}, 
 				{
 					"CurrentState": "S12",
@@ -134,12 +126,12 @@
 					"UtteranceId": "TTS-037BD6C5407F3AF861F153B218F1612D"
 				}, 
 				{
-					"CurrentState": "S13",
-					"NextState": "S14",
-					"Meaning": "Devil",
+					"CurrentState": "S1",
+					"NextState": "S6",
+					"Meaning": "ChangeActors(Devil, Devil)",
 					"Style": "-",
-					"Utterance": "HELL YEAH",
-					"UtteranceId": "TTS-3D53393EFA2592E93EF624F15CDBF478"
+					"Utterance": "Am I in Skyrim? Fuck yes, I always wanted that.",
+					"UtteranceId": "TTS-C63ACC3D74DEDBFBDCABBFE75AB36308"
 				}, 
 				{
 					"CurrentState": "S27",
@@ -174,52 +166,52 @@
 					"UtteranceId": "TTS-6D95E8EFDCD0D3189E16A2C160BA9D63"
 				}, 
 				{
-					"CurrentState": "S65",
-					"NextState": "S66",
-					"Meaning": "ChangeActors(Devil, Angel)",
-					"Style": "-",
-					"Utterance": "Your pride is shameful. Off to the hellish boat you go!",
-					"UtteranceId": "TTS-018E135517445F81FC9A917B3627CE5F"
-				}, 
-				{
 					"CurrentState": "S67",
 					"NextState": "S69",
-					"Meaning": "ChangeActors(Player, Angel)",
+					"Meaning": "ChangeActors(Player, Devil)",
 					"Style": "-",
 					"Utterance": "But I don’t want him…",
 					"UtteranceId": "TTS-B11C5023EA408012A5CF82E550398878"
 				}, 
 				{
+					"CurrentState": "S70",
+					"NextState": "S71",
+					"Meaning": "ChangeActors(Angel, Devil)",
+					"Style": "-",
+					"Utterance": "Yeah, where are your rules now, oh Holy One?",
+					"UtteranceId": "TTS-31A3CDDF91B40C74F791EC08B3E3A20B"
+				}, 
+				{
 					"CurrentState": "S19",
 					"NextState": "S20",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
 					"Utterance": "We will ask you about your life on Earth and judge your character. Are you ready?",
 					"UtteranceId": "TTS-BB96D62A9C8A69A2947E8F5D8517443A"
 				}, 
 				{
 					"CurrentState": "S60",
-					"NextState": "S64",
-					"Meaning": "ChangeActors(Devil, Player)",
+					"NextState": "S61",
+					"Meaning": "ChangeActors(Devil, Angel)",
 					"Style": "-",
-					"Utterance": "Because I deserve it?",
-					"UtteranceId": "TTS-B401622C3DD54ED6323CBBE7CB6FAA57"
+					"Utterance": "Because… forgiveness is a virtue?",
+					"UtteranceId": "TTS-10DFD51A82E68BCBA47D6506D6427B3F"
 				}, 
 				{
 					"CurrentState": "S22",
 					"NextState": "S23",
-					"Meaning": "ChangeActors(Devil, Player)",
+					"Meaning": "ChangeActors(Devil, Angel)",
 					"Style": "-",
 					"Utterance": "I’ll go first.",
 					"UtteranceId": "TTS-50E11C65C84B6B5C2B1D28600FD3FE37"
 				}, 
 				{
-					"CurrentState": "S21",
-					"NextState": "S22",
-					"Meaning": "Angel",
+					"CurrentState": "S5",
+					"NextState": "S8",
+					"Meaning": "ChangeActors(Devil, Devil)",
 					"Style": "-",
-					"Utterance": "Who should ask the first question?",
-					"UtteranceId": "TTS-206B8650505ACB087633775FE1A33EEB"
+					"Utterance": "What is this place?",
+					"UtteranceId": "TTS-00A00BFEFA644766DF078BB6158202C7"
 				}, 
 				{
 					"CurrentState": "S22",
@@ -230,20 +222,20 @@
 					"UtteranceId": "TTS-2561EB11D669E779E2CD7466C5566571"
 				}, 
 				{
-					"CurrentState": "S22",
-					"NextState": "S24",
-					"Meaning": "ChangeActors(Angel, Player)",
+					"CurrentState": "S60",
+					"NextState": "S64",
+					"Meaning": "ChangeActors(Devil, Angel)",
 					"Style": "-",
-					"Utterance": "You go first.",
-					"UtteranceId": "TTS-ABAEED9554745FC43FF05D2BC915D169"
+					"Utterance": "Because I deserve it?",
+					"UtteranceId": "TTS-B401622C3DD54ED6323CBBE7CB6FAA57"
 				}, 
 				{
 					"CurrentState": "S23",
-					"NextState": "S25",
-					"Meaning": "Devil",
+					"NextState": "S26",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
-					"Utterance": "What is the answer to this equation x^2 * (d^2/y)/(dx^2) + x * (d/y)/(dx) + (x^2) * y = 0? C’mon, it’s trivial.",
-					"UtteranceId": "TTS-E069F8BB2F78C35E9DEB8A69C0B46AF6"
+					"Utterance": "Are you allergic to feathers?",
+					"UtteranceId": "TTS-B98421047DCC9609F21711CBE6D06904"
 				}, 
 				{
 					"CurrentState": "S30",
@@ -254,20 +246,20 @@
 					"UtteranceId": "TTS-139719F00CC027E7C3A7A05EFED72550"
 				}, 
 				{
-					"CurrentState": "S23",
-					"NextState": "S26",
-					"Meaning": "Devil",
-					"Style": "-",
-					"Utterance": "Are you allergic to feathers?",
-					"UtteranceId": "TTS-B98421047DCC9609F21711CBE6D06904"
-				}, 
-				{
 					"CurrentState": "S24",
 					"NextState": "S28",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
 					"Utterance": "What is your greatest virtue?",
 					"UtteranceId": "TTS-C8612C064113170FE108A1641D9737A5"
+				}, 
+				{
+					"CurrentState": "S24",
+					"NextState": "S27",
+					"Meaning": "ChangeActors(Player, Player)",
+					"Style": "-",
+					"Utterance": "Why do you want to go to Heaven?",
+					"UtteranceId": "TTS-551C168E6F3A081C939487BE6C58411B"
 				}, 
 				{
 					"CurrentState": "S34",
@@ -286,20 +278,20 @@
 					"UtteranceId": "TTS-45C6433A99F9CF4C21AF5AB2C1E6D605"
 				}, 
 				{
-					"CurrentState": "S24",
-					"NextState": "S27",
-					"Meaning": "Angel",
+					"CurrentState": "S63",
+					"NextState": "S14",
+					"Meaning": "ChangeActors(Devil, Angel)",
 					"Style": "-",
-					"Utterance": "Why do you want to go to Heaven?",
-					"UtteranceId": "TTS-551C168E6F3A081C939487BE6C58411B"
+					"Utterance": "I will take Satan's offer, fuck Heaven!",
+					"UtteranceId": "TTS-B28053167C7DD5E22D009A56E2230D7B"
 				}, 
 				{
-					"CurrentState": "S14",
-					"NextState": "End1",
-					"Meaning": "PlayerEnd1",
+					"CurrentState": "S74",
+					"NextState": "End3",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "[You have been turned into a demon - Ending 1]",
-					"UtteranceId": "TTS-E76A09646FB6B299B674BCB514AF0C75"
+					"Utterance": "[You went to Heaven - Ending 3]",
+					"UtteranceId": "TTS-87BCD9ABD7AE5E7B353FCFA3F7E3C437"
 				}, 
 				{
 					"CurrentState": "S34",
@@ -326,36 +318,36 @@
 					"UtteranceId": "TTS-23B7B34F2D048FBB667E1270F2C26C94"
 				}, 
 				{
-					"CurrentState": "S37",
-					"NextState": "S31",
-					"Meaning": "ChangeActors(Angel, Player)",
+					"CurrentState": "S46",
+					"NextState": "S43",
+					"Meaning": "ChangeActors(Devil, Devil)",
 					"Style": "-",
-					"Utterance": "HA!",
-					"UtteranceId": "TTS-D723629EFB923DFDF4D456CB7F6C47A9"
-				}, 
-				{
-					"CurrentState": "S25",
-					"NextState": "S30",
-					"Meaning": "Player",
-					"Style": "-",
-					"Utterance": "What does that have to do with this?",
-					"UtteranceId": "TTS-1939FDBBAF67FFBF9D09766727EF9714"
+					"Utterance": "Yes, precisely.",
+					"UtteranceId": "TTS-BB7104103D5DEBABFC3FA9683082105A"
 				}, 
 				{
 					"CurrentState": "S25",
 					"NextState": "S35",
-					"Meaning": "Player",
+					"Meaning": "ChangeActors(Devil, Devil)",
 					"Style": "-",
 					"Utterance": "69.",
 					"UtteranceId": "TTS-4023CED117ADC1CF9B457B7DA48D6EEA"
 				}, 
 				{
-					"CurrentState": "S35",
-					"NextState": "S36",
-					"Meaning": "ChangeActors(Angel, Devil)",
+					"CurrentState": "S36",
+					"NextState": "S37",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "*wheezes* Nice",
-					"UtteranceId": "TTS-90DF2EACFEDABD948ABE3AD5C562319C"
+					"Utterance": "… I want to complain but I can’t tell if it’s correct or not.",
+					"UtteranceId": "TTS-32E826080DD506DF529DA37DF0AC3570"
+				}, 
+				{
+					"CurrentState": "S37",
+					"NextState": "S31",
+					"Meaning": "ChangeActors(Angel, Angel)",
+					"Style": "-",
+					"Utterance": "HA!",
+					"UtteranceId": "TTS-D723629EFB923DFDF4D456CB7F6C47A9"
 				}, 
 				{
 					"CurrentState": "S34",
@@ -366,20 +358,20 @@
 					"UtteranceId": "TTS-FCDCF303C0C78AC5BF76172426180B9D"
 				}, 
 				{
-					"CurrentState": "S36",
-					"NextState": "S37",
-					"Meaning": "Angel",
-					"Style": "-",
-					"Utterance": "… I want to complain but I can’t tell if it’s correct or not.",
-					"UtteranceId": "TTS-32E826080DD506DF529DA37DF0AC3570"
-				}, 
-				{
 					"CurrentState": "S16",
 					"NextState": "S17",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
 					"Utterance": "Then you must prove you are worthy... Consider this your trial.",
 					"UtteranceId": "TTS-D0FA5DD990E525385EF0D66CF19C7084"
+				}, 
+				{
+					"CurrentState": "S26",
+					"NextState": "S39",
+					"Meaning": "ChangeActors(Devil, Devil)",
+					"Style": "-",
+					"Utterance": "Yes.",
+					"UtteranceId": "TTS-4F7B50BEC76BCF2B862EEB2140701427"
 				}, 
 				{
 					"CurrentState": "S38",
@@ -398,20 +390,20 @@
 					"UtteranceId": "TTS-B37CB550DE2B586412D9F6D617A84312"
 				}, 
 				{
-					"CurrentState": "S20",
-					"NextState": "S21",
-					"Meaning": "ChangeActors(Angel, Devil)",
+					"CurrentState": "S35",
+					"NextState": "S36",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "I'm ready.",
-					"UtteranceId": "TTS-2B2BE957FB94DFE0C0A0E40472080FD8"
+					"Utterance": "*wheezes* Nice",
+					"UtteranceId": "TTS-90DF2EACFEDABD948ABE3AD5C562319C"
 				}, 
 				{
-					"CurrentState": "S26",
-					"NextState": "S39",
-					"Meaning": "Player",
+					"CurrentState": "S66",
+					"NextState": "S67",
+					"Meaning": "ChangeActors(Angel, Angel)",
 					"Style": "-",
-					"Utterance": "Yes.",
-					"UtteranceId": "TTS-4F7B50BEC76BCF2B862EEB2140701427"
+					"Utterance": "Are you kidding me? His pride will sink the boat, you can have him! Just fly him off to Heaven.",
+					"UtteranceId": "TTS-2D537BE606EFA557719A0F998C659B41"
 				}, 
 				{
 					"CurrentState": "S39",
@@ -446,76 +438,52 @@
 					"UtteranceId": "TTS-AB1657BEBD8E84802FBEA23B7979FDFD"
 				}, 
 				{
-					"CurrentState": "S66",
-					"NextState": "S67",
-					"Meaning": "Devil",
-					"Style": "-",
-					"Utterance": "Are you kidding me? His pride will sink the boat, you can have him! Just fly him off to Heaven.",
-					"UtteranceId": "TTS-2D537BE606EFA557719A0F998C659B41"
-				}, 
-				{
 					"CurrentState": "S73",
 					"NextState": "S74",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "*sighs* Alright, let’s get this over with *flies Player to Heaven*",
 					"UtteranceId": "TTS-54D911365D3F4EC91AF6C883FD9734E8"
 				}, 
 				{
-					"CurrentState": "S70",
-					"NextState": "S71",
-					"Meaning": "ChangeActors(Angel, Player)",
-					"Style": "-",
-					"Utterance": "Yeah, where are your rules now, oh Holy One?",
-					"UtteranceId": "TTS-31A3CDDF91B40C74F791EC08B3E3A20B"
-				}, 
-				{
-					"CurrentState": "S72",
-					"NextState": "S68",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "Well then… I’m going to Hell.",
-					"UtteranceId": "TTS-595B8D333DDFD88B72B747A68B3C9D40"
-				}, 
-				{
 					"CurrentState": "S71",
 					"NextState": "S72",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
 					"Utterance": "You haven’t repented! It doesn’t count!",
 					"UtteranceId": "TTS-2C159089B0E7797B1A082A215DD90874"
 				}, 
 				{
-					"CurrentState": "S60",
-					"NextState": "S61",
-					"Meaning": "ChangeActors(Devil, Player)",
+					"CurrentState": "S72",
+					"NextState": "S68",
+					"Meaning": "ChangeActors(Devil, Devil)",
 					"Style": "-",
-					"Utterance": "Because… forgiveness is a virtue?",
-					"UtteranceId": "TTS-10DFD51A82E68BCBA47D6506D6427B3F"
+					"Utterance": "Well then… I’m going to Hell.",
+					"UtteranceId": "TTS-595B8D333DDFD88B72B747A68B3C9D40"
+				}, 
+				{
+					"CurrentState": "S52",
+					"NextState": "End2",
+					"Meaning": "ChangeActors(Angel, Player)",
+					"Style": "-",
+					"Utterance": "[You become an angel - Ending 2]",
+					"UtteranceId": "TTS-EB96EA5F1E9C3CBCA946C053EB47202E"
 				}, 
 				{
 					"CurrentState": "S72",
 					"NextState": "S73",
-					"Meaning": "Player",
+					"Meaning": "ChangeActors(Angel, Angel)",
 					"Style": "-",
 					"Utterance": "Well then… I’m sorry.",
 					"UtteranceId": "TTS-AAFD618B0A39BDE19D56916B2F8FB270"
 				}, 
 				{
-					"CurrentState": "S74",
-					"NextState": "End3",
-					"Meaning": "-",
+					"CurrentState": "S65",
+					"NextState": "S66",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "[You went to Heaven - Ending 3]",
-					"UtteranceId": "TTS-87BCD9ABD7AE5E7B353FCFA3F7E3C437"
-				}, 
-				{
-					"CurrentState": "S29",
-					"NextState": "End4",
-					"Meaning": "-",
-					"Style": "-",
-					"Utterance": "[You went to Hell - Ending 4]",
-					"UtteranceId": "TTS-B84FE5543CCF67D41D5E02F623641582"
+					"Utterance": "Your pride is shameful. Off to the hellish boat you go!",
+					"UtteranceId": "TTS-018E135517445F81FC9A917B3627CE5F"
 				}, 
 				{
 					"CurrentState": "S69",
@@ -526,25 +494,33 @@
 					"UtteranceId": "TTS-799321443F0C40666D4CC9F705CEF88A"
 				}, 
 				{
-					"CurrentState": "S68",
-					"NextState": "S29",
-					"Meaning": "Devil",
+					"CurrentState": "S29",
+					"NextState": "End4",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "NO! I’ll have a special punishment for you once we’re there!",
-					"UtteranceId": "TTS-93C7C02F63B55BA2A7F97145FAB69353"
+					"Utterance": "[You went to Hell - Ending 4]",
+					"UtteranceId": "TTS-B84FE5543CCF67D41D5E02F623641582"
 				}, 
 				{
 					"CurrentState": "Results",
 					"NextState": "End3",
-					"Meaning": "-",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "[You went to Heaven - Ending 3]",
 					"UtteranceId": "TTS-87BCD9ABD7AE5E7B353FCFA3F7E3C437"
 				}, 
 				{
+					"CurrentState": "S2",
+					"NextState": "S3",
+					"Meaning": "ChangeActors(Angel, Player)",
+					"Style": "-",
+					"Utterance": "Just kidding, you're dead af",
+					"UtteranceId": "TTS-5545AA87C59FB5BC4728F3E55E06B3AE"
+				}, 
+				{
 					"CurrentState": "Start",
 					"NextState": "S1",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
 					"Utterance": "You're finally awake.",
 					"UtteranceId": "TTS-09F9CE2679DAEE06E11445F201C63864"
@@ -552,10 +528,26 @@
 				{
 					"CurrentState": "Results",
 					"NextState": "End4",
-					"Meaning": "-",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
 					"Utterance": "[You went to Hell - Ending 4]",
 					"UtteranceId": "TTS-B84FE5543CCF67D41D5E02F623641582"
+				}, 
+				{
+					"CurrentState": "S26",
+					"NextState": "S40",
+					"Meaning": "ChangeActors(Devil, Devil)",
+					"Style": "-",
+					"Utterance": "No.",
+					"UtteranceId": "TTS-1BFD7F653591E54B5C9C4E428C65F608"
+				}, 
+				{
+					"CurrentState": "S20",
+					"NextState": "S21",
+					"Meaning": "ChangeActors(Angel, Angel)",
+					"Style": "-",
+					"Utterance": "I'm ready.",
+					"UtteranceId": "TTS-2B2BE957FB94DFE0C0A0E40472080FD8"
 				}, 
 				{
 					"CurrentState": "S40",
@@ -566,12 +558,12 @@
 					"UtteranceId": "TTS-B699D46DF8815A2AA1C801CCD7489533"
 				}, 
 				{
-					"CurrentState": "S26",
-					"NextState": "S40",
-					"Meaning": "Player",
+					"CurrentState": "S44",
+					"NextState": "S45",
+					"Meaning": "ChangeActors(Devil, Devil)",
 					"Style": "-",
-					"Utterance": "No.",
-					"UtteranceId": "TTS-1BFD7F653591E54B5C9C4E428C65F608"
+					"Utterance": "That is not what I intended but… How is it, Lucifer? The meme?",
+					"UtteranceId": "TTS-FB446D92F0B79DEDD2E0C9D089ADE289"
 				}, 
 				{
 					"CurrentState": "S27",
@@ -606,17 +598,9 @@
 					"UtteranceId": "TTS-2C3CCC49A3B00C4D1CDA42DD7DB2102D"
 				}, 
 				{
-					"CurrentState": "S44",
-					"NextState": "S45",
-					"Meaning": "Angel",
-					"Style": "-",
-					"Utterance": "That is not what I intended but… How is it, Lucifer? The meme?",
-					"UtteranceId": "TTS-FB446D92F0B79DEDD2E0C9D089ADE289"
-				}, 
-				{
 					"CurrentState": "S31",
 					"NextState": "Results",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "We will decide your fate now.",
 					"UtteranceId": "TTS-5FC9DF58B38A1934ABAF554976EA4DE3"
@@ -624,10 +608,18 @@
 				{
 					"CurrentState": "S43",
 					"NextState": "Results",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
 					"Utterance": "I think we all know where he’s going...",
 					"UtteranceId": "TTS-77E306B429089B4BA10913749BEC4EC2"
+				}, 
+				{
+					"CurrentState": "S45",
+					"NextState": "S46",
+					"Meaning": "ChangeActors(Angel, Angel)",
+					"Style": "-",
+					"Utterance": "Modern problems require modern solutions?",
+					"UtteranceId": "TTS-ED200D35C6208657976457F698A7F835"
 				}, 
 				{
 					"CurrentState": "S28",
@@ -638,12 +630,12 @@
 					"UtteranceId": "TTS-5EEAAEA27E68FFA78DB61A6E0EBFF40C"
 				}, 
 				{
-					"CurrentState": "S45",
-					"NextState": "S46",
-					"Meaning": "Devil",
+					"CurrentState": "S50",
+					"NextState": "S51",
+					"Meaning": "ChangeActors(Angel, Angel)",
 					"Style": "-",
-					"Utterance": "Modern problems require modern solutions?",
-					"UtteranceId": "TTS-ED200D35C6208657976457F698A7F835"
+					"Utterance": "And I also believe people become angels when they die.",
+					"UtteranceId": "TTS-18D0BAD01B82C2D2EE41702EBB16B7CB"
 				}, 
 				{
 					"CurrentState": "S47",
@@ -654,12 +646,12 @@
 					"UtteranceId": "TTS-04040CC7615BAD31ED0906CA08EC54A5"
 				}, 
 				{
-					"CurrentState": "S46",
-					"NextState": "S43",
-					"Meaning": "ChangeActors(Devil, Player)",
+					"CurrentState": "S22",
+					"NextState": "S24",
+					"Meaning": "ChangeActors(Angel, Angel)",
 					"Style": "-",
-					"Utterance": "Yes, precisely.",
-					"UtteranceId": "TTS-BB7104103D5DEBABFC3FA9683082105A"
+					"Utterance": "You go first.",
+					"UtteranceId": "TTS-ABAEED9554745FC43FF05D2BC915D169"
 				}, 
 				{
 					"CurrentState": "S47",
@@ -710,20 +702,20 @@
 					"UtteranceId": "TTS-070EF8862B69603286D80BCBB04809BB"
 				}, 
 				{
-					"CurrentState": "S50",
-					"NextState": "S51",
-					"Meaning": "Player",
-					"Style": "-",
-					"Utterance": "And I also believe people become angels when they die.",
-					"UtteranceId": "TTS-18D0BAD01B82C2D2EE41702EBB16B7CB"
-				}, 
-				{
 					"CurrentState": "S51",
 					"NextState": "S52",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "Wait a second--",
 					"UtteranceId": "TTS-73C7253CA5ECF727D7635D0BFC27847F"
+				}, 
+				{
+					"CurrentState": "S26",
+					"NextState": "S38",
+					"Meaning": "ChangeActors(Devil, Devil)",
+					"Style": "-",
+					"Utterance": "What?",
+					"UtteranceId": "TTS-8717CFCA734E8987971F63B20EEB8024"
 				}, 
 				{
 					"CurrentState": "S55",
@@ -734,20 +726,12 @@
 					"UtteranceId": "TTS-C231A6C09C3056C342E0C4FB022A6322"
 				}, 
 				{
-					"CurrentState": "S52",
-					"NextState": "End2",
-					"Meaning": "PlayerEnd2",
+					"CurrentState": "S27",
+					"NextState": "S55",
+					"Meaning": "ChangeActors(Angel, Angel)",
 					"Style": "-",
-					"Utterance": "[You become an angel - Ending 2]",
-					"UtteranceId": "TTS-EB96EA5F1E9C3CBCA946C053EB47202E"
-				}, 
-				{
-					"CurrentState": "S26",
-					"NextState": "S38",
-					"Meaning": "Player",
-					"Style": "-",
-					"Utterance": "What?",
-					"UtteranceId": "TTS-8717CFCA734E8987971F63B20EEB8024"
+					"Utterance": "Because I get everything that I want.",
+					"UtteranceId": "TTS-426CFD441ADBA53C6B4699AE8D6BF13D"
 				}, 
 				{
 					"CurrentState": "S53",
@@ -783,11 +767,11 @@
 				}, 
 				{
 					"CurrentState": "S27",
-					"NextState": "S55",
-					"Meaning": "Player",
+					"NextState": "S56",
+					"Meaning": "ChangeActors(Angel, Angel)",
 					"Style": "-",
-					"Utterance": "Because I get everything that I want.",
-					"UtteranceId": "TTS-426CFD441ADBA53C6B4699AE8D6BF13D"
+					"Utterance": "I must’ve done something good with my life, even if I did something bad too.",
+					"UtteranceId": "TTS-EA85E5B5A91C201C7914DD3B73507E90"
 				}, 
 				{
 					"CurrentState": "S49",
@@ -806,17 +790,9 @@
 					"UtteranceId": "TTS-B8B70C6C50B9F200A0D3D1BC3086A6F3"
 				}, 
 				{
-					"CurrentState": "S27",
-					"NextState": "S56",
-					"Meaning": "Player",
-					"Style": "-",
-					"Utterance": "I must’ve done something good with my life, even if I did something bad too.",
-					"UtteranceId": "TTS-EA85E5B5A91C201C7914DD3B73507E90"
-				}, 
-				{
 					"CurrentState": "S57",
 					"NextState": "S58",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
 					"Utterance": "You fool! That just shows how lazy you are. And laziness is a mortal sin. Perhaps this trial is worthless after all…",
 					"UtteranceId": "TTS-2322D9220D757387B8C2E21980F4F256"
@@ -824,10 +800,18 @@
 				{
 					"CurrentState": "S20",
 					"NextState": "S57",
-					"Meaning": "Player",
+					"Meaning": "ChangeActors(Angel, Angel)",
 					"Style": "-",
 					"Utterance": "I have to go through a trial? Argh, it’s easier to just go to Hell.",
 					"UtteranceId": "TTS-26F47EDF7F582DA3B275477F67BA8618"
+				}, 
+				{
+					"CurrentState": "S59",
+					"NextState": "S60",
+					"Meaning": "ChangeActors(Player, Player)",
+					"Style": "-",
+					"Utterance": "Why should I?",
+					"UtteranceId": "TTS-DDA0C450AB3F801410AA843DC4A0AB06"
 				}, 
 				{
 					"CurrentState": "S61",
@@ -838,44 +822,44 @@
 					"UtteranceId": "TTS-FFF31717D9CACECA47BE18488D3B7BEA"
 				}, 
 				{
-					"CurrentState": "S59",
-					"NextState": "S60",
-					"Meaning": "Angel",
-					"Style": "-",
-					"Utterance": "Why should I?",
-					"UtteranceId": "TTS-DDA0C450AB3F801410AA843DC4A0AB06"
-				}, 
-				{
 					"CurrentState": "S58",
 					"NextState": "S59",
-					"Meaning": "Player",
+					"Meaning": "ChangeActors(Angel, Angel)",
 					"Style": "-",
 					"Utterance": "No, wait! Give me another chance!",
 					"UtteranceId": "TTS-7F0E06C81EDEDB7377302B28387B02F6"
 				}, 
 				{
 					"CurrentState": "S63",
-					"NextState": "S14",
-					"Meaning": "Player",
-					"Style": "-",
-					"Utterance": "I will take Satan's offer, fuck Heaven!",
-					"UtteranceId": "TTS-B28053167C7DD5E22D009A56E2230D7B"
-				}, 
-				{
-					"CurrentState": "S63",
 					"NextState": "S21",
-					"Meaning": "Player",
+					"Meaning": "ChangeActors(Angel, Angel)",
 					"Style": "-",
 					"Utterance": "I want to give the trial another try.",
 					"UtteranceId": "TTS-58B5984F0F8E6F6888502B9274F4CA2A"
 				}, 
 				{
+					"CurrentState": "S25",
+					"NextState": "S30",
+					"Meaning": "ChangeActors(Devil, Devil)",
+					"Style": "-",
+					"Utterance": "What does that have to do with this?",
+					"UtteranceId": "TTS-1939FDBBAF67FFBF9D09766727EF9714"
+				}, 
+				{
 					"CurrentState": "S62",
 					"NextState": "S63",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
 					"Utterance": "Or you can give the trial one more try and go to Heaven…",
 					"UtteranceId": "TTS-E6D2198322F7988F3EAF90B954215ECF"
+				}, 
+				{
+					"CurrentState": "S11",
+					"NextState": "S12",
+					"Meaning": "ChangeActors(Player, Player)",
+					"Style": "-",
+					"Utterance": "Everyone has a guaranteed spot in Hell. The real challenge is to get invited into Heaven.",
+					"UtteranceId": "TTS-0FBE2901E45F6BB66F2E71C248E3C592"
 				}, 
 				{
 					"CurrentState": "S18",
@@ -886,20 +870,36 @@
 					"UtteranceId": "TTS-D75D7D0ED28051C0F7655E037F3808A6"
 				}, 
 				{
-					"CurrentState": "S11",
-					"NextState": "S12",
-					"Meaning": "-",
+					"CurrentState": "S4",
+					"NextState": "S5",
+					"Meaning": "Change(Player, Devil)",
 					"Style": "-",
-					"Utterance": "Everyone has a guaranteed spot in Hell. The real challenge is to get invited into Heaven.",
-					"UtteranceId": "TTS-0FBE2901E45F6BB66F2E71C248E3C592"
+					"Utterance": "You ain't the boss of me!",
+					"UtteranceId": "TTS-F8FDC2AFA78F22573A2C2C08DFBF0F9B"
 				}, 
 				{
-					"CurrentState": "S2",
-					"NextState": "S3",
-					"Meaning": "ChangeActors(Angel, Devil)",
+					"CurrentState": "S68",
+					"NextState": "S29",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "Just kidding, you're dead af",
-					"UtteranceId": "TTS-5545AA87C59FB5BC4728F3E55E06B3AE"
+					"Utterance": "NO! I’ll have a special punishment for you once we’re there!",
+					"UtteranceId": "TTS-93C7C02F63B55BA2A7F97145FAB69353"
+				}, 
+				{
+					"CurrentState": "S8",
+					"NextState": "S9",
+					"Meaning": "ChangeActors(Angel, Player)",
+					"Style": "-",
+					"Utterance": "Narnia.",
+					"UtteranceId": "TTS-6AF71842B8662F2A4903C6A315A2C552"
+				}, 
+				{
+					"CurrentState": "S14",
+					"NextState": "End1",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "[You have been turned into a demon - Ending 1]",
+					"UtteranceId": "TTS-E76A09646FB6B299B674BCB514AF0C75"
 				}],
 			"Characters": [
 				{
@@ -908,7 +908,13 @@
 							"Perspective": "Player",
 							"Knowledge":
 								{
-
+									"SELF":
+										{
+											"Answered(Questions)": "0, 1",
+											"DialogueState(Devil)": "Start, 1",
+											"DialogueState(Angel)": "Start, 1",
+											"Has(Floor)": "Devil, 1"
+										}
 								}
 						},
 					"BodyName": "Male",
@@ -948,7 +954,9 @@
 									"SELF":
 										{
 											"DialogueState(Player)": "Start, 1",
-											"Has(Floor)": "Devil, 1"
+											"DialogueState(Angel)": "Start, 1",
+											"Has(Floor)": "Devil, 1",
+											"Answered(Questions)": "0, 1"
 										}
 								}
 						},
@@ -986,7 +994,13 @@
 							"Perspective": "Angel",
 							"Knowledge":
 								{
-
+									"SELF":
+										{
+											"DialogueState(Devil)": "Start, 1",
+											"DialogueState(Player)": "Start, 1",
+											"Has(Floor)": "Devil, 1",
+											"Answered(Questions)": "0, 1"
+										}
 								}
 						},
 					"BodyName": "Female",
@@ -1045,24 +1059,135 @@
 											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "DialogueState([nt])",
+											"PropertyName": "DialogueState(Angel)",
 											"NewValue": "[ns]",
-											"ObserverAgent": "[nsj]"
+											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "DialogueState([nsj])",
+											"PropertyName": "DialogueState(Devil)",
 											"NewValue": "[ns]",
-											"ObserverAgent": "[nt]"
+											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "DialogueState([s])",
-											"NewValue": "-",
-											"ObserverAgent": "[t]"
+											"PropertyName": "DialogueState(Player)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}]
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(S26, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": [
+										{
+											"PropertyName": "Has(Floor)",
+											"NewValue": "[nsj]",
+											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "DialogueState([t])",
-											"NewValue": "-",
-											"ObserverAgent": "[s]"
+											"PropertyName": "Answered(Questions)",
+											"NewValue": "Math(Answered(Questions), Plus, 1)",
+											"ObserverAgent": "Player"
+										}, 
+										{
+											"PropertyName": "DialogueState(Angel)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Devil)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Player)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}]
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(S27, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": [
+										{
+											"PropertyName": "Has(Floor)",
+											"NewValue": "[nsj]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "Answered(Questions)",
+											"NewValue": "Math(Answered(Questions), Plus, 1)",
+											"ObserverAgent": "Player"
+										}, 
+										{
+											"PropertyName": "DialogueState(Devil)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Angel)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Player)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}]
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(S25, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": [
+										{
+											"PropertyName": "Has(Floor)",
+											"NewValue": "[nsj]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "Answered(Questions)",
+											"NewValue": "Math(Answered(Questions), Plus, 1)",
+											"ObserverAgent": "Player"
+										}, 
+										{
+											"PropertyName": "DialogueState(Devil)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Angel)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Player)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}]
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(S28, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": [
+										{
+											"PropertyName": "Has(Floor)",
+											"NewValue": "[nsj]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "Answered(Questions)",
+											"NewValue": "Math(Answered(Questions), Plus, 1)",
+											"ObserverAgent": "Player"
+										}, 
+										{
+											"PropertyName": "DialogueState(Angel)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Devil)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Player)",
+											"NewValue": "[ns]",
+											"ObserverAgent": "*"
 										}]
 								}]
 						},
@@ -1079,11 +1204,39 @@
 								}, 
 								{
 									"key": "Event(Action-End, [s], Speak([cs], [ns], ChangeActors([nsj], [nt]), *), [t])",
-									"value": 1
+									"value": 2
 								}, 
 								{
 									"key": "Event(Action-End, [s], DuplicateSpeak([cs], [ns], ChangeActors([nsj], [nt]), *), [t])",
 									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(S26, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": 3
+								}, 
+								{
+									"key": "Event(Action-End, [s], DuplicateSpeak(S26, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(S27, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": 3
+								}, 
+								{
+									"key": "Event(Action-End, [s], DuplicateSpeak(S27, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(S25, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": 3
+								}, 
+								{
+									"key": "Event(Action-End, [s], DuplicateSpeak(S25, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": 1
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak(S28, [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": 3
 								}]
 						}
 				}
