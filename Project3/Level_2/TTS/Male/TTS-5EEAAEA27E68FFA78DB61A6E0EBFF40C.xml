@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LipSyncVisemes wavFile="TTS-5EEAAEA27E68FFA78DB61A6E0EBFF40C.wav">
+  <viseme type="2" time="0.1" duration="0.062" />
+  <viseme type="6" time="0.162" duration="0.062" />
+  <viseme type="19" time="0.224" duration="0.075" />
+  <viseme type="8" time="0.299" duration="0.095" />
+  <viseme type="19" time="0.394" duration="0.04" />
+  <viseme type="19" time="0.434" duration="0.035" />
+  <viseme type="21" time="0.469" duration="0.045" />
+  <viseme type="1" time="0.514" duration="0.055" />
+  <viseme type="14" time="0.569" duration="0.08" />
+  <viseme type="6" time="0.649" duration="0.115" />
+  <viseme type="18" time="0.764" duration="0.05" />
+  <viseme type="6" time="0.814" duration="0.1" />
+  <viseme type="19" time="0.914" duration="0.045" />
+  <viseme type="12" time="0.959" duration="0.09" />
+  <viseme type="4" time="1.049" duration="0.14" />
+  <viseme type="14" time="1.189" duration="0.16" />
+</LipSyncVisemes>
