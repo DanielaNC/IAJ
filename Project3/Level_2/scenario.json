@@ -3,7 +3,7 @@
 		{
 			"classId": 0,
 			"ScenarioName": "AutoDaBarcaDoInferno",
-			"Description": "You are a sleep specialist and are about to meet a patient who is referred to you. In particular, this patient has had trouble sleeping recently.",
+			"Description": "The Player has died and is now in front of the Devil and the Angel.",
 			"Dialogues": [
 				{
 					"CurrentState": "S3",
@@ -46,12 +46,12 @@
 					"UtteranceId": "TTS-2839BBF9FA80BE47EE5D7CDC7C896258"
 				}, 
 				{
-					"CurrentState": "S17",
-					"NextState": "S18",
-					"Meaning": "ChangeActors(Devil, Player)",
+					"CurrentState": "S10",
+					"NextState": "S11",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Trial?",
-					"UtteranceId": "TTS-659939E321A4DEBE78928472BA93F73B"
+					"Utterance": "Come to Hell, it’s lit 24/7.",
+					"UtteranceId": "TTS-4026E2B95FF7BED6037181CE4E7108E0"
 				}, 
 				{
 					"CurrentState": "S21",
@@ -70,12 +70,12 @@
 					"UtteranceId": "TTS-3D53393EFA2592E93EF624F15CDBF478"
 				}, 
 				{
-					"CurrentState": "S10",
-					"NextState": "S11",
-					"Meaning": "ChangeActors(Angel, Player)",
+					"CurrentState": "S27",
+					"NextState": "S49",
+					"Meaning": "ChangeActors(Devil, Angel)",
 					"Style": "-",
-					"Utterance": "Come to Hell, it’s lit 24/7.",
-					"UtteranceId": "TTS-4026E2B95FF7BED6037181CE4E7108E0"
+					"Utterance": "I don’t believe in Hell.",
+					"UtteranceId": "TTS-5EEAAEA27E68FFA78DB61A6E0EBFF40C"
 				}, 
 				{
 					"CurrentState": "S8",
@@ -118,14 +118,6 @@
 					"UtteranceId": "TTS-E069F8BB2F78C35E9DEB8A69C0B46AF6"
 				}, 
 				{
-					"CurrentState": "S12",
-					"NextState": "S13",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "Fuck Heaven, I wanna be a demon.",
-					"UtteranceId": "TTS-037BD6C5407F3AF861F153B218F1612D"
-				}, 
-				{
 					"CurrentState": "S60",
 					"NextState": "S64",
 					"Meaning": "ChangeActors(Devil, Angel)",
@@ -134,20 +126,20 @@
 					"UtteranceId": "TTS-B401622C3DD54ED6323CBBE7CB6FAA57"
 				}, 
 				{
-					"CurrentState": "S27",
-					"NextState": "S49",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "I don’t believe in Hell.",
-					"UtteranceId": "TTS-5EEAAEA27E68FFA78DB61A6E0EBFF40C"
-				}, 
-				{
 					"CurrentState": "S28",
 					"NextState": "S41",
-					"Meaning": "ChangeActors(Devil, Player)",
+					"Meaning": "ChangeActors(Devil, Angel)",
 					"Style": "-",
 					"Utterance": "I am very patient.",
 					"UtteranceId": "TTS-5F8FEB79B5E760F9E0CA328AA88CD178"
+				}, 
+				{
+					"CurrentState": "S70",
+					"NextState": "S71",
+					"Meaning": "ChangeActors(Angel, Angel)",
+					"Style": "-",
+					"Utterance": "Yeah, where are your rules now, oh Holy One?",
+					"UtteranceId": "TTS-31A3CDDF91B40C74F791EC08B3E3A20B"
 				}, 
 				{
 					"CurrentState": "S6",
@@ -174,12 +166,12 @@
 					"UtteranceId": "TTS-B11C5023EA408012A5CF82E550398878"
 				}, 
 				{
-					"CurrentState": "S70",
-					"NextState": "S71",
-					"Meaning": "ChangeActors(Angel, Devil)",
+					"CurrentState": "S22",
+					"NextState": "S23",
+					"Meaning": "ChangeActors(Devil, Angel)",
 					"Style": "-",
-					"Utterance": "Yeah, where are your rules now, oh Holy One?",
-					"UtteranceId": "TTS-31A3CDDF91B40C74F791EC08B3E3A20B"
+					"Utterance": "He should go first. Oh wait, we are the ones asking the questions.",
+					"UtteranceId": "TTS-2561EB11D669E779E2CD7466C5566571"
 				}, 
 				{
 					"CurrentState": "S19",
@@ -214,20 +206,20 @@
 					"UtteranceId": "TTS-00A00BFEFA644766DF078BB6158202C7"
 				}, 
 				{
-					"CurrentState": "S22",
-					"NextState": "S23",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "He should go first. Oh wait, we are the ones asking the questions.",
-					"UtteranceId": "TTS-2561EB11D669E779E2CD7466C5566571"
-				}, 
-				{
 					"CurrentState": "S25",
 					"NextState": "S35",
 					"Meaning": "ChangeActors(Devil, Devil)",
-					"Style": "Disappoint",
+					"Style": "Hate",
 					"Utterance": "69.",
 					"UtteranceId": "TTS-4023CED117ADC1CF9B457B7DA48D6EEA"
+				}, 
+				{
+					"CurrentState": "S28",
+					"NextState": "S44",
+					"Meaning": "ChangeActors(Devil, Angel)",
+					"Style": "-",
+					"Utterance": "I can eat spicy food without crying.",
+					"UtteranceId": "TTS-221F2321CCABBD00E1C18F913307AACB"
 				}, 
 				{
 					"CurrentState": "S23",
@@ -272,8 +264,8 @@
 				{
 					"CurrentState": "S25",
 					"NextState": "S33",
-					"Meaning": "ChangeActors(Angel, Player)",
-					"Style": "-",
+					"Meaning": "ChangeActors(Angel, Angel)",
+					"Style": "Love",
 					"Utterance": "I don't know.",
 					"UtteranceId": "TTS-45C6433A99F9CF4C21AF5AB2C1E6D605"
 				}, 
@@ -303,11 +295,11 @@
 				}, 
 				{
 					"CurrentState": "S28",
-					"NextState": "S44",
-					"Meaning": "ChangeActors(Angel, Devil)",
-					"Style": "-",
-					"Utterance": "I can eat spicy food without crying.",
-					"UtteranceId": "TTS-221F2321CCABBD00E1C18F913307AACB"
+					"NextState": "S47",
+					"Meaning": "ChangeActors(Devil, Angel)",
+					"Style": "Love",
+					"Utterance": "I never did any TikTok dances.",
+					"UtteranceId": "TTS-DC10A018DB48331163B2869024231F59"
 				}, 
 				{
 					"CurrentState": "S33",
@@ -326,12 +318,12 @@
 					"UtteranceId": "TTS-BB7104103D5DEBABFC3FA9683082105A"
 				}, 
 				{
-					"CurrentState": "S28",
-					"NextState": "S47",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "Love",
-					"Utterance": "I never did any TikTok dances.",
-					"UtteranceId": "TTS-DC10A018DB48331163B2869024231F59"
+					"CurrentState": "S37",
+					"NextState": "S31",
+					"Meaning": "ChangeActors(Angel, Angel)",
+					"Style": "-",
+					"Utterance": "HA!",
+					"UtteranceId": "TTS-D723629EFB923DFDF4D456CB7F6C47A9"
 				}, 
 				{
 					"CurrentState": "S36",
@@ -342,12 +334,12 @@
 					"UtteranceId": "TTS-32E826080DD506DF529DA37DF0AC3570"
 				}, 
 				{
-					"CurrentState": "S37",
-					"NextState": "S31",
-					"Meaning": "ChangeActors(Angel, Angel)",
-					"Style": "-",
-					"Utterance": "HA!",
-					"UtteranceId": "TTS-D723629EFB923DFDF4D456CB7F6C47A9"
+					"CurrentState": "S27",
+					"NextState": "S53",
+					"Meaning": "ChangeActors(Devil, Angel)",
+					"Style": "Disappoint",
+					"Utterance": "Because it’s where everyone else is.",
+					"UtteranceId": "TTS-B6333A703B617A4C5B299EAEC7FE2B60"
 				}, 
 				{
 					"CurrentState": "S34",
@@ -422,12 +414,12 @@
 					"UtteranceId": "TTS-E3CDE3F61DE01C172FA395C723C68D2F"
 				}, 
 				{
-					"CurrentState": "S27",
-					"NextState": "S53",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "Disappoint",
-					"Utterance": "Because it’s where everyone else is.",
-					"UtteranceId": "TTS-B6333A703B617A4C5B299EAEC7FE2B60"
+					"CurrentState": "S20",
+					"NextState": "S21",
+					"Meaning": "ChangeActors(Angel, Angel)",
+					"Style": "Approval",
+					"Utterance": "I'm ready.",
+					"UtteranceId": "TTS-2B2BE957FB94DFE0C0A0E40472080FD8"
 				}, 
 				{
 					"CurrentState": "S18",
@@ -534,12 +526,12 @@
 					"UtteranceId": "TTS-1BFD7F653591E54B5C9C4E428C65F608"
 				}, 
 				{
-					"CurrentState": "S20",
-					"NextState": "S21",
-					"Meaning": "ChangeActors(Angel, Angel)",
+					"CurrentState": "S28",
+					"NextState": "S49",
+					"Meaning": "ChangeActors(Devil, Angel)",
 					"Style": "-",
-					"Utterance": "I'm ready.",
-					"UtteranceId": "TTS-2B2BE957FB94DFE0C0A0E40472080FD8"
+					"Utterance": "I don’t believe in Hell.",
+					"UtteranceId": "TTS-5EEAAEA27E68FFA78DB61A6E0EBFF40C"
 				}, 
 				{
 					"CurrentState": "S40",
@@ -614,12 +606,12 @@
 					"UtteranceId": "TTS-ED200D35C6208657976457F698A7F835"
 				}, 
 				{
-					"CurrentState": "S28",
-					"NextState": "S49",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "I don’t believe in Hell.",
-					"UtteranceId": "TTS-5EEAAEA27E68FFA78DB61A6E0EBFF40C"
+					"CurrentState": "S27",
+					"NextState": "S56",
+					"Meaning": "ChangeActors(Angel, Angel)",
+					"Style": "Approval",
+					"Utterance": "I must’ve done something good with my life, even if I did something bad too.",
+					"UtteranceId": "TTS-EA85E5B5A91C201C7914DD3B73507E90"
 				}, 
 				{
 					"CurrentState": "S50",
@@ -758,12 +750,12 @@
 					"UtteranceId": "TTS-6A31AD5AD1C100CE2F328A7D058D87CB"
 				}, 
 				{
-					"CurrentState": "S27",
-					"NextState": "S56",
+					"CurrentState": "S20",
+					"NextState": "S57",
 					"Meaning": "ChangeActors(Angel, Angel)",
-					"Style": "-",
-					"Utterance": "I must’ve done something good with my life, even if I did something bad too.",
-					"UtteranceId": "TTS-EA85E5B5A91C201C7914DD3B73507E90"
+					"Style": "Hate",
+					"Utterance": "I have to go through a trial? Argh, it’s easier to just go to Hell.",
+					"UtteranceId": "TTS-26F47EDF7F582DA3B275477F67BA8618"
 				}, 
 				{
 					"CurrentState": "S49",
@@ -788,14 +780,6 @@
 					"Style": "Hate",
 					"Utterance": "You fool! That just shows how lazy you are. And laziness is a mortal sin. Perhaps this trial is worthless after all…",
 					"UtteranceId": "TTS-2322D9220D757387B8C2E21980F4F256"
-				}, 
-				{
-					"CurrentState": "S20",
-					"NextState": "S57",
-					"Meaning": "ChangeActors(Angel, Angel)",
-					"Style": "-",
-					"Utterance": "I have to go through a trial? Argh, it’s easier to just go to Hell.",
-					"UtteranceId": "TTS-26F47EDF7F582DA3B275477F67BA8618"
 				}, 
 				{
 					"CurrentState": "S59",
@@ -900,6 +884,22 @@
 					"Style": "Disappoint",
 					"Utterance": "Am I in Skyrim? Fuck yes, I always wanted that.",
 					"UtteranceId": "TTS-C63ACC3D74DEDBFBDCABBFE75AB36308"
+				}, 
+				{
+					"CurrentState": "S12",
+					"NextState": "S13",
+					"Meaning": "ChangeActors(Devil, Devil)",
+					"Style": "-",
+					"Utterance": "Fuck Heaven, I wanna be a demon.",
+					"UtteranceId": "TTS-037BD6C5407F3AF861F153B218F1612D"
+				}, 
+				{
+					"CurrentState": "S17",
+					"NextState": "S18",
+					"Meaning": "ChangeActors(Devil, Angel)",
+					"Style": "-",
+					"Utterance": "Trial?",
+					"UtteranceId": "TTS-659939E321A4DEBE78928472BA93F73B"
 				}],
 			"Characters": [
 				{

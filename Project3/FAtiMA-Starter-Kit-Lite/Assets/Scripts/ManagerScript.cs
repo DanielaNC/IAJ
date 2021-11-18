@@ -19,6 +19,7 @@ using WorldModel;
 using GAIPS.Rage;
 using System.Net;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 
 public class ManagerScript : MonoBehaviour
@@ -31,6 +32,8 @@ public class ManagerScript : MonoBehaviour
     public string rootFolder;
     public string scenarioName;
     public string storageName;
+    public bool level2;
+    public Text endText;
 
     //Store the characters
     private List<RolePlayCharacterAsset> _rpcList;
@@ -168,20 +171,42 @@ public class ManagerScript : MonoBehaviour
 
         _agentBodyControlers = new List<UnityBodyImplement>();
 
-        foreach (var agent in otherRPCsList)
+        if (!level2 || !_playerRpc.CharacterName.ToString().Equals("Player"))
         {
-            // Initializing textual for each different character
-            var charName = agent.CharacterName.ToString();
-            var rand = UnityEngine.Random.Range(0, CharacterBodies.Count);
-            nameToBody.Add(charName, CharacterBodies[rand]);
-            CharacterBodies.RemoveAt(rand);
-            var body = nameToBody[charName];
-            //Initializing and saving into a list the Body Controller of the First Character
-            var unityBodyImplement = body.GetComponent<UnityBodyImplement>();
-            body.name  = charName;
-            body.GetComponentInChildren<TextMesh>().text = charName;
+            foreach (var agent in otherRPCsList)
+            {
+                // Initializing textual for each different character
+                var charName = agent.CharacterName.ToString();
+                var rand = UnityEngine.Random.Range(0, CharacterBodies.Count);
+                nameToBody.Add(charName, CharacterBodies[rand]);
+                CharacterBodies.RemoveAt(rand);
+                var body = nameToBody[charName];
+                //Initializing and saving into a list the Body Controller of the First Character
+                var unityBodyImplement = body.GetComponent<UnityBodyImplement>();
+                body.name = charName;
+                body.GetComponentInChildren<TextMesh>().text = charName;
 
-            _agentBodyControlers.Add(unityBodyImplement);
+                _agentBodyControlers.Add(unityBodyImplement);
+            }
+        }
+
+        else if(level2 && _playerRpc.CharacterName.ToString().Equals("Player"))
+        {
+            foreach(var agent in otherRPCsList)
+            {
+                var charName = agent.CharacterName.ToString();
+                if(charName.Equals("Devil"))
+                    nameToBody.Add(charName, CharacterBodies[0]);
+                else
+                    nameToBody.Add(charName, CharacterBodies[1]);
+                var body = nameToBody[charName];
+                //Initializing and saving into a list the Body Controller of the First Character
+                var unityBodyImplement = body.GetComponent<UnityBodyImplement>();
+                body.name = charName;
+                body.GetComponentInChildren<TextMesh>().text = charName;
+
+                _agentBodyControlers.Add(unityBodyImplement);
+            }
         }
 
         _rpcList.Add(_playerRpc);
@@ -376,9 +401,19 @@ public class ManagerScript : MonoBehaviour
         // Returns a list of all the dialogues given the parameters but in this case we only want the first element
         var dialog = _iat.GetDialogueActions(currentState, nextState, meaning, style).FirstOrDefault();
 
+        if (dialog.Utterance.Contains("Ending"))
+        {
+            DisplayEndMessage(dialog.Utterance);
+            return;
+        }
 
         if (dialog != null)
             Reply(dialog.Id, initiator, action.Target);
+    }
+
+    void DisplayEndMessage(String message)
+    {
+        endText.text = message;
     }
 
 
