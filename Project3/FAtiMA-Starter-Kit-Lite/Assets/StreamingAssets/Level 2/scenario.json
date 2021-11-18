@@ -278,12 +278,12 @@
 					"UtteranceId": "TTS-B28053167C7DD5E22D009A56E2230D7B"
 				}, 
 				{
-					"CurrentState": "S74",
-					"NextState": "End3",
-					"Meaning": "ChangeActors(Angel, Player)",
+					"CurrentState": "S52",
+					"NextState": "End2",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
-					"Utterance": "[You went to Heaven - Ending 3]",
-					"UtteranceId": "TTS-87BCD9ABD7AE5E7B353FCFA3F7E3C437"
+					"Utterance": "[You become an angel - Ending 2]",
+					"UtteranceId": "TTS-EB96EA5F1E9C3CBCA946C053EB47202E"
 				}, 
 				{
 					"CurrentState": "S34",
@@ -454,12 +454,12 @@
 					"UtteranceId": "TTS-595B8D333DDFD88B72B747A68B3C9D40"
 				}, 
 				{
-					"CurrentState": "S52",
-					"NextState": "End2",
-					"Meaning": "ChangeActors(Angel, Player)",
+					"CurrentState": "S29",
+					"NextState": "End4",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
-					"Utterance": "[You become an angel - Ending 2]",
-					"UtteranceId": "TTS-EB96EA5F1E9C3CBCA946C053EB47202E"
+					"Utterance": "[You went to Hell - Ending 4]",
+					"UtteranceId": "TTS-B84FE5543CCF67D41D5E02F623641582"
 				}, 
 				{
 					"CurrentState": "S72",
@@ -478,20 +478,20 @@
 					"UtteranceId": "TTS-D0FA5DD990E525385EF0D66CF19C7084"
 				}, 
 				{
-					"CurrentState": "S29",
-					"NextState": "End4",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "[You went to Hell - Ending 4]",
-					"UtteranceId": "TTS-B84FE5543CCF67D41D5E02F623641582"
-				}, 
-				{
 					"CurrentState": "Results",
 					"NextState": "End3",
-					"Meaning": "ChangeActors(Angel, Player)",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
 					"Utterance": "[You went to Heaven - Ending 3]",
 					"UtteranceId": "TTS-87BCD9ABD7AE5E7B353FCFA3F7E3C437"
+				}, 
+				{
+					"CurrentState": "Results",
+					"NextState": "End4",
+					"Meaning": "ChangeActors(Player, Player)",
+					"Style": "-",
+					"Utterance": "[You went to Hell - Ending 4]",
+					"UtteranceId": "TTS-B84FE5543CCF67D41D5E02F623641582"
 				}, 
 				{
 					"CurrentState": "S2",
@@ -508,14 +508,6 @@
 					"Style": "-",
 					"Utterance": "You're finally awake.",
 					"UtteranceId": "TTS-09F9CE2679DAEE06E11445F201C63864"
-				}, 
-				{
-					"CurrentState": "Results",
-					"NextState": "End4",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "[You went to Hell - Ending 4]",
-					"UtteranceId": "TTS-B84FE5543CCF67D41D5E02F623641582"
 				}, 
 				{
 					"CurrentState": "S26",
@@ -862,17 +854,17 @@
 					"UtteranceId": "TTS-6AF71842B8662F2A4903C6A315A2C552"
 				}, 
 				{
-					"CurrentState": "S14",
-					"NextState": "End1",
-					"Meaning": "ChangeActors(Devil, Player)",
+					"CurrentState": "S74",
+					"NextState": "End3",
+					"Meaning": "ChangeActors(Player, Player)",
 					"Style": "-",
-					"Utterance": "[You have been turned into a demon - Ending 1]",
-					"UtteranceId": "TTS-E76A09646FB6B299B674BCB514AF0C75"
+					"Utterance": "[You went to Heaven - Ending 3]",
+					"UtteranceId": "TTS-87BCD9ABD7AE5E7B353FCFA3F7E3C437"
 				}, 
 				{
 					"CurrentState": "S4",
 					"NextState": "S5",
-					"Meaning": "ChangeActors(Player, Devil)",
+					"Meaning": "ChangeActors(Player, Angel)",
 					"Style": "-",
 					"Utterance": "You ain't the boss of me!",
 					"UtteranceId": "TTS-F8FDC2AFA78F22573A2C2C08DFBF0F9B"
@@ -900,6 +892,46 @@
 					"Style": "-",
 					"Utterance": "Trial?",
 					"UtteranceId": "TTS-659939E321A4DEBE78928472BA93F73B"
+				}, 
+				{
+					"CurrentState": "End3",
+					"NextState": "Start",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "[Play again]",
+					"UtteranceId": "TTS-BDD5E6A3E97A5DE437EC2A79446199DA"
+				}, 
+				{
+					"CurrentState": "End4",
+					"NextState": "Start",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "[Play again]",
+					"UtteranceId": "TTS-BDD5E6A3E97A5DE437EC2A79446199DA"
+				}, 
+				{
+					"CurrentState": "End2",
+					"NextState": "Start",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "[Play again]",
+					"UtteranceId": "TTS-BDD5E6A3E97A5DE437EC2A79446199DA"
+				}, 
+				{
+					"CurrentState": "S14",
+					"NextState": "End1",
+					"Meaning": "ChangeActors(Player, Player)",
+					"Style": "-",
+					"Utterance": "[You have been turned into a demon - Ending 1]",
+					"UtteranceId": "TTS-E76A09646FB6B299B674BCB514AF0C75"
+				}, 
+				{
+					"CurrentState": "End1",
+					"NextState": "Start",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "[Play again]",
+					"UtteranceId": "TTS-BDD5E6A3E97A5DE437EC2A79446199DA"
 				}],
 			"Characters": [
 				{
@@ -1192,6 +1224,40 @@
 											"NewValue": true,
 											"ObserverAgent": "*"
 										}]
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak([cs], Start, [m], [s]), [t])",
+									"value": [
+										{
+											"PropertyName": "Has(Floor)",
+											"NewValue": "Devil",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Devil)",
+											"NewValue": "Start",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Angel)",
+											"NewValue": "Start",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "DialogueState(Player)",
+											"NewValue": "Start",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "Answered(Question, Devil)",
+											"NewValue": false,
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "Answered(Question, Angel)",
+											"NewValue": false,
+											"ObserverAgent": "*"
+										}]
 								}]
 						},
 					"Priorities":
@@ -1240,6 +1306,10 @@
 								{
 									"key": "Event(Action-End, [s], Speak(S28, [ns], ChangeActors([nsj], [nt]), *), [t])",
 									"value": 3
+								}, 
+								{
+									"key": "Event(Action-End, [s], Speak([cs], Start, [m], [s]), [t])",
+									"value": 4
 								}]
 						}
 				}

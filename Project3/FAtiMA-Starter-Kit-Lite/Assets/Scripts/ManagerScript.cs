@@ -328,7 +328,7 @@ public class ManagerScript : MonoBehaviour
 
         // Playing the audio of the dialogue line
 
-        if (useTextToSpeech)
+        if (useTextToSpeech && !dialog.Utterance.Contains("Ending"))
         {
             this.StartCoroutine(Speak(id, initiator, target));
         }
@@ -336,6 +336,7 @@ public class ManagerScript : MonoBehaviour
 
 
         //Writing the dialog on the canvas
+        if(!dialog.Utterance.Contains("Ending"))
         GameObject.Find("DialogueText").GetComponent<Text>().text =
             initiator + " says:  '" + utterance + "' ->towards " + target;
 
@@ -404,7 +405,7 @@ public class ManagerScript : MonoBehaviour
         if (dialog.Utterance.Contains("Ending"))
         {
             DisplayEndMessage(dialog.Utterance);
-            return;
+           // return;
         }
 
         if (dialog != null)

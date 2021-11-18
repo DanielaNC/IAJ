@@ -170,7 +170,7 @@
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], [ns], ChangeActors([floor], [target]), [style]) = True", "[target] = [x]", "[ns] != Results", "[ns] != S23", "[ns] != S24"]
+							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], [ns], ChangeActors([floor], [target]), [style]) = True", "[x] = [target]", "[ns] != Results", "[ns] != S23", "[ns] != S24"]
 						},
 					"Priority": 4
 				}, 
@@ -180,7 +180,7 @@
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], Results, ChangeActors([floor], [target]), [style]) = True", "[target] = [x]", "Answered(Question, Devil) = True", "Answered(Question, Angel) = True"]
+							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], Results, ChangeActors([floor], [target]), [style]) = True", "[x] = [target]", "Answered(Question, Devil) = True", "Answered(Question, Angel) = True"]
 						},
 					"Priority": 5
 				}, 
@@ -190,7 +190,7 @@
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], S23, ChangeActors([floor], [target]), [style]) = True", "[target] = [x]", "Answered(Question, Devil) = False"]
+							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], S23, ChangeActors([floor], [target]), [style]) = True", "[x] = [target]", "Answered(Question, Devil) = False"]
 						},
 					"Priority": 5
 				}, 
@@ -200,7 +200,7 @@
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], S24, ChangeActors([floor], [target]), [style]) = True", "[x] = [target]", "Answered(Question, Angel) = False"]
+							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], S24, ChangeActors([floor], [target]), [style]) = True", "[target] = [x]", "Answered(Question, Angel) = False"]
 						},
 					"Priority": 5
 				}, 
@@ -210,7 +210,7 @@
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["DialogueState([x]) = Results", "Has(Floor) = SELF", "ValidDialogue(Results, End3, ChangeActors([floor], [target]), [style]) = True", "[target] = [x]", "Answered(Question, Devil) = True", "SI(Player) > 6", "Answered(Question, Angel) = True"]
+							"Set": ["DialogueState([x]) = Results", "Has(Floor) = SELF", "ValidDialogue(Results, End3, ChangeActors([floor], [target]), [style]) = True", "[x] = [target]", "Answered(Question, Devil) = True", "SI(Player) > 6", "Answered(Question, Angel) = True"]
 						},
 					"Priority": 5
 				}, 
@@ -220,7 +220,7 @@
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["DialogueState([x]) = Results", "Has(Floor) = SELF", "ValidDialogue(Results, End4, ChangeActors([floor], [target]), [style]) = True", "[target] = [x]", "Answered(Question, Devil) = True", "SI(Player) <= 6", "Answered(Question, Angel) = True"]
+							"Set": ["DialogueState([x]) = Results", "Has(Floor) = SELF", "ValidDialogue(Results, End4, ChangeActors([floor], [target]), [style]) = True", "[x] = [target]", "Answered(Question, Devil) = True", "SI(Player) <= 6", "Answered(Question, Angel) = True"]
 						},
 					"Priority": 5
 				}]
