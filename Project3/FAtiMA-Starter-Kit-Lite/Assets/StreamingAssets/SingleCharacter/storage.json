@@ -95,7 +95,7 @@
 						{
 							"Set": ["DialogueState([t]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], [ns], [mean], [style]) = True"]
 						},
-					"Priority": 3
+					"Priority": 5
 				}, 
 				{
 					"Action": "Speak([cs], [ns], [mean], Rude)",
@@ -105,7 +105,7 @@
 						{
 							"Set": ["DialogueState([t]) = [cs]", "ValidDialogue([cs], [ns], [mean], Rude) = True", "Has(Floor) = SELF", "Mood(SELF) < 0"]
 						},
-					"Priority": 4
+					"Priority": 5
 				}, 
 				{
 					"Action": "Speak([cs], [ns], [mean], Polite)",
@@ -115,7 +115,7 @@
 						{
 							"Set": ["DialogueState([t]) = [cs]", "ValidDialogue([cs], [ns], [mean], Polite) = True", "Has(Floor) = SELF", "Mood(SELF) > 0"]
 						},
-					"Priority": 4
+					"Priority": 5
 				}, 
 				{
 					"Action": "Serve(Food)",
@@ -123,27 +123,7 @@
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["CanServe(Peter) = True", "IsAgent([target]) = True", "Has(Burger) > 0", "Peter = [target]", "[target] != SELF"]
-						},
-					"Priority": 0
-				}, 
-				{
-					"Action": "Speak(ServeFood, [ns], [mean], [style])",
-					"Target": "[t]",
-					"Layer": "-",
-					"Conditions":
-						{
-							"Set": ["Has(Served) = True", "Has(Floor) = SELF", "DialogueState([t]) = ServeFood", "ValidDialogue(ServeFood, [ns], [mean], [style]) = True"]
-						},
-					"Priority": 5
-				}, 
-				{
-					"Action": "Speak(BurntBurger, [ns], [mean], [style])",
-					"Target": "[t]",
-					"Layer": "-",
-					"Conditions":
-						{
-							"Set": ["Has(Food) = SELF", "DialogueState([t]) = BurntBurger", "ValidDialogue(BurntBurger, [ns], [mean], [style]) = True", "Has(Floor) = SELF", "Has(Served) = [t]"]
+							"Set": ["CanServe(Peter) = True", "IsAgent([target]) = True", "[target] != SELF", "Peter = [target]", "Has(Burger) > 0"]
 						},
 					"Priority": 5
 				}, 
@@ -153,7 +133,27 @@
 					"Layer": "-",
 					"Conditions":
 						{
-							"Set": ["IsAgent([t]) = True", "Waiter = [t]", "[t] != SELF", "Is(Angry) = True"]
+							"Set": ["[t] != SELF", "Waiter = [t]", "Is(Hungry) > 1", "IsAgent([t]) = True"]
+						},
+					"Priority": 5
+				}, 
+				{
+					"Action": "Leave(Restaurant)",
+					"Target": "[t]",
+					"Layer": "-",
+					"Conditions":
+						{
+							"Set": ["[t] != Waiter", "SELF = [t]", "WantsTo(Leave) = True", "IsAgent([t]) = True"]
+						},
+					"Priority": 5
+				}, 
+				{
+					"Action": "Speak(ServeFood, [ns], [mean], Polite)",
+					"Target": "[t]",
+					"Layer": "-",
+					"Conditions":
+						{
+							"Set": ["Has(Served) = SELF", "DialogueState([t]) = [cs]", "ValidDialogue([cs], [ns], [mean], Polite) = True", "Has(Floor) = SELF"]
 						},
 					"Priority": 5
 				}]

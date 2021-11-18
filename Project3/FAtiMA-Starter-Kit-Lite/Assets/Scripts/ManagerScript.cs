@@ -195,7 +195,7 @@ public class ManagerScript : MonoBehaviour
         var parent = GameObject.Find("ChooseCharacter");
 
         var button = Instantiate(menuButtonPrefab, parent.transform);
-
+        
         var buttonLabel = button.GetComponentInChildren<Text>();
         buttonLabel.text = label;
 
@@ -252,13 +252,12 @@ public class ManagerScript : MonoBehaviour
 
             // From all the decisions the rpc wants to perform we want the first one (as it is ordered by priority)
             var decision = rpc.Decide().FirstOrDefault();
-
-
+            Debug.Log(rpc.CharacterName);
 
             if (_playerRpc.CharacterName == rpc.CharacterName)
             {
                 HandlePlayerOptions(decision);
-                continue; ;
+                continue;
 
             }
 
@@ -275,8 +274,8 @@ public class ManagerScript : MonoBehaviour
                 break;
             }
 
+            Debug.Log("null decision");
         }
-
 
         if (finalDecision != null)
 

@@ -86,12 +86,12 @@
 					"UtteranceId": "TTS-9AC6E0EDE884057893397F25FF671B25"
 				}, 
 				{
-					"CurrentState": "Refund",
-					"NextState": "NoRefund",
+					"CurrentState": "OrderAgain",
+					"NextState": "NoMoreBurgers",
 					"Meaning": "-",
-					"Style": "-",
-					"Utterance": "What?! I am not paying for this! I demand my money back!",
-					"UtteranceId": "TTS-CDC7A0E65B1702C6318DC3661F8AFDD0"
+					"Style": "Rude",
+					"Utterance": "Just give me another burger. And make it fast",
+					"UtteranceId": "TTS-D4B11FF6A5F974B6ABE835ECB2C65448"
 				}, 
 				{
 					"CurrentState": "OrderResponse",
@@ -132,6 +132,14 @@
 					"Style": "Rude",
 					"Utterance": "What do you want?",
 					"UtteranceId": "TTS-CD74DBBB5430913FBE6AE47CE016DBF1"
+				}, 
+				{
+					"CurrentState": "StartWaiter",
+					"NextState": "Order",
+					"Meaning": "-",
+					"Style": "-",
+					"Utterance": "Hello, sir! Welcome to our restaurant",
+					"UtteranceId": "TTS-8BE80DF13A83739AFDAB47D542C9EF39"
 				}, 
 				{
 					"CurrentState": "Wait",
@@ -182,6 +190,14 @@
 					"UtteranceId": "TTS-6549F5CA3906FC4CC42CCC3E5DFD462C"
 				}, 
 				{
+					"CurrentState": "Refund",
+					"NextState": "NoRefund",
+					"Meaning": "-",
+					"Style": "Rude",
+					"Utterance": "What?! I am not paying for this! I demand my money back!",
+					"UtteranceId": "TTS-CDC7A0E65B1702C6318DC3661F8AFDD0"
+				}, 
+				{
 					"CurrentState": "Leave1",
 					"NextState": "End",
 					"Meaning": "-",
@@ -190,12 +206,12 @@
 					"UtteranceId": "TTS-19A12EA9EC41D90C8277F63870486A59"
 				}, 
 				{
-					"CurrentState": "StartWaiter",
-					"NextState": "Order",
+					"CurrentState": "NoRefund",
+					"NextState": "Leave",
 					"Meaning": "-",
-					"Style": "Polite",
-					"Utterance": "Hello, sir! Welcome to our restaurant",
-					"UtteranceId": "TTS-8BE80DF13A83739AFDAB47D542C9EF39"
+					"Style": "-",
+					"Utterance": "I understand your anger, but we have a no refund policy.",
+					"UtteranceId": "TTS-A25640BC461CFE55DEEB4762626190D0"
 				}, 
 				{
 					"CurrentState": "LeaveResponse",
@@ -276,22 +292,6 @@
 					"Style": "Polite",
 					"Utterance": "Here's your order. I'm sorry for the delay",
 					"UtteranceId": "TTS-36C8A2C0B1567E5DCD4A2286F099A0DE"
-				}, 
-				{
-					"CurrentState": "NoRefund",
-					"NextState": "Leave",
-					"Meaning": "-",
-					"Style": "Polite",
-					"Utterance": "I understand your anger, but we have a no refund policy.",
-					"UtteranceId": "TTS-A25640BC461CFE55DEEB4762626190D0"
-				}, 
-				{
-					"CurrentState": "OrderAgain",
-					"NextState": "NoMoreBurgers",
-					"Meaning": "-",
-					"Style": "Rude",
-					"Utterance": "Just give me another burger. And make it fast",
-					"UtteranceId": "TTS-D4B11FF6A5F974B6ABE835ECB2C65448"
 				}],
 			"Characters": [
 				{
@@ -303,11 +303,10 @@
 									"SELF":
 										{
 											"Has(Floor)": "Peter, 1",
-											"Has(Food)": "False, 1",
+											"Has(Money)": "5, 1",
 											"DialogueState(Waiter)": "Start, 1",
 											"CloseFriends(Waiter)": "False, 1",
-											"Is(Hungry)": "1, 1",
-											"Is(Angry)": "False, 1"
+											"Is(Hungry)": "1, 1"
 										}
 								}
 						},
@@ -415,35 +414,25 @@
 											"PropertyName": "DialogueState([t])",
 											"NewValue": "[ns]",
 											"ObserverAgent": "[s]"
+										}]
+								}, 
+								{
+									"key": "Event(Action-End, *, Serve(Food), [target])",
+									"value": [
+										{
+											"PropertyName": "CanServe(Peter)",
+											"NewValue": false,
+											"ObserverAgent": "Waiter"
+										}, 
+										{
+											"PropertyName": "Has(Burger)",
+											"NewValue": 0,
+											"ObserverAgent": "Waiter"
 										}, 
 										{
 											"PropertyName": "Has(Served)",
 											"NewValue": true,
 											"ObserverAgent": "Waiter"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, [s], Speak(Wait, [ns], *, *), [t])",
-									"value": [
-										{
-											"PropertyName": "DialogueState([s])",
-											"NewValue": "[ns]",
-											"ObserverAgent": "[t]"
-										}, 
-										{
-											"PropertyName": "DialogueState([t])",
-											"NewValue": "[ns]",
-											"ObserverAgent": "[s]"
-										}, 
-										{
-											"PropertyName": "Is(Angry)",
-											"NewValue": true,
-											"ObserverAgent": "Peter"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Waiter",
-											"ObserverAgent": "*"
 										}]
 								}, 
 								{
@@ -466,13 +455,8 @@
 										}, 
 										{
 											"PropertyName": "Has(Floor)",
-											"NewValue": "Peter",
+											"NewValue": "Waiter",
 											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Is(Angry)",
-											"NewValue": true,
-											"ObserverAgent": "Peter"
 										}]
 								}, 
 								{
@@ -500,6 +484,10 @@
 										}]
 								}, 
 								{
+									"key": "Event(Action-End, *, Give(BadReview), *)",
+									"value": []
+								}, 
+								{
 									"key": "Event(Action-End, [s], Speak(NoMoreBurgers, [ns], *, *), [t])",
 									"value": [
 										{
@@ -513,57 +501,20 @@
 											"ObserverAgent": "[s]"
 										}, 
 										{
+											"PropertyName": "Is(Hungry)",
+											"NewValue": 2,
+											"ObserverAgent": "Peter"
+										}, 
+										{
 											"PropertyName": "Has(Floor)",
 											"NewValue": "[t]",
 											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Serve(Food), *)",
-									"value": [
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Waiter",
-											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "Has(Burger)",
-											"NewValue": 0,
-											"ObserverAgent": "Waiter"
-										}, 
-										{
-											"PropertyName": "Has(Food)",
+											"PropertyName": "WantsTo(Leave)",
 											"NewValue": true,
 											"ObserverAgent": "Peter"
 										}]
-								}, 
-								{
-									"key": "Event(Action-End, [s], Speak(Leave1, [ns], *, *), [t])",
-									"value": [
-										{
-											"PropertyName": "DialogueState([s])",
-											"NewValue": "[ns]",
-											"ObserverAgent": "[t]"
-										}, 
-										{
-											"PropertyName": "DialogueState([t])",
-											"NewValue": "[ns]",
-											"ObserverAgent": "[s]"
-										}, 
-										{
-											"PropertyName": "Is(Angry)",
-											"NewValue": false,
-											"ObserverAgent": "Peter"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "[t]",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, [t], Give(BadReview), [s])",
-									"value": []
 								}]
 						},
 					"Priorities":
@@ -610,7 +561,7 @@
 									"value": 1
 								}, 
 								{
-									"key": "Event(Action-End, *, Leave(Restaurant), *)",
+									"key": "Event(Action-End, *, Give(BadReview), *)",
 									"value": 1
 								}, 
 								{
@@ -634,27 +585,7 @@
 									"value": 1
 								}, 
 								{
-									"key": "Event(Action-End, [s], DuplicateSpeak(Wait, [ns], *, *), [t])",
-									"value": 1
-								}, 
-								{
-									"key": "Event(Action-End, *, Serve(Food), *)",
-									"value": 1
-								}, 
-								{
-									"key": "Event(Action-End, [s], DuplicateSpeak(OrderBurger, [ns], *, *), [t])",
-									"value": 1
-								}, 
-								{
-									"key": "Event(Action-End, [s], Speak(Wait, [ns], *, *), [t])",
-									"value": 1
-								}, 
-								{
-									"key": "Event(Action-End, [s], Speak(Leave1, [ns], *, *), [t])",
-									"value": 1
-								}, 
-								{
-									"key": "Event(Action-End, [t], Give(BadReview), [s])",
+									"key": "Event(Action-End, [s], DuplicateSpeak(NoMoreBurgers, [ns], *, *), [t])",
 									"value": 1
 								}]
 						}
