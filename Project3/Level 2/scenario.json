@@ -3,8 +3,24 @@
 		{
 			"classId": 0,
 			"ScenarioName": "AutoDaBarcaDoInferno",
-			"Description": "The player has recently died and has to now be judged by the Devil and the Angel. The player will be given the option to go through a trial and try to get into Heaven. There are 4 different endings.\r\n\r\nIf the player goes through the trial it'll be asked some questions. SI determine the fate of the player",
+			"Description": "You are a sleep specialist and are about to meet a patient who is referred to you. In particular, this patient has had trouble sleeping recently.",
 			"Dialogues": [
+				{
+					"CurrentState": "S4",
+					"NextState": "S5",
+					"Meaning": "ChangeActors(Player, Devil)",
+					"Style": "-",
+					"Utterance": "You ain't the boss of me!",
+					"UtteranceId": "TTS-F8FDC2AFA78F22573A2C2C08DFBF0F9B"
+				}, 
+				{
+					"CurrentState": "S8",
+					"NextState": "S9",
+					"Meaning": "ChangeActors(Angel, Player)",
+					"Style": "-",
+					"Utterance": "Narnia.",
+					"UtteranceId": "TTS-6AF71842B8662F2A4903C6A315A2C552"
+				}, 
 				{
 					"CurrentState": "S1",
 					"NextState": "S2",
@@ -12,14 +28,6 @@
 					"Style": "-",
 					"Utterance": "... What?",
 					"UtteranceId": "TTS-31D618CE03879B1CBE0D45F7AF75502A"
-				}, 
-				{
-					"CurrentState": "S2",
-					"NextState": "S3",
-					"Meaning": "Devil",
-					"Style": "-",
-					"Utterance": "Just kidding, you're dead af",
-					"UtteranceId": "TTS-5545AA87C59FB5BC4728F3E55E06B3AE"
 				}, 
 				{
 					"CurrentState": "S3",
@@ -30,44 +38,28 @@
 					"UtteranceId": "TTS-23161C64D6F824E9459F0170505BFB30"
 				}, 
 				{
-					"CurrentState": "S6",
-					"NextState": "S7",
-					"Meaning": "Devil",
+					"CurrentState": "S7",
+					"NextState": "S5",
+					"Meaning": "ChangeActors(Player, Devil)",
 					"Style": "-",
-					"Utterance": "I see you are still high on drugs…",
-					"UtteranceId": "TTS-5185F654FCCD43CCBC3C41E6496E1050"
-				}, 
-				{
-					"CurrentState": "S1",
-					"NextState": "S6",
-					"Meaning": "PlayerStart",
-					"Style": "-",
-					"Utterance": "Am I in Skyrim? Fuck yes, I always wanted that.",
-					"UtteranceId": "TTS-C63ACC3D74DEDBFBDCABBFE75AB36308"
+					"Utterance": "Not again, it’s the third lunatic today, I am out, sayonara",
+					"UtteranceId": "TTS-BDFC1DD8A6F59F06CEC9FE0A049DDCF3"
 				}, 
 				{
 					"CurrentState": "S4",
 					"NextState": "S5",
-					"Meaning": "Devil",
-					"Style": "-",
-					"Utterance": "You ain't the boss of me!",
-					"UtteranceId": "TTS-F8FDC2AFA78F22573A2C2C08DFBF0F9B"
-				}, 
-				{
-					"CurrentState": "S4",
-					"NextState": "S5",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Player, Devil)",
 					"Style": "-",
 					"Utterance": "Buzzkill.",
 					"UtteranceId": "TTS-2839BBF9FA80BE47EE5D7CDC7C896258"
 				}, 
 				{
-					"CurrentState": "S7",
-					"NextState": "S5",
-					"Meaning": "Angel",
+					"CurrentState": "S17",
+					"NextState": "S18",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "Not again, it’s the third lunatic today, I am out, sayonara",
-					"UtteranceId": "TTS-BDFC1DD8A6F59F06CEC9FE0A049DDCF3"
+					"Utterance": "Trial?",
+					"UtteranceId": "TTS-659939E321A4DEBE78928472BA93F73B"
 				}, 
 				{
 					"CurrentState": "S5",
@@ -86,49 +78,57 @@
 					"UtteranceId": "TTS-00A00BFEFA644766DF078BB6158202C7"
 				}, 
 				{
-					"CurrentState": "S8",
-					"NextState": "S9",
-					"Meaning": "Devil",
-					"Style": "-",
-					"Utterance": "Narnia.",
-					"UtteranceId": "TTS-6AF71842B8662F2A4903C6A315A2C552"
-				}, 
-				{
-					"CurrentState": "S9",
-					"NextState": "S10",
-					"Meaning": "Angel",
-					"Style": "-",
-					"Utterance": "*facepalms to infinity* You are at the crossroad between Heaven and Hell.",
-					"UtteranceId": "TTS-776121B710EB84DF1ED0D8E3E629DCBC"
-				}, 
-				{
-					"CurrentState": "S8",
-					"NextState": "S9",
-					"Meaning": "Devil",
-					"Style": "-",
-					"Utterance": "Is this the real life *starts dancing to Bohemian Rhapsody*",
-					"UtteranceId": "TTS-3AD39E882DD8EEF3D44969A753055A64"
-				}, 
-				{
 					"CurrentState": "S10",
 					"NextState": "S11",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "Come to Hell, it’s lit 24/7.",
 					"UtteranceId": "TTS-4026E2B95FF7BED6037181CE4E7108E0"
 				}, 
 				{
-					"CurrentState": "S11",
-					"NextState": "S12",
-					"Meaning": "Angel",
+					"CurrentState": "S8",
+					"NextState": "S9",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Everyone has a guaranteed spot in Hell. The real challenge is to get invited into Heaven.",
-					"UtteranceId": "TTS-0FBE2901E45F6BB66F2E71C248E3C592"
+					"Utterance": "Is this the real life *starts dancing to Bohemian Rhapsody*",
+					"UtteranceId": "TTS-3AD39E882DD8EEF3D44969A753055A64"
+				}, 
+				{
+					"CurrentState": "S15",
+					"NextState": "S16",
+					"Meaning": "ChangeActors(Angel, Player)",
+					"Style": "-",
+					"Utterance": "Boriiiiiing",
+					"UtteranceId": "TTS-A73CDD3F24B63D3E6B38242490379569"
+				}, 
+				{
+					"CurrentState": "S9",
+					"NextState": "S10",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "*facepalms to infinity* You are at the crossroad between Heaven and Hell.",
+					"UtteranceId": "TTS-776121B710EB84DF1ED0D8E3E629DCBC"
+				}, 
+				{
+					"CurrentState": "S12",
+					"NextState": "S15",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "I wanna go to Heaven...",
+					"UtteranceId": "TTS-C2F80302EB56B7FCD15E6368A9289114"
+				}, 
+				{
+					"CurrentState": "S1",
+					"NextState": "S6",
+					"Meaning": "PlayerStart",
+					"Style": "-",
+					"Utterance": "Am I in Skyrim? Fuck yes, I always wanted that.",
+					"UtteranceId": "TTS-C63ACC3D74DEDBFBDCABBFE75AB36308"
 				}, 
 				{
 					"CurrentState": "S12",
 					"NextState": "S13",
-					"Meaning": "Player",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
 					"Utterance": "Fuck Heaven, I wanna be a demon.",
 					"UtteranceId": "TTS-037BD6C5407F3AF861F153B218F1612D"
@@ -142,52 +142,52 @@
 					"UtteranceId": "TTS-3D53393EFA2592E93EF624F15CDBF478"
 				}, 
 				{
-					"CurrentState": "S12",
-					"NextState": "S15",
-					"Meaning": "Player",
+					"CurrentState": "S27",
+					"NextState": "S49",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "I wanna go to Heaven...",
-					"UtteranceId": "TTS-C2F80302EB56B7FCD15E6368A9289114"
+					"Utterance": "I don’t believe in Hell.",
+					"UtteranceId": "TTS-5EEAAEA27E68FFA78DB61A6E0EBFF40C"
 				}, 
 				{
-					"CurrentState": "S30",
-					"NextState": "S31",
-					"Meaning": "Devil",
+					"CurrentState": "S28",
+					"NextState": "S41",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "That is not an answer, that’s a question. Try to keep up, noob!",
-					"UtteranceId": "TTS-139719F00CC027E7C3A7A05EFED72550"
+					"Utterance": "I am very patient.",
+					"UtteranceId": "TTS-5F8FEB79B5E760F9E0CA328AA88CD178"
 				}, 
 				{
-					"CurrentState": "S15",
-					"NextState": "S16",
-					"Meaning": "Devil",
+					"CurrentState": "S6",
+					"NextState": "S7",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Boriiiiiing",
-					"UtteranceId": "TTS-A73CDD3F24B63D3E6B38242490379569"
-				}, 
-				{
-					"CurrentState": "S17",
-					"NextState": "S18",
-					"Meaning": "Player",
-					"Style": "-",
-					"Utterance": "Trial?",
-					"UtteranceId": "TTS-659939E321A4DEBE78928472BA93F73B"
+					"Utterance": "I see you are still high on drugs…",
+					"UtteranceId": "TTS-5185F654FCCD43CCBC3C41E6496E1050"
 				}, 
 				{
 					"CurrentState": "S18",
 					"NextState": "S19",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "We ask the questions here!",
-					"UtteranceId": "TTS-AB1657BEBD8E84802FBEA23B7979FDFD"
+					"Utterance": "Do you need a dictionary?",
+					"UtteranceId": "TTS-6D95E8EFDCD0D3189E16A2C160BA9D63"
 				}, 
 				{
-					"CurrentState": "S18",
-					"NextState": "S19",
-					"Meaning": "Devil",
+					"CurrentState": "S65",
+					"NextState": "S66",
+					"Meaning": "ChangeActors(Devil, Angel)",
 					"Style": "-",
-					"Utterance": "Shh, leave the questions for the end!",
-					"UtteranceId": "TTS-D75D7D0ED28051C0F7655E037F3808A6"
+					"Utterance": "Your pride is shameful. Off to the hellish boat you go!",
+					"UtteranceId": "TTS-018E135517445F81FC9A917B3627CE5F"
+				}, 
+				{
+					"CurrentState": "S67",
+					"NextState": "S69",
+					"Meaning": "ChangeActors(Player, Angel)",
+					"Style": "-",
+					"Utterance": "But I don’t want him…",
+					"UtteranceId": "TTS-B11C5023EA408012A5CF82E550398878"
 				}, 
 				{
 					"CurrentState": "S19",
@@ -198,20 +198,20 @@
 					"UtteranceId": "TTS-BB96D62A9C8A69A2947E8F5D8517443A"
 				}, 
 				{
-					"CurrentState": "S18",
-					"NextState": "S19",
-					"Meaning": "Devil",
+					"CurrentState": "S60",
+					"NextState": "S64",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "Do you need a dictionary?",
-					"UtteranceId": "TTS-6D95E8EFDCD0D3189E16A2C160BA9D63"
+					"Utterance": "Because I deserve it?",
+					"UtteranceId": "TTS-B401622C3DD54ED6323CBBE7CB6FAA57"
 				}, 
 				{
-					"CurrentState": "S20",
-					"NextState": "S21",
-					"Meaning": "Player",
+					"CurrentState": "S22",
+					"NextState": "S23",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "I'm ready.",
-					"UtteranceId": "TTS-2B2BE957FB94DFE0C0A0E40472080FD8"
+					"Utterance": "I’ll go first.",
+					"UtteranceId": "TTS-50E11C65C84B6B5C2B1D28600FD3FE37"
 				}, 
 				{
 					"CurrentState": "S21",
@@ -223,19 +223,19 @@
 				}, 
 				{
 					"CurrentState": "S22",
-					"NextState": "S24",
-					"Meaning": "Devil",
+					"NextState": "S23",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "You go first.",
-					"UtteranceId": "TTS-ABAEED9554745FC43FF05D2BC915D169"
+					"Utterance": "He should go first. Oh wait, we are the ones asking the questions.",
+					"UtteranceId": "TTS-2561EB11D669E779E2CD7466C5566571"
 				}, 
 				{
 					"CurrentState": "S22",
-					"NextState": "S23",
-					"Meaning": "Devil",
+					"NextState": "S24",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "I’ll go first.",
-					"UtteranceId": "TTS-50E11C65C84B6B5C2B1D28600FD3FE37"
+					"Utterance": "You go first.",
+					"UtteranceId": "TTS-ABAEED9554745FC43FF05D2BC915D169"
 				}, 
 				{
 					"CurrentState": "S23",
@@ -246,12 +246,12 @@
 					"UtteranceId": "TTS-E069F8BB2F78C35E9DEB8A69C0B46AF6"
 				}, 
 				{
-					"CurrentState": "S22",
-					"NextState": "S23",
-					"Meaning": "Devil",
+					"CurrentState": "S30",
+					"NextState": "S31",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "He should go first. Oh wait, we are the ones asking the questions.",
-					"UtteranceId": "TTS-2561EB11D669E779E2CD7466C5566571"
+					"Utterance": "That is not an answer, that’s a question. Try to keep up, noob!",
+					"UtteranceId": "TTS-139719F00CC027E7C3A7A05EFED72550"
 				}, 
 				{
 					"CurrentState": "S23",
@@ -270,20 +270,20 @@
 					"UtteranceId": "TTS-C8612C064113170FE108A1641D9737A5"
 				}, 
 				{
-					"CurrentState": "S33",
-					"NextState": "S34",
-					"Meaning": "Angel",
+					"CurrentState": "S34",
+					"NextState": "S31",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "A candor answer… I’m impressed.",
-					"UtteranceId": "TTS-23B7B34F2D048FBB667E1270F2C26C94"
+					"Utterance": "Ever heard of cheating?",
+					"UtteranceId": "TTS-8185C9421453F1548FEB83467E2ACC59"
 				}, 
 				{
-					"CurrentState": "S31",
-					"NextState": "S24",
-					"Meaning": "Angel",
+					"CurrentState": "S25",
+					"NextState": "S33",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Enough. I’ll ask you a question.",
-					"UtteranceId": "TTS-0B01F25E309BEB416BBFE04E158DC92C"
+					"Utterance": "I don't know.",
+					"UtteranceId": "TTS-45C6433A99F9CF4C21AF5AB2C1E6D605"
 				}, 
 				{
 					"CurrentState": "S24",
@@ -304,34 +304,34 @@
 				{
 					"CurrentState": "S34",
 					"NextState": "S31",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Ever heard of cheating?",
-					"UtteranceId": "TTS-8185C9421453F1548FEB83467E2ACC59"
+					"Utterance": "I said in the question that it was *trivial*, I was giving you the answer!",
+					"UtteranceId": "TTS-A5870768C4D067FB25AA4EB794E40CA4"
 				}, 
 				{
-					"CurrentState": "S43",
-					"NextState": "S23",
-					"Meaning": "Devil",
+					"CurrentState": "S28",
+					"NextState": "S44",
+					"Meaning": "ChangeActors(Angel, Devil)",
 					"Style": "-",
-					"Utterance": "My turn!",
-					"UtteranceId": "TTS-F9F002B7057D16D0A9B5E1A8C2D34465"
+					"Utterance": "I can eat spicy food without crying.",
+					"UtteranceId": "TTS-221F2321CCABBD00E1C18F913307AACB"
 				}, 
 				{
-					"CurrentState": "S25",
-					"NextState": "S33",
-					"Meaning": "Player",
+					"CurrentState": "S33",
+					"NextState": "S34",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "I don't know.",
-					"UtteranceId": "TTS-45C6433A99F9CF4C21AF5AB2C1E6D605"
+					"Utterance": "A candor answer… I’m impressed.",
+					"UtteranceId": "TTS-23B7B34F2D048FBB667E1270F2C26C94"
 				}, 
 				{
-					"CurrentState": "S35",
-					"NextState": "S36",
-					"Meaning": "Devil",
+					"CurrentState": "S37",
+					"NextState": "S31",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "*wheezes* Nice",
-					"UtteranceId": "TTS-90DF2EACFEDABD948ABE3AD5C562319C"
+					"Utterance": "HA!",
+					"UtteranceId": "TTS-D723629EFB923DFDF4D456CB7F6C47A9"
 				}, 
 				{
 					"CurrentState": "S25",
@@ -350,20 +350,20 @@
 					"UtteranceId": "TTS-4023CED117ADC1CF9B457B7DA48D6EEA"
 				}, 
 				{
-					"CurrentState": "S34",
-					"NextState": "S31",
-					"Meaning": "Devil",
+					"CurrentState": "S35",
+					"NextState": "S36",
+					"Meaning": "ChangeActors(Angel, Devil)",
 					"Style": "-",
-					"Utterance": "I don’t know the answer either.",
-					"UtteranceId": "TTS-FCDCF303C0C78AC5BF76172426180B9D"
+					"Utterance": "*wheezes* Nice",
+					"UtteranceId": "TTS-90DF2EACFEDABD948ABE3AD5C562319C"
 				}, 
 				{
 					"CurrentState": "S34",
 					"NextState": "S31",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "I said in the question that it was *trivial*, I was giving you the answer!",
-					"UtteranceId": "TTS-A5870768C4D067FB25AA4EB794E40CA4"
+					"Utterance": "I don’t know the answer either.",
+					"UtteranceId": "TTS-FCDCF303C0C78AC5BF76172426180B9D"
 				}, 
 				{
 					"CurrentState": "S36",
@@ -382,28 +382,28 @@
 					"UtteranceId": "TTS-D0FA5DD990E525385EF0D66CF19C7084"
 				}, 
 				{
-					"CurrentState": "S37",
-					"NextState": "S31",
-					"Meaning": "Devil",
-					"Style": "-",
-					"Utterance": "HA!",
-					"UtteranceId": "TTS-D723629EFB923DFDF4D456CB7F6C47A9"
-				}, 
-				{
 					"CurrentState": "S38",
 					"NextState": "S31",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "Heaven is very feather-y. You wanna die out there? Oh, right...",
 					"UtteranceId": "TTS-4DA329844FE1156A02BE6A7B99E9ADD6"
 				}, 
 				{
-					"CurrentState": "S40",
+					"CurrentState": "S39",
 					"NextState": "S31",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "*sigh* You're no fun.",
-					"UtteranceId": "TTS-B699D46DF8815A2AA1C801CCD7489533"
+					"Utterance": "Not poggers.",
+					"UtteranceId": "TTS-B37CB550DE2B586412D9F6D617A84312"
+				}, 
+				{
+					"CurrentState": "S20",
+					"NextState": "S21",
+					"Meaning": "ChangeActors(Angel, Devil)",
+					"Style": "-",
+					"Utterance": "I'm ready.",
+					"UtteranceId": "TTS-2B2BE957FB94DFE0C0A0E40472080FD8"
 				}, 
 				{
 					"CurrentState": "S26",
@@ -416,7 +416,7 @@
 				{
 					"CurrentState": "S39",
 					"NextState": "S31",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "Sucks to be you!",
 					"UtteranceId": "TTS-96ED71DE12708D3AA7897C28363D9AA0"
@@ -424,26 +424,26 @@
 				{
 					"CurrentState": "S39",
 					"NextState": "S31",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Not poggers.",
-					"UtteranceId": "TTS-B37CB550DE2B586412D9F6D617A84312"
+					"Utterance": "F.",
+					"UtteranceId": "TTS-E3CDE3F61DE01C172FA395C723C68D2F"
 				}, 
 				{
-					"CurrentState": "S60",
-					"NextState": "S64",
-					"Meaning": "Player",
+					"CurrentState": "S64",
+					"NextState": "S65",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Because I deserve it?",
-					"UtteranceId": "TTS-B401622C3DD54ED6323CBBE7CB6FAA57"
+					"Utterance": "How bold of you to assume that…",
+					"UtteranceId": "TTS-BFCACC0D2D4FD18183CF7275891D18AD"
 				}, 
 				{
-					"CurrentState": "S65",
-					"NextState": "S66",
-					"Meaning": "Angel",
+					"CurrentState": "S18",
+					"NextState": "S19",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Your pride is shameful. Off to the hellish boat you go!",
-					"UtteranceId": "TTS-018E135517445F81FC9A917B3627CE5F"
+					"Utterance": "We ask the questions here!",
+					"UtteranceId": "TTS-AB1657BEBD8E84802FBEA23B7979FDFD"
 				}, 
 				{
 					"CurrentState": "S66",
@@ -454,28 +454,28 @@
 					"UtteranceId": "TTS-2D537BE606EFA557719A0F998C659B41"
 				}, 
 				{
-					"CurrentState": "S72",
-					"NextState": "S68",
-					"Meaning": "Player",
+					"CurrentState": "S73",
+					"NextState": "S74",
+					"Meaning": "Angel",
 					"Style": "-",
-					"Utterance": "Well then… I’m going to Hell.",
-					"UtteranceId": "TTS-595B8D333DDFD88B72B747A68B3C9D40"
-				}, 
-				{
-					"CurrentState": "S69",
-					"NextState": "S70",
-					"Meaning": "Player",
-					"Style": "-",
-					"Utterance": "I thought this religion let people into Heaven if they repented…",
-					"UtteranceId": "TTS-799321443F0C40666D4CC9F705CEF88A"
+					"Utterance": "*sighs* Alright, let’s get this over with *flies Player to Heaven*",
+					"UtteranceId": "TTS-54D911365D3F4EC91AF6C883FD9734E8"
 				}, 
 				{
 					"CurrentState": "S70",
 					"NextState": "S71",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "Yeah, where are your rules now, oh Holy One?",
 					"UtteranceId": "TTS-31A3CDDF91B40C74F791EC08B3E3A20B"
+				}, 
+				{
+					"CurrentState": "S72",
+					"NextState": "S68",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "Well then… I’m going to Hell.",
+					"UtteranceId": "TTS-595B8D333DDFD88B72B747A68B3C9D40"
 				}, 
 				{
 					"CurrentState": "S71",
@@ -486,12 +486,12 @@
 					"UtteranceId": "TTS-2C159089B0E7797B1A082A215DD90874"
 				}, 
 				{
-					"CurrentState": "S73",
-					"NextState": "S74",
-					"Meaning": "Angel",
+					"CurrentState": "S60",
+					"NextState": "S61",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "*sighs*",
-					"UtteranceId": "TTS-CF0A63A0FE25B75A25E9FCFC72D8F027"
+					"Utterance": "Because… forgiveness is a virtue?",
+					"UtteranceId": "TTS-10DFD51A82E68BCBA47D6506D6427B3F"
 				}, 
 				{
 					"CurrentState": "S72",
@@ -518,12 +518,12 @@
 					"UtteranceId": "TTS-B84FE5543CCF67D41D5E02F623641582"
 				}, 
 				{
-					"CurrentState": "S67",
-					"NextState": "S69",
-					"Meaning": "Angel",
+					"CurrentState": "S69",
+					"NextState": "S70",
+					"Meaning": "ChangeActors(Devil, Angel)",
 					"Style": "-",
-					"Utterance": "But I don’t want him…",
-					"UtteranceId": "TTS-B11C5023EA408012A5CF82E550398878"
+					"Utterance": "I thought this religion let people into Heaven if they repented…",
+					"UtteranceId": "TTS-799321443F0C40666D4CC9F705CEF88A"
 				}, 
 				{
 					"CurrentState": "S68",
@@ -558,12 +558,12 @@
 					"UtteranceId": "TTS-B84FE5543CCF67D41D5E02F623641582"
 				}, 
 				{
-					"CurrentState": "S39",
+					"CurrentState": "S40",
 					"NextState": "S31",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "F.",
-					"UtteranceId": "TTS-E3CDE3F61DE01C172FA395C723C68D2F"
+					"Utterance": "*sigh* You're no fun.",
+					"UtteranceId": "TTS-B699D46DF8815A2AA1C801CCD7489533"
 				}, 
 				{
 					"CurrentState": "S26",
@@ -574,36 +574,36 @@
 					"UtteranceId": "TTS-1BFD7F653591E54B5C9C4E428C65F608"
 				}, 
 				{
-					"CurrentState": "S49",
-					"NextState": "S50",
-					"Meaning": "Devil",
+					"CurrentState": "S27",
+					"NextState": "S53",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "Well shit *ceases to exist*",
-					"UtteranceId": "TTS-80AA25BB26808C9A2346D450F3E6669B"
+					"Utterance": "Because it’s where everyone else is.",
+					"UtteranceId": "TTS-B6333A703B617A4C5B299EAEC7FE2B60"
 				}, 
 				{
 					"CurrentState": "S41",
 					"NextState": "S42",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "I bet I can make you lose it.",
-					"UtteranceId": "TTS-920C5E8420F23989B5755054566BC8DB"
+					"Utterance": "You’re impatient to get to Heaven though...",
+					"UtteranceId": "TTS-AB9F9F5DA830BE3B6362AFE1B2CEF0B3"
+				}, 
+				{
+					"CurrentState": "S43",
+					"NextState": "S23",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "My turn!",
+					"UtteranceId": "TTS-F9F002B7057D16D0A9B5E1A8C2D34465"
 				}, 
 				{
 					"CurrentState": "S42",
 					"NextState": "S43",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
 					"Utterance": "We’ll see about that…",
 					"UtteranceId": "TTS-2C3CCC49A3B00C4D1CDA42DD7DB2102D"
-				}, 
-				{
-					"CurrentState": "S41",
-					"NextState": "S42",
-					"Meaning": "Devil",
-					"Style": "-",
-					"Utterance": "You’re impatient to get to Heaven though...",
-					"UtteranceId": "TTS-AB9F9F5DA830BE3B6362AFE1B2CEF0B3"
 				}, 
 				{
 					"CurrentState": "S44",
@@ -631,11 +631,11 @@
 				}, 
 				{
 					"CurrentState": "S28",
-					"NextState": "S47",
-					"Meaning": "Player",
+					"NextState": "S49",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "I never did any TikTok dances.",
-					"UtteranceId": "TTS-DC10A018DB48331163B2869024231F59"
+					"Utterance": "I don’t believe in Hell.",
+					"UtteranceId": "TTS-5EEAAEA27E68FFA78DB61A6E0EBFF40C"
 				}, 
 				{
 					"CurrentState": "S45",
@@ -646,68 +646,68 @@
 					"UtteranceId": "TTS-ED200D35C6208657976457F698A7F835"
 				}, 
 				{
-					"CurrentState": "S46",
-					"NextState": "S43",
-					"Meaning": "Angel",
-					"Style": "-",
-					"Utterance": "Yes, precisely.",
-					"UtteranceId": "TTS-BB7104103D5DEBABFC3FA9683082105A"
-				}, 
-				{
-					"CurrentState": "S28",
-					"NextState": "S44",
-					"Meaning": "Player",
-					"Style": "-",
-					"Utterance": "I can eat spicy food without crying.",
-					"UtteranceId": "TTS-221F2321CCABBD00E1C18F913307AACB"
-				}, 
-				{
 					"CurrentState": "S47",
 					"NextState": "S48",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "*gasps*",
 					"UtteranceId": "TTS-04040CC7615BAD31ED0906CA08EC54A5"
 				}, 
 				{
-					"CurrentState": "S48",
+					"CurrentState": "S46",
 					"NextState": "S43",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "That is truly impressive.",
-					"UtteranceId": "TTS-A51894E62661E79B6FA631A7A048A8CA"
+					"Utterance": "Yes, precisely.",
+					"UtteranceId": "TTS-BB7104103D5DEBABFC3FA9683082105A"
 				}, 
 				{
 					"CurrentState": "S47",
 					"NextState": "S48",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "You monster!",
 					"UtteranceId": "TTS-2509C46F13007AED6B2A569F55775D6A"
 				}, 
 				{
-					"CurrentState": "S28",
-					"NextState": "S41",
-					"Meaning": "Player",
+					"CurrentState": "S31",
+					"NextState": "S24",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "I am very patient.",
-					"UtteranceId": "TTS-5F8FEB79B5E760F9E0CA328AA88CD178"
+					"Utterance": "Enough. I’ll ask you a question.",
+					"UtteranceId": "TTS-0B01F25E309BEB416BBFE04E158DC92C"
+				}, 
+				{
+					"CurrentState": "S48",
+					"NextState": "S43",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "That is truly impressive.",
+					"UtteranceId": "TTS-A51894E62661E79B6FA631A7A048A8CA"
 				}, 
 				{
 					"CurrentState": "S28",
-					"NextState": "S49",
-					"Meaning": "Player",
+					"NextState": "S47",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "I don’t believe in Hell.",
-					"UtteranceId": "TTS-5EEAAEA27E68FFA78DB61A6E0EBFF40C"
+					"Utterance": "I never did any TikTok dances.",
+					"UtteranceId": "TTS-DC10A018DB48331163B2869024231F59"
 				}, 
 				{
-					"CurrentState": "S27",
-					"NextState": "S53",
-					"Meaning": "Player",
+					"CurrentState": "S41",
+					"NextState": "S42",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Because it’s where everyone else is.",
-					"UtteranceId": "TTS-B6333A703B617A4C5B299EAEC7FE2B60"
+					"Utterance": "I bet I can make you lose it.",
+					"UtteranceId": "TTS-920C5E8420F23989B5755054566BC8DB"
+				}, 
+				{
+					"CurrentState": "S53",
+					"NextState": "S54",
+					"Meaning": "ChangeActors(Angel, Player)",
+					"Style": "-",
+					"Utterance": "Oh, please!",
+					"UtteranceId": "TTS-070EF8862B69603286D80BCBB04809BB"
 				}, 
 				{
 					"CurrentState": "S50",
@@ -728,10 +728,10 @@
 				{
 					"CurrentState": "S55",
 					"NextState": "S43",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "Aren’t you a spoiled brat…",
-					"UtteranceId": "TTS-6A31AD5AD1C100CE2F328A7D058D87CB"
+					"Utterance": "Hm...",
+					"UtteranceId": "TTS-C231A6C09C3056C342E0C4FB022A6322"
 				}, 
 				{
 					"CurrentState": "S52",
@@ -752,42 +752,34 @@
 				{
 					"CurrentState": "S53",
 					"NextState": "S54",
-					"Meaning": "Devil",
-					"Style": "-",
-					"Utterance": "Wake up, sheeple!",
-					"UtteranceId": "TTS-DA0C030141DB5C4A1049C862163EE2E4"
-				}, 
-				{
-					"CurrentState": "S53",
-					"NextState": "S54",
-					"Meaning": "Devil",
-					"Style": "-",
-					"Utterance": "Oh, please!",
-					"UtteranceId": "TTS-070EF8862B69603286D80BCBB04809BB"
-				}, 
-				{
-					"CurrentState": "S56",
-					"NextState": "S43",
-					"Meaning": "Angel",
-					"Style": "-",
-					"Utterance": "Fair enough.",
-					"UtteranceId": "TTS-B8B70C6C50B9F200A0D3D1BC3086A6F3"
-				}, 
-				{
-					"CurrentState": "S53",
-					"NextState": "S54",
-					"Meaning": "Devil",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
 					"Utterance": "Don’t you wanna be a hipster?",
 					"UtteranceId": "TTS-43D3AD667AED35D5D3EDB89AA481AD5E"
 				}, 
 				{
+					"CurrentState": "S53",
+					"NextState": "S54",
+					"Meaning": "ChangeActors(Angel, Player)",
+					"Style": "-",
+					"Utterance": "Wake up, sheeple!",
+					"UtteranceId": "TTS-DA0C030141DB5C4A1049C862163EE2E4"
+				}, 
+				{
 					"CurrentState": "S54",
 					"NextState": "S43",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
 					"Utterance": "That is such a vain answer…",
 					"UtteranceId": "TTS-527E3E2DFFCCB0D2DBE269C545918780"
+				}, 
+				{
+					"CurrentState": "S55",
+					"NextState": "S43",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "-",
+					"Utterance": "Aren’t you a spoiled brat…",
+					"UtteranceId": "TTS-6A31AD5AD1C100CE2F328A7D058D87CB"
 				}, 
 				{
 					"CurrentState": "S27",
@@ -798,20 +790,20 @@
 					"UtteranceId": "TTS-426CFD441ADBA53C6B4699AE8D6BF13D"
 				}, 
 				{
-					"CurrentState": "S27",
-					"NextState": "S49",
-					"Meaning": "Player",
+					"CurrentState": "S49",
+					"NextState": "S50",
+					"Meaning": "ChangeActors(Player, Angel)",
 					"Style": "-",
-					"Utterance": "I don’t believe in Hell.",
-					"UtteranceId": "TTS-5EEAAEA27E68FFA78DB61A6E0EBFF40C"
+					"Utterance": "Well shit *ceases to exist*",
+					"UtteranceId": "TTS-80AA25BB26808C9A2346D450F3E6669B"
 				}, 
 				{
-					"CurrentState": "S55",
+					"CurrentState": "S56",
 					"NextState": "S43",
-					"Meaning": "Angel",
+					"Meaning": "ChangeActors(Devil, Player)",
 					"Style": "-",
-					"Utterance": "Hm...",
-					"UtteranceId": "TTS-C231A6C09C3056C342E0C4FB022A6322"
+					"Utterance": "Fair enough.",
+					"UtteranceId": "TTS-B8B70C6C50B9F200A0D3D1BC3086A6F3"
 				}, 
 				{
 					"CurrentState": "S27",
@@ -838,12 +830,12 @@
 					"UtteranceId": "TTS-26F47EDF7F582DA3B275477F67BA8618"
 				}, 
 				{
-					"CurrentState": "S60",
-					"NextState": "S61",
-					"Meaning": "Player",
+					"CurrentState": "S61",
+					"NextState": "S62",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Because… forgiveness is a virtue?",
-					"UtteranceId": "TTS-10DFD51A82E68BCBA47D6506D6427B3F"
+					"Utterance": "HA! *lmao* That’s the most cunning reply I’ve heard all day. Listen, kid, I’ll give you a spot as an archdemon if you come with me.",
+					"UtteranceId": "TTS-FFF31717D9CACECA47BE18488D3B7BEA"
 				}, 
 				{
 					"CurrentState": "S59",
@@ -862,12 +854,12 @@
 					"UtteranceId": "TTS-7F0E06C81EDEDB7377302B28387B02F6"
 				}, 
 				{
-					"CurrentState": "S61",
-					"NextState": "S62",
-					"Meaning": "Devil",
+					"CurrentState": "S63",
+					"NextState": "S14",
+					"Meaning": "Player",
 					"Style": "-",
-					"Utterance": "HA! *lmao* That’s the most cunning reply I’ve heard all day. Listen, kid, I’ll give you a spot as an archdemon if you come with me.",
-					"UtteranceId": "TTS-FFF31717D9CACECA47BE18488D3B7BEA"
+					"Utterance": "I will take Satan's offer, fuck Heaven!",
+					"UtteranceId": "TTS-B28053167C7DD5E22D009A56E2230D7B"
 				}, 
 				{
 					"CurrentState": "S63",
@@ -886,20 +878,28 @@
 					"UtteranceId": "TTS-E6D2198322F7988F3EAF90B954215ECF"
 				}, 
 				{
-					"CurrentState": "S64",
-					"NextState": "S65",
-					"Meaning": "Devil",
+					"CurrentState": "S18",
+					"NextState": "S19",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "How bold of you to assume that…",
-					"UtteranceId": "TTS-BFCACC0D2D4FD18183CF7275891D18AD"
+					"Utterance": "Shh, leave the questions for the end!",
+					"UtteranceId": "TTS-D75D7D0ED28051C0F7655E037F3808A6"
 				}, 
 				{
-					"CurrentState": "S63",
-					"NextState": "S14",
-					"Meaning": "Player",
+					"CurrentState": "S11",
+					"NextState": "S12",
+					"Meaning": "-",
 					"Style": "-",
-					"Utterance": "Sign me up, Satan!",
-					"UtteranceId": "TTS-BB30BD24F5C7FEC5E1F3685E4D0BAD24"
+					"Utterance": "Everyone has a guaranteed spot in Hell. The real challenge is to get invited into Heaven.",
+					"UtteranceId": "TTS-0FBE2901E45F6BB66F2E71C248E3C592"
+				}, 
+				{
+					"CurrentState": "S2",
+					"NextState": "S3",
+					"Meaning": "ChangeActors(Angel, Devil)",
+					"Style": "-",
+					"Utterance": "Just kidding, you're dead af",
+					"UtteranceId": "TTS-5545AA87C59FB5BC4728F3E55E06B3AE"
 				}],
 			"Characters": [
 				{
@@ -908,12 +908,7 @@
 							"Perspective": "Player",
 							"Knowledge":
 								{
-									"SELF":
-										{
-											"DialogueState(Devil)": "Start, 1",
-											"DialogueState(Angel)": "Start, 1",
-											"Answered(Questions)": "0, 1"
-										}
+
 								}
 						},
 					"BodyName": "Male",
@@ -953,9 +948,7 @@
 									"SELF":
 										{
 											"DialogueState(Player)": "Start, 1",
-											"DialogueState(Angel)": "Start, 1",
-											"Has(Floor)": "Devil, 1",
-											"CanDisconnect(Devil)": "False, 1"
+											"Has(Floor)": "Devil, 1"
 										}
 								}
 						},
@@ -993,15 +986,11 @@
 							"Perspective": "Angel",
 							"Knowledge":
 								{
-									"SELF":
-										{
-											"DialogueState(Devil)": "Start, 1",
-											"DialogueState(Player)": "Start, 1"
-										}
+
 								}
 						},
-					"BodyName": null,
-					"VoiceName": null,
+					"BodyName": "Female",
+					"VoiceName": "Male",
 					"EmotionalState":
 						{
 							"Mood": 0,
@@ -1037,19 +1026,9 @@
 									"key": "Event(Action-End, [s], Speak([cs], [ns], *, *), [t])",
 									"value": [
 										{
-											"PropertyName": "DialogueState(Angel)",
+											"PropertyName": "DialogueState([s])",
 											"NewValue": "[ns]",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "[ns]",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "[ns]",
-											"ObserverAgent": "*"
+											"ObserverAgent": "[t]"
 										}, 
 										{
 											"PropertyName": "Has(Floor)",
@@ -1058,1616 +1037,32 @@
 										}]
 								}, 
 								{
-									"key": "Event(Action-End, *, Speak([cs], S3, *, *), *)",
+									"key": "Event(Action-End, [s], Speak([cs], [ns], ChangeActors([nsj], [nt]), *), [t])",
 									"value": [
 										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S3",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S3",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S3",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S4, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S4",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S4",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S4",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S5, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S5",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S5",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S5",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S10, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S10",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S10",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S10",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S11, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S11",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S11",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S11",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S16, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S16",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S16",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S16",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S19, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S19",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S19",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S19",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S21, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S21",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S21",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S21",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S24, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S24",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S24",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S24",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S31, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S31",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S31",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S31",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S33, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S33",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S33",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S33",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S36, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S36",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S36",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S36",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S42, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S42",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S42",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S42",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S44, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S44",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S44",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S44",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S46, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S46",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S46",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S46",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S48, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S48",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S48",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S48",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S51, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S51",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S51",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S51",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S54, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S54",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S54",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S54",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S55, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S55",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S55",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S55",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S56, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S56",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S56",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S56",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S57, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S57",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S57",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S57",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S59, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S59",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S59",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S59",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S62, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S62",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S62",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S62",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S65, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S65",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S65",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S65",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S67, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S67",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S67",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S67",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S7, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S7",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S7",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S7",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S71, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S71",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S71",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S71",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S73, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S73",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S73",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S73",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S9, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S9",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S9",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S9",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Angel",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S12, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S12",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S12",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S12",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S17, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S17",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S17",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S17",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S20, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S20",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S20",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S20",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S25, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S25",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S25",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S25",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S26, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S26",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S26",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S26",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S27, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S27",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S27",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S27",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S28, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S28",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S28",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S28",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S50, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S50",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S50",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S50",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S58, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S58",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S58",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S58",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S60, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S60",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S60",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S60",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Answered(Questions)",
-											"NewValue": "Math(Answered(Questions), Plus, 1)",
-											"ObserverAgent": "Player"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S63, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S63",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S63",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S63",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S69, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S69",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S69",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S69",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S72, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S72",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S72",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S72",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Player",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S13, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S13",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S13",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S13",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S15, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S15",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S15",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S15",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S18, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S18",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S18",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S18",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S22, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S22",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S22",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S22",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S23, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S23",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S23",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S23",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S30, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S30",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S30",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S30",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S34, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S34",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S34",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S34",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S35, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S35",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S35",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S35",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S37, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S37",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S37",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S37",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S38, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S38",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S38",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S38",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S39, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S39",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S39",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S39",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S40, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S40",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S40",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S40",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S41, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S41",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S41",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S41",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S43, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S43",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S43",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S43",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S45, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S45",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S45",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S45",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S47, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S47",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S47",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S47",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S49, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S49",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S49",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S49",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S53, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S53",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S53",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S53",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S6, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S6",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S6",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S6",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S61, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S61",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S61",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S61",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S64, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S64",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S64",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S64",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S66, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S66",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S66",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S66",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S68, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S68",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S68",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S68",
-											"ObserverAgent": "*"
-										}, 
-										{
 											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S70, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S70",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S70",
-											"ObserverAgent": "*"
-										}, 
-										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S70",
+											"NewValue": "[nsj]",
 											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
-										}]
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S8, *, *), *)",
-									"value": [
-										{
-											"PropertyName": "DialogueState(Devil)",
-											"NewValue": "S8",
-											"ObserverAgent": "*"
+											"PropertyName": "DialogueState([nt])",
+											"NewValue": "[ns]",
+											"ObserverAgent": "[nsj]"
 										}, 
 										{
-											"PropertyName": "DialogueState(Angel)",
-											"NewValue": "S8",
-											"ObserverAgent": "*"
+											"PropertyName": "DialogueState([nsj])",
+											"NewValue": "[ns]",
+											"ObserverAgent": "[nt]"
 										}, 
 										{
-											"PropertyName": "DialogueState(Player)",
-											"NewValue": "S8",
-											"ObserverAgent": "*"
+											"PropertyName": "DialogueState([s])",
+											"NewValue": "-",
+											"ObserverAgent": "[t]"
 										}, 
 										{
-											"PropertyName": "Has(Floor)",
-											"NewValue": "Devil",
-											"ObserverAgent": "*"
+											"PropertyName": "DialogueState([t])",
+											"NewValue": "-",
+											"ObserverAgent": "[s]"
 										}]
 								}]
 						},
@@ -2679,276 +1074,16 @@
 									"value": 1
 								}, 
 								{
-									"key": "Event(Action-End, *, Speak([cs], S3, *, *), *)",
-									"value": 2
+									"key": "Event(Action-End, [s], DuplicateSpeak([cs], [ns], *, *), [t])",
+									"value": 1
 								}, 
 								{
-									"key": "Event(Action-End, *, Speak([cs], S4, *, *), *)",
-									"value": 2
+									"key": "Event(Action-End, [s], Speak([cs], [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": 1
 								}, 
 								{
-									"key": "Event(Action-End, *, Speak([cs], S5, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S11, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S16, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S19, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S21, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S24, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S31, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S33, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S36, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S42, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S44, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S46, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S48, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S51, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S54, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S55, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S56, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S57, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S59, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S62, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S65, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S67, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S7, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S71, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S73, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S9, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S10, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S13, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S15, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S18, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S2, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S22, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S23, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S30, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S34, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S35, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S37, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S38, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S39, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S40, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S41, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S43, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S45, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S47, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S49, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S53, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S6, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S61, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S64, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S68, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S70, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S8, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S12, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S17, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S20, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S25, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S26, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S27, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S28, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S50, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S58, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S60, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S63, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S69, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S72, *, *), *)",
-									"value": 2
-								}, 
-								{
-									"key": "Event(Action-End, *, Speak([cs], S66, *, *), *)",
-									"value": 2
+									"key": "Event(Action-End, [s], DuplicateSpeak([cs], [ns], ChangeActors([nsj], [nt]), *), [t])",
+									"value": 1
 								}]
 						}
 				}
