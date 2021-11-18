@@ -10,6 +10,27 @@
 					"AppraisalWeight": 1,
 					"Rules": [
 						{
+							"EventName": "Event(Action-End, [x], Speak(*, *, *, *), *)",
+							"Conditions":
+								{
+									"Set": ["Player = [x]"]
+								},
+							"AppraisalVariables":
+								{
+									"AppraisalVariables": [
+										{
+											"Name": "Desirability",
+											"Value": 2,
+											"Target": "-"
+										}, 
+										{
+											"Name": "Desirability for others",
+											"Value": 2,
+											"Target": "*"
+										}]
+								}
+						}, 
+						{
 							"EventName": "Event(Action-End, *, Speak(*, *, *, *), *)",
 							"Conditions":
 								{
@@ -19,9 +40,113 @@
 								{
 									"AppraisalVariables": [
 										{
-											"Name": "Praiseworthiness",
-											"Value": 5,
+											"Name": "Desirability",
+											"Value": 2,
 											"Target": "-"
+										}]
+								}
+						}, 
+						{
+							"EventName": "Event(Action-End, [x], Speak(*, *, *, Love), *)",
+							"Conditions":
+								{
+									"Set": ["Player = [x]"]
+								},
+							"AppraisalVariables":
+								{
+									"AppraisalVariables": [
+										{
+											"Name": "Praiseworthiness",
+											"Value": 6,
+											"Target": "-"
+										}, 
+										{
+											"Name": "Desirability",
+											"Value": 30,
+											"Target": "-"
+										}, 
+										{
+											"Name": "Desirability for others",
+											"Value": 15,
+											"Target": "*"
+										}]
+								}
+						}, 
+						{
+							"EventName": "Event(Action-End, [x], Speak(*, *, *, Hate), *)",
+							"Conditions":
+								{
+									"Set": ["Player = [x]"]
+								},
+							"AppraisalVariables":
+								{
+									"AppraisalVariables": [
+										{
+											"Name": "Praiseworthiness",
+											"Value": -6,
+											"Target": "-"
+										}, 
+										{
+											"Name": "Desirability",
+											"Value": -30,
+											"Target": "-"
+										}, 
+										{
+											"Name": "Desirability for others",
+											"Value": -15,
+											"Target": "*"
+										}]
+								}
+						}, 
+						{
+							"EventName": "Event(Action-End, [x], Speak(*, *, *, Disappoint), *)",
+							"Conditions":
+								{
+									"Set": ["Player = [x]"]
+								},
+							"AppraisalVariables":
+								{
+									"AppraisalVariables": [
+										{
+											"Name": "Praiseworthiness",
+											"Value": -6,
+											"Target": "-"
+										}, 
+										{
+											"Name": "Desirability",
+											"Value": -5,
+											"Target": "-"
+										}, 
+										{
+											"Name": "Desirability for others",
+											"Value": -4,
+											"Target": "*"
+										}]
+								}
+						}, 
+						{
+							"EventName": "Event(Action-End, [x], Speak(*, *, *, Approval), *)",
+							"Conditions":
+								{
+									"Set": ["Player = [x]"]
+								},
+							"AppraisalVariables":
+								{
+									"AppraisalVariables": [
+										{
+											"Name": "Praiseworthiness",
+											"Value": 6,
+											"Target": "-"
+										}, 
+										{
+											"Name": "Desirability",
+											"Value": 6,
+											"Target": "-"
+										}, 
+										{
+											"Name": "Desirability for others",
+											"Value": 6,
+											"Target": "*"
 										}]
 								}
 						}]
@@ -78,6 +203,26 @@
 							"Set": ["DialogueState([x]) = [cs]", "Has(Floor) = SELF", "ValidDialogue([cs], S24, ChangeActors([floor], [target]), [style]) = True", "[target] = [x]", "Answered(Questions) < 2"]
 						},
 					"Priority": 5
+				}, 
+				{
+					"Action": "Speak(Results, End3, ChangeActors([floor], [target]), [style])",
+					"Target": "[x]",
+					"Layer": "-",
+					"Conditions":
+						{
+							"Set": ["DialogueState([x]) = Results", "Has(Floor) = SELF", "ValidDialogue(Results, End3, ChangeActors([floor], [target]), [style]) = True", "[x] = [target]", "Answered(Questions) = 2", "SI(Player) > 6"]
+						},
+					"Priority": 5
+				}, 
+				{
+					"Action": "Speak(Results, End4, ChangeActors([floor], [target]), [style])",
+					"Target": "[x]",
+					"Layer": "-",
+					"Conditions":
+						{
+							"Set": ["DialogueState([x]) = Results", "Has(Floor) = SELF", "ValidDialogue(Results, End4, ChangeActors([floor], [target]), [style]) = True", "[x] = [target]", "Answered(Questions) = 2", "SI(Player) <= 6"]
+						},
+					"Priority": 5
 				}]
 		},
 	"types": [
@@ -91,7 +236,52 @@
 	"root":
 		{
 			"classId": 0,
-			"AttributionRules": []
+			"AttributionRules": [
+				{
+					"RuleName": "Base",
+					"Target": "[x]",
+					"Value": 2,
+					"Conditions":
+						{
+							"Set": ["Player = [x]"]
+						}
+				}, 
+				{
+					"RuleName": "Tik tok",
+					"Target": "[x]",
+					"Value": 10,
+					"Conditions":
+						{
+							"Set": ["EventId(Action-End, [x], Speak(S28, S47, [m], [s]), SELF) = [id]"]
+						}
+				}, 
+				{
+					"RuleName": "Skyrim",
+					"Target": "[x]",
+					"Value": -1,
+					"Conditions":
+						{
+							"Set": ["EventId(Action-End, [x], Speak(S1, S6, [m], [s]), SELF) = [id]"]
+						}
+				}, 
+				{
+					"RuleName": "69",
+					"Target": "[x]",
+					"Value": -5,
+					"Conditions":
+						{
+							"Set": ["EventId(Action-End, [x], Speak(S25, S35, [m], [s]), SELF) = [id]"]
+						}
+				}, 
+				{
+					"RuleName": "Mood",
+					"Target": "[t]",
+					"Value": 10,
+					"Conditions":
+						{
+							"Set": ["Mood(Angel) = 10"]
+						}
+				}]
 		},
 	"types": [
 		{

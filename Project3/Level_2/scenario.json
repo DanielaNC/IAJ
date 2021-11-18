@@ -102,12 +102,12 @@
 					"UtteranceId": "TTS-776121B710EB84DF1ED0D8E3E629DCBC"
 				}, 
 				{
-					"CurrentState": "S12",
-					"NextState": "S15",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "I wanna go to Heaven...",
-					"UtteranceId": "TTS-C2F80302EB56B7FCD15E6368A9289114"
+					"CurrentState": "S27",
+					"NextState": "S55",
+					"Meaning": "ChangeActors(Angel, Angel)",
+					"Style": "Hate",
+					"Utterance": "Because I get everything that I want.",
+					"UtteranceId": "TTS-426CFD441ADBA53C6B4699AE8D6BF13D"
 				}, 
 				{
 					"CurrentState": "S23",
@@ -126,12 +126,12 @@
 					"UtteranceId": "TTS-037BD6C5407F3AF861F153B218F1612D"
 				}, 
 				{
-					"CurrentState": "S1",
-					"NextState": "S6",
-					"Meaning": "ChangeActors(Devil, Devil)",
-					"Style": "-",
-					"Utterance": "Am I in Skyrim? Fuck yes, I always wanted that.",
-					"UtteranceId": "TTS-C63ACC3D74DEDBFBDCABBFE75AB36308"
+					"CurrentState": "S60",
+					"NextState": "S64",
+					"Meaning": "ChangeActors(Devil, Angel)",
+					"Style": "Disappoint",
+					"Utterance": "Because I deserve it?",
+					"UtteranceId": "TTS-B401622C3DD54ED6323CBBE7CB6FAA57"
 				}, 
 				{
 					"CurrentState": "S27",
@@ -222,12 +222,12 @@
 					"UtteranceId": "TTS-2561EB11D669E779E2CD7466C5566571"
 				}, 
 				{
-					"CurrentState": "S60",
-					"NextState": "S64",
-					"Meaning": "ChangeActors(Devil, Angel)",
-					"Style": "-",
-					"Utterance": "Because I deserve it?",
-					"UtteranceId": "TTS-B401622C3DD54ED6323CBBE7CB6FAA57"
+					"CurrentState": "S25",
+					"NextState": "S35",
+					"Meaning": "ChangeActors(Devil, Devil)",
+					"Style": "Disappoint",
+					"Utterance": "69.",
+					"UtteranceId": "TTS-4023CED117ADC1CF9B457B7DA48D6EEA"
 				}, 
 				{
 					"CurrentState": "S23",
@@ -326,12 +326,12 @@
 					"UtteranceId": "TTS-BB7104103D5DEBABFC3FA9683082105A"
 				}, 
 				{
-					"CurrentState": "S25",
-					"NextState": "S35",
-					"Meaning": "ChangeActors(Devil, Devil)",
-					"Style": "-",
-					"Utterance": "69.",
-					"UtteranceId": "TTS-4023CED117ADC1CF9B457B7DA48D6EEA"
+					"CurrentState": "S28",
+					"NextState": "S47",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "Love",
+					"Utterance": "I never did any TikTok dances.",
+					"UtteranceId": "TTS-DC10A018DB48331163B2869024231F59"
 				}, 
 				{
 					"CurrentState": "S36",
@@ -358,12 +358,12 @@
 					"UtteranceId": "TTS-FCDCF303C0C78AC5BF76172426180B9D"
 				}, 
 				{
-					"CurrentState": "S16",
-					"NextState": "S17",
-					"Meaning": "ChangeActors(Player, Player)",
-					"Style": "-",
-					"Utterance": "Then you must prove you are worthy... Consider this your trial.",
-					"UtteranceId": "TTS-D0FA5DD990E525385EF0D66CF19C7084"
+					"CurrentState": "S64",
+					"NextState": "S65",
+					"Meaning": "ChangeActors(Angel, Player)",
+					"Style": "Disappoint",
+					"Utterance": "How bold of you to assume that…",
+					"UtteranceId": "TTS-BFCACC0D2D4FD18183CF7275891D18AD"
 				}, 
 				{
 					"CurrentState": "S26",
@@ -422,12 +422,12 @@
 					"UtteranceId": "TTS-E3CDE3F61DE01C172FA395C723C68D2F"
 				}, 
 				{
-					"CurrentState": "S64",
-					"NextState": "S65",
-					"Meaning": "ChangeActors(Angel, Player)",
-					"Style": "-",
-					"Utterance": "How bold of you to assume that…",
-					"UtteranceId": "TTS-BFCACC0D2D4FD18183CF7275891D18AD"
+					"CurrentState": "S27",
+					"NextState": "S53",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "Disappoint",
+					"Utterance": "Because it’s where everyone else is.",
+					"UtteranceId": "TTS-B6333A703B617A4C5B299EAEC7FE2B60"
 				}, 
 				{
 					"CurrentState": "S18",
@@ -478,20 +478,12 @@
 					"UtteranceId": "TTS-AAFD618B0A39BDE19D56916B2F8FB270"
 				}, 
 				{
-					"CurrentState": "S65",
-					"NextState": "S66",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "Your pride is shameful. Off to the hellish boat you go!",
-					"UtteranceId": "TTS-018E135517445F81FC9A917B3627CE5F"
-				}, 
-				{
-					"CurrentState": "S69",
-					"NextState": "S70",
-					"Meaning": "ChangeActors(Devil, Angel)",
-					"Style": "-",
-					"Utterance": "I thought this religion let people into Heaven if they repented…",
-					"UtteranceId": "TTS-799321443F0C40666D4CC9F705CEF88A"
+					"CurrentState": "S16",
+					"NextState": "S17",
+					"Meaning": "ChangeActors(Player, Player)",
+					"Style": "Approval",
+					"Utterance": "Then you must prove you are worthy... Consider this your trial.",
+					"UtteranceId": "TTS-D0FA5DD990E525385EF0D66CF19C7084"
 				}, 
 				{
 					"CurrentState": "S29",
@@ -566,12 +558,12 @@
 					"UtteranceId": "TTS-FB446D92F0B79DEDD2E0C9D089ADE289"
 				}, 
 				{
-					"CurrentState": "S27",
-					"NextState": "S53",
-					"Meaning": "ChangeActors(Devil, Player)",
+					"CurrentState": "S43",
+					"NextState": "Results",
+					"Meaning": "ChangeActors(Angel, Player)",
 					"Style": "-",
-					"Utterance": "Because it’s where everyone else is.",
-					"UtteranceId": "TTS-B6333A703B617A4C5B299EAEC7FE2B60"
+					"Utterance": "I think we all know where he’s going...",
+					"UtteranceId": "TTS-77E306B429089B4BA10913749BEC4EC2"
 				}, 
 				{
 					"CurrentState": "S41",
@@ -606,12 +598,12 @@
 					"UtteranceId": "TTS-5FC9DF58B38A1934ABAF554976EA4DE3"
 				}, 
 				{
-					"CurrentState": "S43",
-					"NextState": "Results",
-					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "I think we all know where he’s going...",
-					"UtteranceId": "TTS-77E306B429089B4BA10913749BEC4EC2"
+					"CurrentState": "S69",
+					"NextState": "S70",
+					"Meaning": "ChangeActors(Devil, Angel)",
+					"Style": "Hate",
+					"Utterance": "I thought this religion let people into Heaven if they repented…",
+					"UtteranceId": "TTS-799321443F0C40666D4CC9F705CEF88A"
 				}, 
 				{
 					"CurrentState": "S45",
@@ -678,12 +670,12 @@
 					"UtteranceId": "TTS-A51894E62661E79B6FA631A7A048A8CA"
 				}, 
 				{
-					"CurrentState": "S28",
-					"NextState": "S47",
+					"CurrentState": "S12",
+					"NextState": "S15",
 					"Meaning": "ChangeActors(Devil, Player)",
-					"Style": "-",
-					"Utterance": "I never did any TikTok dances.",
-					"UtteranceId": "TTS-DC10A018DB48331163B2869024231F59"
+					"Style": "Approval",
+					"Utterance": "I wanna go to Heaven...",
+					"UtteranceId": "TTS-C2F80302EB56B7FCD15E6368A9289114"
 				}, 
 				{
 					"CurrentState": "S41",
@@ -726,12 +718,12 @@
 					"UtteranceId": "TTS-C231A6C09C3056C342E0C4FB022A6322"
 				}, 
 				{
-					"CurrentState": "S27",
-					"NextState": "S55",
-					"Meaning": "ChangeActors(Angel, Angel)",
-					"Style": "-",
-					"Utterance": "Because I get everything that I want.",
-					"UtteranceId": "TTS-426CFD441ADBA53C6B4699AE8D6BF13D"
+					"CurrentState": "S65",
+					"NextState": "S66",
+					"Meaning": "ChangeActors(Devil, Player)",
+					"Style": "Hate",
+					"Utterance": "Your pride is shameful. Off to the hellish boat you go!",
+					"UtteranceId": "TTS-018E135517445F81FC9A917B3627CE5F"
 				}, 
 				{
 					"CurrentState": "S53",
@@ -793,7 +785,7 @@
 					"CurrentState": "S57",
 					"NextState": "S58",
 					"Meaning": "ChangeActors(Player, Player)",
-					"Style": "-",
+					"Style": "Hate",
 					"Utterance": "You fool! That just shows how lazy you are. And laziness is a mortal sin. Perhaps this trial is worthless after all…",
 					"UtteranceId": "TTS-2322D9220D757387B8C2E21980F4F256"
 				}, 
@@ -870,14 +862,6 @@
 					"UtteranceId": "TTS-D75D7D0ED28051C0F7655E037F3808A6"
 				}, 
 				{
-					"CurrentState": "S4",
-					"NextState": "S5",
-					"Meaning": "Change(Player, Devil)",
-					"Style": "-",
-					"Utterance": "You ain't the boss of me!",
-					"UtteranceId": "TTS-F8FDC2AFA78F22573A2C2C08DFBF0F9B"
-				}, 
-				{
 					"CurrentState": "S68",
 					"NextState": "S29",
 					"Meaning": "ChangeActors(Devil, Player)",
@@ -900,6 +884,22 @@
 					"Style": "-",
 					"Utterance": "[You have been turned into a demon - Ending 1]",
 					"UtteranceId": "TTS-E76A09646FB6B299B674BCB514AF0C75"
+				}, 
+				{
+					"CurrentState": "S4",
+					"NextState": "S5",
+					"Meaning": "ChangeActors(Player, Devil)",
+					"Style": "-",
+					"Utterance": "You ain't the boss of me!",
+					"UtteranceId": "TTS-F8FDC2AFA78F22573A2C2C08DFBF0F9B"
+				}, 
+				{
+					"CurrentState": "S1",
+					"NextState": "S6",
+					"Meaning": "ChangeActors(Devil, Devil)",
+					"Style": "Disappoint",
+					"Utterance": "Am I in Skyrim? Fuck yes, I always wanted that.",
+					"UtteranceId": "TTS-C63ACC3D74DEDBFBDCABBFE75AB36308"
 				}],
 			"Characters": [
 				{
@@ -1004,7 +1004,7 @@
 								}
 						},
 					"BodyName": "Female",
-					"VoiceName": "Male",
+					"VoiceName": "Female",
 					"EmotionalState":
 						{
 							"Mood": 0,
@@ -1083,11 +1083,6 @@
 											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "Answered(Questions)",
-											"NewValue": "Math(Answered(Questions), Plus, 1)",
-											"ObserverAgent": "Player"
-										}, 
-										{
 											"PropertyName": "DialogueState(Angel)",
 											"NewValue": "[ns]",
 											"ObserverAgent": "*"
@@ -1100,6 +1095,11 @@
 										{
 											"PropertyName": "DialogueState(Player)",
 											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "Answered(Questions)",
+											"NewValue": "Math(Answered(Questions), Plus, 1)",
 											"ObserverAgent": "*"
 										}]
 								}, 
@@ -1112,11 +1112,6 @@
 											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "Answered(Questions)",
-											"NewValue": "Math(Answered(Questions), Plus, 1)",
-											"ObserverAgent": "Player"
-										}, 
-										{
 											"PropertyName": "DialogueState(Devil)",
 											"NewValue": "[ns]",
 											"ObserverAgent": "*"
@@ -1129,6 +1124,11 @@
 										{
 											"PropertyName": "DialogueState(Player)",
 											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "Answered(Questions)",
+											"NewValue": "Math(Answered(Questions), Plus, 1)",
 											"ObserverAgent": "*"
 										}]
 								}, 
@@ -1141,11 +1141,6 @@
 											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "Answered(Questions)",
-											"NewValue": "Math(Answered(Questions), Plus, 1)",
-											"ObserverAgent": "Player"
-										}, 
-										{
 											"PropertyName": "DialogueState(Devil)",
 											"NewValue": "[ns]",
 											"ObserverAgent": "*"
@@ -1158,6 +1153,11 @@
 										{
 											"PropertyName": "DialogueState(Player)",
 											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "Answered(Questions)",
+											"NewValue": "Math(Answered(Questions), Plus, 1)",
 											"ObserverAgent": "*"
 										}]
 								}, 
@@ -1170,11 +1170,6 @@
 											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "Answered(Questions)",
-											"NewValue": "Math(Answered(Questions), Plus, 1)",
-											"ObserverAgent": "Player"
-										}, 
-										{
 											"PropertyName": "DialogueState(Angel)",
 											"NewValue": "[ns]",
 											"ObserverAgent": "*"
@@ -1187,6 +1182,11 @@
 										{
 											"PropertyName": "DialogueState(Player)",
 											"NewValue": "[ns]",
+											"ObserverAgent": "*"
+										}, 
+										{
+											"PropertyName": "Answered(Questions)",
+											"NewValue": "Math(Answered(Questions), Plus, 1)",
 											"ObserverAgent": "*"
 										}]
 								}]
