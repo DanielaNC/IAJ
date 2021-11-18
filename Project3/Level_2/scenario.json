@@ -910,10 +910,11 @@
 								{
 									"SELF":
 										{
-											"Answered(Questions)": "0, 1",
 											"DialogueState(Devil)": "Start, 1",
 											"DialogueState(Angel)": "Start, 1",
-											"Has(Floor)": "Devil, 1"
+											"Has(Floor)": "Devil, 1",
+											"Answered(Question, Devil)": "False, 1",
+											"Answered(Question, Angel)": "False, 1"
 										}
 								}
 						},
@@ -956,7 +957,8 @@
 											"DialogueState(Player)": "Start, 1",
 											"DialogueState(Angel)": "Start, 1",
 											"Has(Floor)": "Devil, 1",
-											"Answered(Questions)": "0, 1"
+											"Answered(Question, Devil)": "False, 1",
+											"Answered(Question, Angel)": "False, 1"
 										}
 								}
 						},
@@ -999,7 +1001,8 @@
 											"DialogueState(Devil)": "Start, 1",
 											"DialogueState(Player)": "Start, 1",
 											"Has(Floor)": "Devil, 1",
-											"Answered(Questions)": "0, 1"
+											"Answered(Question, Angel)": "False, 1",
+											"Answered(Question, Devil)": "False, 1"
 										}
 								}
 						},
@@ -1098,8 +1101,8 @@
 											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "Answered(Questions)",
-											"NewValue": "Math(Answered(Questions), Plus, 1)",
+											"PropertyName": "Answered(Question, Devil)",
+											"NewValue": true,
 											"ObserverAgent": "*"
 										}]
 								}, 
@@ -1127,8 +1130,8 @@
 											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "Answered(Questions)",
-											"NewValue": "Math(Answered(Questions), Plus, 1)",
+											"PropertyName": "Answered(Question, Angel)",
+											"NewValue": true,
 											"ObserverAgent": "*"
 										}]
 								}, 
@@ -1156,8 +1159,8 @@
 											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "Answered(Questions)",
-											"NewValue": "Math(Answered(Questions), Plus, 1)",
+											"PropertyName": "Answered(Question, Devil)",
+											"NewValue": true,
 											"ObserverAgent": "*"
 										}]
 								}, 
@@ -1185,8 +1188,8 @@
 											"ObserverAgent": "*"
 										}, 
 										{
-											"PropertyName": "Answered(Questions)",
-											"NewValue": "Math(Answered(Questions), Plus, 1)",
+											"PropertyName": "Answered(Question, Angel)",
+											"NewValue": true,
 											"ObserverAgent": "*"
 										}]
 								}]
